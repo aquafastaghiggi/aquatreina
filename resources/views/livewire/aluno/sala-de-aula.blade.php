@@ -11,7 +11,7 @@
     data-player-aula
     data-aula-id="{{ $this->aula->id }}"
     data-endpoint="{{ route('app.progresso') }}"
-    data-intervalo="{{ config('treina.intervalo_ping') }}"
+    data-intervalo="{{ $intervaloPing }}"
     data-posicao="{{ $progressoAtual?->posicao_maxima ?? 0 }}"
     data-concluida="{{ $concluida ? '1' : '0' }}"
 >

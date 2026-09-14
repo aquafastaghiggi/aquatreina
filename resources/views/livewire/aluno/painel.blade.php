@@ -5,6 +5,10 @@
         <div class="flex gap-4"><a href="{{ route('app.catalogo') }}" class="link">Catálogo</a><a href="{{ route('app.perfil') }}" class="link">Perfil</a></div>
     </div>
 
+    @if ($textoBoasVindas !== '')
+        <div class="mt-6 rounded-lg border border-marca/40 bg-marca-suave p-4 text-texto-2">{{ $textoBoasVindas }}</div>
+    @endif
+
     @if ($emAndamento->isEmpty() && $concluidas->isEmpty())
         <section class="mt-8 rounded-lg border border-linha bg-superficie p-8 text-center">
             <h2 class="text-2xl font-semibold">Você ainda não está em nenhum treinamento.</h2>

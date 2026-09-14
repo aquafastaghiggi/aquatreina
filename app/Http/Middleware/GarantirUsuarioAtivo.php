@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Enums\SituacaoUsuario;
+use App\Models\TextoLegal;
 use Closure;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,11 @@ final class GarantirUsuarioAtivo
 
         if ($usuario?->situacao === SituacaoUsuario::Pendente) {
             return redirect()->route('conta.pendente');
+        }
+
+        $termos = TextoLegal::vigente('termos');
+        if ($termos !== null && $usuario?->termos_versao_aceita !== $termos->versao) {
+            return redirect()->route('termos.aceite');
         }
 
         return $next($request);

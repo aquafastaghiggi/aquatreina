@@ -9,6 +9,7 @@ use App\Enums\SituacaoAula;
 use App\Enums\SituacaoMatricula;
 use App\Models\Aula;
 use App\Models\Comentario;
+use App\Models\Configuracao;
 use App\Models\Curso;
 use App\Models\Matricula;
 use App\Models\ProgressoAula;
@@ -135,7 +136,9 @@ class SalaDeAula extends Component
         $urlEmbed = $provedores->criar($this->aula->provedor)->urlEmbed($this->aula->video_id);
         $totalAulas = $this->curso->modulos->sum(fn ($modulo): int => $modulo->aulas->count());
 
-        return view('livewire.aluno.sala-de-aula', compact('urlEmbed', 'totalAulas'))
+        $intervaloPing = Configuracao::valor('intervalo_ping', config('treina.intervalo_ping'));
+
+        return view('livewire.aluno.sala-de-aula', compact('urlEmbed', 'totalAulas', 'intervaloPing'))
             ->layout('components.layouts.aluno', ['titulo' => $this->aula->titulo]);
     }
 

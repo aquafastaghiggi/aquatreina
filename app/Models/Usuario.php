@@ -27,7 +27,7 @@ class Usuario extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     protected $fillable = [
         'nome', 'email', 'password', 'telefone', 'empresa', 'cargo', 'organizacao_id',
-        'situacao', 'avatar_caminho', 'ultimo_acesso_em', 'termos_aceitos_em', 'termos_ip',
+        'situacao', 'avatar_caminho', 'ultimo_acesso_em', 'termos_aceitos_em', 'termos_versao_aceita', 'termos_ip',
     ];
 
     protected $hidden = ['password', 'remember_token'];

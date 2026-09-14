@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Usuarios\Pages;
 
 use App\Filament\Resources\Usuarios\UsuarioResource;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\ManageRecords;
 
 class ManageUsuarios extends ManageRecords
@@ -13,6 +14,6 @@ class ManageUsuarios extends ManageRecords
 
     protected function getHeaderActions(): array
     {
-        return [];
+        return [Action::make('importar')->label('Importar CSV')->url('/admin/usuarios/importar')];
     }
 }

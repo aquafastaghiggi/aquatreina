@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Actions\Fortify;
 
 use App\Enums\SituacaoUsuario;
+use App\Models\Configuracao;
+use App\Models\TextoLegal;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -48,10 +50,11 @@ class CreateNewUser implements CreatesNewUsers
             'telefone' => $input['telefone'] ?? null,
             'empresa' => $input['empresa'] ?? null,
             'cargo' => $input['cargo'] ?? null,
-            'situacao' => config('treina.aprovacao_manual')
+            'situacao' => Configuracao::valor('aprovacao_manual', config('treina.aprovacao_manual'))
                 ? SituacaoUsuario::Pendente
                 : SituacaoUsuario::Ativo,
             'termos_aceitos_em' => now(),
+            'termos_versao_aceita' => TextoLegal::vigente('termos')?->versao,
             'termos_ip' => request()->ip(),
         ]);
 

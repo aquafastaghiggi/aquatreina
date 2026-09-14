@@ -6,6 +6,7 @@ namespace App\Acoes\Progresso;
 
 use App\Eventos\AulaConcluida;
 use App\Models\Aula;
+use App\Models\Configuracao;
 use App\Models\Matricula;
 use App\Models\ProgressoAula;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -57,7 +58,7 @@ final class ConcluirAula
             return false;
         }
 
-        $limite = $aula->duracao_segundos * ((int) config('treina.percentual_conclusao') / 100);
+        $limite = $aula->duracao_segundos * ((int) Configuracao::valor('percentual_conclusao', config('treina.percentual_conclusao')) / 100);
 
         return $progresso->posicao_maxima >= $limite
             && $progresso->segundos_assistidos >= $limite;

@@ -36,7 +36,10 @@
                     <div><dt class="text-texto-3">Organização vinculada</dt><dd>{{ $this->usuario->organizacao?->nome ?? 'Nenhuma' }}</dd></div>
                     <div><dt class="text-texto-3">Termos aceitos em</dt><dd>{{ $this->usuario->termos_aceitos_em?->format('d/m/Y H:i') ?? 'Não registrado' }}</dd></div>
                     <div><dt class="text-texto-3">IP do aceite</dt><dd>{{ $this->usuario->termos_ip ?? 'Não registrado' }}</dd></div>
+                    <div><dt class="text-texto-3">Último acesso</dt><dd>{{ $this->usuario->ultimo_acesso_em?->format('d/m/Y H:i') ?? 'Não registrado' }}</dd></div>
+                    <div><dt class="text-texto-3">Matrículas</dt><dd>{{ $this->usuario->matriculas()->count() }}</dd></div>
                 </dl>
+                <a class="botao-secundario mt-5 inline-flex" href="{{ route('app.dados.exportar') }}">Exportar meus dados (JSON)</a>
             </section>
         </div>
     </div>

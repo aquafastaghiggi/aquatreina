@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Aluno;
 
 use App\Enums\SituacaoMatricula;
+use App\Models\Configuracao;
 use App\Models\Curso;
 use App\Models\Matricula;
 use App\Suporte\ApresentacaoCurso;
@@ -48,6 +49,7 @@ class Painel extends Component
             'apresentacao' => $apresentacao,
             'emAndamento' => $this->matriculas->where('situacao', SituacaoMatricula::Ativa),
             'concluidas' => $this->matriculas->where('situacao', SituacaoMatricula::Concluida),
+            'textoBoasVindas' => Configuracao::valor('texto_boas_vindas', ''),
         ])->layout('components.layouts.aluno', ['titulo' => 'Minha área']);
     }
 }
