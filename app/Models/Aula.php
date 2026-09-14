@@ -50,6 +50,11 @@ class Aula extends Model
         return $this->hasMany(ProgressoAula::class);
     }
 
+    public function comentarios(): HasMany
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
     public function scopePublicadas(Builder $consulta): Builder
     {
         return $consulta->where('situacao', SituacaoAula::Publicada);

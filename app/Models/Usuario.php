@@ -58,6 +58,11 @@ class Usuario extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(Matricula::class);
     }
 
+    public function comentarios(): HasMany
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $panel->getId() === 'admin' && $this->can('acessar-admin');
