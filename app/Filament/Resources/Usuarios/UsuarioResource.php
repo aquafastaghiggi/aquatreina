@@ -8,9 +8,13 @@ use App\Acoes\Usuario\AprovarUsuario;
 use App\Acoes\Usuario\BloquearUsuario;
 use App\Enums\SituacaoUsuario;
 use App\Filament\Resources\Usuarios\Pages\ManageUsuarios;
+use App\Filament\Resources\Usuarios\Pages\ViewUsuario;
+use App\Filament\Resources\Usuarios\RelationManagers\MatriculasRelationManager;
 use App\Models\Usuario;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Actions\ViewAction;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -38,6 +42,19 @@ class UsuarioResource extends Resource
             ->components([]);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return $schema->components([
+            TextEntry::make('nome')->label('Nome'),
+            TextEntry::make('email')->label('E-mail'),
+            TextEntry::make('telefone')->label('Telefone')->placeholder('—'),
+            TextEntry::make('empresa')->label('Empresa')->placeholder('—'),
+            TextEntry::make('cargo')->label('Cargo')->placeholder('—'),
+            TextEntry::make('situacao')->label('Situação')->badge(),
+            TextEntry::make('created_at')->label('Cadastro')->dateTime('d/m/Y H:i'),
+        ]);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -59,6 +76,7 @@ class UsuarioResource extends Resource
                     )),
             ])
             ->recordActions([
+                ViewAction::make(),
                 Action::make('aprovar')
                     ->label('Aprovar')
                     ->color('success')
@@ -74,10 +92,21 @@ class UsuarioResource extends Resource
             ]);
     }
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasRole('admin') === true;
+    }
+
+    public static function getRelations(): array
+    {
+        return [MatriculasRelationManager::class];
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ManageUsuarios::route('/'),
+            'view' => ViewUsuario::route('/{record}'),
         ];
     }
 }
