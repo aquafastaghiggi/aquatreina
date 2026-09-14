@@ -9,6 +9,7 @@ use App\Enums\SituacaoMatricula;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Matricula extends Model
 {
@@ -44,5 +45,10 @@ class Matricula extends Model
     public function ultimaAula(): BelongsTo
     {
         return $this->belongsTo(Aula::class, 'ultima_aula_id');
+    }
+
+    public function progressos(): HasMany
+    {
+        return $this->hasMany(ProgressoAula::class);
     }
 }

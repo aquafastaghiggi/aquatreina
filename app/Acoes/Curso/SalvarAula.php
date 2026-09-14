@@ -6,6 +6,7 @@ namespace App\Acoes\Curso;
 
 use App\Enums\ProvedorVideo as TipoProvedorVideo;
 use App\Enums\SituacaoAula;
+use App\Eventos\AulaDespublicada;
 use App\Eventos\AulaPublicada;
 use App\Models\Aula;
 use App\Servicos\Video\ProvedorVideo;
@@ -53,6 +54,10 @@ final class SalvarAula
         if (! $eraPublicada && $aula->situacao === SituacaoAula::Publicada) {
             $aula->forceFill(['publicada_em' => now()])->save();
             $this->eventos->dispatch(new AulaPublicada($aula));
+        }
+
+        if ($eraPublicada && $aula->situacao !== SituacaoAula::Publicada) {
+            $this->eventos->dispatch(new AulaDespublicada($aula));
         }
 
         return $aula->refresh();

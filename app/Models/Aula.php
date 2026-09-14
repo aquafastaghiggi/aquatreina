@@ -45,6 +45,11 @@ class Aula extends Model
         return $this->hasMany(Material::class)->orderBy('posicao');
     }
 
+    public function progressos(): HasMany
+    {
+        return $this->hasMany(ProgressoAula::class);
+    }
+
     public function scopePublicadas(Builder $consulta): Builder
     {
         return $consulta->where('situacao', SituacaoAula::Publicada);
