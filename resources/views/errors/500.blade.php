@@ -1,0 +1,1 @@
+<x-layouts.publico titulo="Erro inesperado"><section class="mx-auto max-w-2xl px-5 py-20 text-center"><p class="text-atencao">500</p><h1 class="mt-2 text-3xl font-semibold">Não foi possível abrir esta página.</h1><p class="mt-4 text-texto-2">Tente de novo em alguns segundos.</p></section></x-layouts.publico>

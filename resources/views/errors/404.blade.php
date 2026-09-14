@@ -1,0 +1,1 @@
+<x-layouts.publico titulo="Página não encontrada"><section class="mx-auto max-w-2xl px-5 py-20 text-center"><p class="text-marca">404</p><h1 class="mt-2 text-3xl font-semibold">Esta página não foi encontrada.</h1><a class="botao-primario mt-8" href="{{ route('vitrine') }}">Voltar ao início</a></section></x-layouts.publico>

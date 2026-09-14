@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-fundo: #0b1719;
+    --color-superficie: #112226;
+    --color-superficie-2: #172e33;
+    --color-linha: #23403f;
+    --color-texto: #e6efed;
+    --color-texto-2: #a9c1bf;
+    --color-texto-3: #7c9a99;
+    --color-marca: #4fbfc6;
+    --color-marca-suave: #12363a;
+    --color-sucesso: #79c79b;
+    --color-atencao: #dd8e58;
+}
+
+@layer components {
+    .focus-ring { @apply rounded-md outline-none focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
+    .link { @apply rounded-md text-marca underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
+    .botao-primario { @apply inline-flex items-center justify-center rounded-md bg-marca px-5 py-3 font-semibold text-fundo outline-none transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
+    .botao-secundario { @apply inline-flex items-center justify-center rounded-md border border-linha bg-superficie-2 px-5 py-3 font-semibold text-texto outline-none transition hover:border-marca focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
+    .campo { @apply grid gap-2 text-sm font-medium text-texto-2; }
+    .campo input { @apply w-full rounded-md border border-linha bg-superficie-2 px-4 py-3 text-texto outline-none placeholder:text-texto-3 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
+    .erro { @apply rounded-md border border-atencao/50 bg-atencao/10 p-3 text-sm text-atencao; }
+    .sucesso { @apply rounded-md border border-sucesso/50 bg-sucesso/10 p-3 text-sm text-sucesso; }
+    .aviso { @apply my-6 rounded-md border border-atencao/50 bg-atencao/10 p-4 text-atencao; }
+    .prosa h1 { @apply text-4xl font-semibold; }
+    .prosa p { @apply mt-5 leading-7 text-texto-2; }
+}

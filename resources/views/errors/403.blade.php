@@ -1,0 +1,1 @@
+<x-layouts.publico titulo="Acesso negado"><section class="mx-auto max-w-2xl px-5 py-20 text-center"><p class="text-marca">403</p><h1 class="mt-2 text-3xl font-semibold">Você não tem acesso a esta página.</h1><a class="botao-primario mt-8" href="{{ route('vitrine') }}">Voltar ao início</a></section></x-layouts.publico>
