@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $titulo ?? 'Aquafast Treina' }}</title>
+    @isset($descricao)<meta name="description" content="{{ $descricao }}">@endisset
+    @isset($ogTitulo)<meta property="og:title" content="{{ $ogTitulo }}">@endisset
+    @isset($ogDescricao)<meta property="og:description" content="{{ $ogDescricao }}">@endisset
+    @isset($ogUrl)<meta property="og:type" content="website"><meta property="og:url" content="{{ $ogUrl }}">@endisset
+    @if (! empty($ogImagem))<meta property="og:image" content="{{ $ogImagem }}">@endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-fundo text-texto antialiased">
