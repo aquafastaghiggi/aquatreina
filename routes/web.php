@@ -5,9 +5,11 @@ declare(strict_types=1);
 use App\Http\Controllers\AmostraController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\ProgressoController;
 use App\Livewire\Aluno\Catalogo;
 use App\Livewire\Aluno\Painel;
 use App\Livewire\Aluno\Perfil;
+use App\Livewire\Aluno\SalaDeAula;
 use App\Livewire\Publico\PaginaCurso;
 use App\Livewire\Publico\Vitrine;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +31,11 @@ Route::middleware(['auth', 'verified', 'garantir.ativo', 'registrar.acesso'])
         Route::get('/catalogo', Catalogo::class)->name('catalogo');
         Route::post('/catalogo/{curso}/inscrever', [MatriculaController::class, 'inscrever'])->name('inscrever');
         Route::get('/c/{curso:slug}', [CursoController::class, 'entrar'])->name('curso');
+        Route::get('/c/{curso:slug}/a/{aula:slug}', SalaDeAula::class)
+            ->withoutScopedBindings()
+            ->name('aula');
+        Route::post('/progresso', [ProgressoController::class, 'registrar'])
+            ->middleware('throttle:120,1')
+            ->name('progresso');
         Route::get('/perfil', Perfil::class)->name('perfil');
     });

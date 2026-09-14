@@ -1,4 +1,5 @@
 import './bootstrap';
+import './player-aula';
 import Sortable from 'sortablejs';
 
 window.iniciarOrdenacaoCurriculo = (elemento, salvar) => {

@@ -1,7 +1,7 @@
 @props(['curso', 'capaUrl' => null, 'inscrito' => false, 'percentual' => null])
 
 <article class="overflow-hidden rounded-lg border border-linha bg-superficie">
-    <a href="{{ route('cursos.mostrar', $curso) }}" class="group block focus-ring">
+    <a href="{{ $inscrito ? route('app.curso', $curso) : route('cursos.mostrar', $curso) }}" class="group block focus-ring">
         <div class="aspect-[16/10] overflow-hidden bg-marca-suave">
             @if ($capaUrl)
                 <img src="{{ $capaUrl }}" alt="" class="h-full w-full object-cover transition duration-200 group-hover:scale-[1.02] motion-reduce:transition-none" loading="lazy">

@@ -24,7 +24,7 @@ class Painel extends Component
     {
         return Matricula::query()
             ->where('usuario_id', auth()->id())
-            ->with(['curso.categoria', 'curso.modulos.aulas'])
+            ->with(['curso.categoria', 'curso.modulos.aulas', 'ultimaAula.modulo'])
             ->latest('matriculado_em')
             ->get();
     }

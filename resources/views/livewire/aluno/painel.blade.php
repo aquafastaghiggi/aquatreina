@@ -18,7 +18,7 @@
                 <p class="text-sm font-semibold text-marca">Continue de onde parou</p>
                 <div class="mt-2 flex flex-wrap items-end justify-between gap-4">
                     <div><h2 class="text-2xl font-semibold">{{ $recente->curso->titulo }}</h2><p class="mt-2 text-texto-2">{{ $recente->percentual_progresso }}% concluído</p></div>
-                    <a href="{{ route('app.curso', $recente->curso) }}" class="botao-primario">Continuar</a>
+                    <a href="{{ $recente->ultimaAula ? route('app.aula', [$recente->curso, $recente->ultimaAula]) : route('app.curso', $recente->curso) }}" class="botao-primario">Continuar</a>
                 </div>
             </section>
 
