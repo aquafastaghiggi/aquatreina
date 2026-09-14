@@ -52,6 +52,11 @@ class Curso extends Model
         return $this->hasMany(Modulo::class)->orderBy('posicao');
     }
 
+    public function matriculas(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
+    }
+
     public function scopePublicados(Builder $consulta): Builder
     {
         return $consulta->where('situacao', SituacaoCurso::Publicado);

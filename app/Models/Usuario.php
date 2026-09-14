@@ -53,6 +53,11 @@ class Usuario extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(Curso::class, 'responsavel_id');
     }
 
+    public function matriculas(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $panel->getId() === 'admin' && $this->can('acessar-admin');

@@ -9,6 +9,7 @@ use App\Enums\SituacaoCurso;
 use App\Eventos\CursoPublicado;
 use App\Excecoes\CursoIncompleto;
 use App\Models\Curso;
+use Illuminate\Contracts\Cache\Factory as Cache;
 use Illuminate\Contracts\Events\Dispatcher;
 
 final class PublicarCurso
@@ -16,6 +17,7 @@ final class PublicarCurso
     public function __construct(
         private readonly RecalcularCachesDoCurso $recalcularCaches,
         private readonly Dispatcher $eventos,
+        private readonly Cache $cache,
     ) {}
 
     public function executar(Curso $curso): Curso
@@ -54,6 +56,7 @@ final class PublicarCurso
             'publicado_em' => now(),
         ]);
         $curso = $this->recalcularCaches->executar($curso);
+        $this->cache->store()->forget('catalogo:publicados');
         $this->eventos->dispatch(new CursoPublicado($curso));
 
         return $curso;
