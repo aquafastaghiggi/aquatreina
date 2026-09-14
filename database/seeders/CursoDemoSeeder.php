@@ -14,6 +14,7 @@ use App\Enums\SituacaoUsuario;
 use App\Models\Categoria;
 use App\Models\Curso;
 use App\Models\Matricula;
+use App\Models\ProgressoAula;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Cache;
@@ -75,14 +76,69 @@ class CursoDemoSeeder extends Seeder
             $aluno->syncRoles(['aluno']);
 
             if ($numero <= 3) {
-                Matricula::query()->firstOrCreate(
+                $matricula = Matricula::query()->firstOrCreate(
                     ['usuario_id' => $aluno->id, 'curso_id' => $armazenamento->id],
                     ['origem' => OrigemMatricula::Admin, 'situacao' => SituacaoMatricula::Ativa, 'matriculado_em' => now()],
                 );
+                $this->criarProgressoDemo($matricula, $armazenamento, $numero);
             }
         }
 
         Cache::forget('catalogo:publicados');
+    }
+
+    private function criarProgressoDemo(Matricula $matricula, Curso $curso, int $perfil): void
+    {
+        $aulas = $curso->modulos()->with('aulas')->get()->flatMap->aulas->values();
+
+        foreach ($aulas as $indice => $aula) {
+            if ($perfil === 2 || ($perfil === 1 && $indice < 2)) {
+                ProgressoAula::query()->updateOrCreate(
+                    ['matricula_id' => $matricula->id, 'aula_id' => $aula->id],
+                    [
+                        'segundos_assistidos' => $aula->duracao_segundos,
+                        'posicao_maxima' => $aula->duracao_segundos,
+                        'primeira_visualizacao_em' => now()->subDays(3),
+                        'concluido_em' => now()->subDays(2),
+                    ],
+                );
+
+                continue;
+            }
+
+            if (($perfil === 1 && $indice === 2) || ($perfil === 3 && $indice === 0)) {
+                ProgressoAula::query()->updateOrCreate(
+                    ['matricula_id' => $matricula->id, 'aula_id' => $aula->id],
+                    [
+                        'segundos_assistidos' => 120,
+                        'posicao_maxima' => 120,
+                        'primeira_visualizacao_em' => now()->subDay(),
+                        'concluido_em' => null,
+                    ],
+                );
+            }
+        }
+
+        $matricula->update(match ($perfil) {
+            1 => [
+                'situacao' => SituacaoMatricula::Ativa,
+                'percentual_progresso' => 33,
+                'ultima_aula_id' => $aulas->get(2)?->id,
+                'concluido_em' => null,
+            ],
+            2 => [
+                'situacao' => SituacaoMatricula::Concluida,
+                'percentual_progresso' => 100,
+                'ultima_aula_id' => $aulas->last()?->id,
+                'concluido_em' => now()->subDays(2),
+            ],
+            default => [
+                'situacao' => SituacaoMatricula::Ativa,
+                'percentual_progresso' => 0,
+                'ultima_aula_id' => $aulas->first()?->id,
+                'concluido_em' => null,
+            ],
+        });
     }
 
     private function criarCurso(
