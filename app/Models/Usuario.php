@@ -10,6 +10,7 @@ use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,11 @@ class Usuario extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function organizacao(): BelongsTo
     {
         return $this->belongsTo(Organizacao::class);
+    }
+
+    public function cursosResponsavel(): HasMany
+    {
+        return $this->hasMany(Curso::class, 'responsavel_id');
     }
 
     public function canAccessPanel(Panel $panel): bool
