@@ -1,68 +1,61 @@
-# Aquafast Treina — pacote de especificação
+# Aquafast Treina
 
-Plataforma de treinamentos para o público externo da Aquafast (distribuidores,
-representantes e clientes). Vídeos hospedados no YouTube, curso montado e
-acompanhado dentro da plataforma.
+Plataforma Laravel de treinamentos para distribuidores, representantes e
+clientes da Aquafast. A v1 oferece cadastro com aprovação, catálogo, cursos em
+vídeo, progresso confiável, materiais privados, perguntas e administração.
 
-Este pacote **não é o projeto**. É a especificação completa para que uma IA
-executora construa o projeto, e para que a revisão posterior tenha um contrato
-claro do que deveria ter sido feito.
+## Requisitos
 
----
+- PHP 8.3 ou superior
+- MySQL 8
+- Composer 2
+- Node.js 20 ou superior
 
-## Como usar
+## Instalação local
 
-### 1. A IA executora (Codex / ChatGPT / Gemini)
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm run build
+php artisan serve
+```
 
-Copie o conteúdo deste pacote para a raiz de um diretório vazio e aponte a IA
-para ele. O arquivo `AGENTS.md` na raiz é lido automaticamente por Codex,
-Gemini CLI e Jules, e é o ponto de entrada de tudo.
+Em outro terminal, mantenha as filas em execução:
 
-Instrução inicial sugerida:
+```bash
+php artisan queue:work database --queue=emails,default --tries=3
+```
 
-> Leia `AGENTS.md` e siga o fluxo descrito nele. Execute apenas a `etapas/00-fundacao.md`.
-> Não avance para a etapa seguinte sem que eu confirme.
+O seed administrativo exige `ADMIN_EMAIL` e `ADMIN_PASSWORD` preenchidos no
+`.env`. O curso demonstrativo só é criado nos ambientes `local` e `testing`.
 
-**Uma etapa por vez.** Cada arquivo em `etapas/` termina com critérios de
-aceite verificáveis. Deixar a IA correr da etapa 0 à 6 numa tacada só é a forma
-mais rápida de produzir um projeto que compila e não funciona.
+## Qualidade
 
-### 2. A validação com Claude Code (VS Code)
+```bash
+vendor/bin/pint --test
+php artisan test
+php artisan test --configuration phpunit.production.xml
+npm run build
+```
 
-Ao final de cada etapa, abra o projeto no VS Code e rode:
+## Deploy
 
-> Leia `CLAUDE.md` e `checklists/revisao-claude-code.md`.
-> Audite a etapa N contra `etapas/0N-*.md` e `padroes/`.
-> Liste divergências por severidade, sem corrigir nada ainda.
+O destino planejado é uma VPS Linux isolada da intranet. Os modelos de Nginx,
+Supervisor, cron, logrotate, deploy e backup estão em `deploy/`. Use
+`.env.production.example` como inventário de variáveis, nunca como arquivo com
+credenciais reais.
 
-`CLAUDE.md` existe exatamente para isso: dá ao Claude Code o contexto do
-domínio e o critério de julgamento, sem que ele precise inferir do código.
+O repositório oficial é `https://github.com/aquafastaghiggi/aquatreina.git`.
+Produção acompanha exclusivamente o branch `main`, usando atualização
+fast-forward para impedir que alterações manuais da VPS sejam sobrescritas.
 
----
+O procedimento completo de publicação, operação e recuperação está em
+[`docs/operacao.md`](docs/operacao.md).
 
-## O que tem aqui
+## Escopo
 
-| Pasta | Para quê |
-|---|---|
-| `AGENTS.md` | Contrato de trabalho da IA executora. Ponto de entrada. |
-| `CLAUDE.md` | Contexto de domínio e critério de revisão para o Claude Code. |
-| `docs/` | O que o sistema é: domínio, dados, telas, regras, integrações. |
-| `padroes/` | Como o código deve ser escrito. Inegociável. |
-| `etapas/` | O caminho do zero à entrega, em 7 etapas sequenciais. |
-| `artefatos/` | Material pronto: schema SQL, rotas, migrations, comandos, pacotes. |
-| `checklists/` | Roteiros de revisão e aceite. |
-
-## Ordem de leitura (humano)
-
-1. `docs/00-visao-geral.md` — o que estamos construindo e por quê
-2. `docs/01-decisoes.md` — as escolhas fechadas e as ainda abertas
-3. `etapas/00-fundacao.md` — onde o trabalho começa
-
-## Estado
-
-- Versão do pacote: **1.0**
-- Data: **14/09/2026**
-- Escopo: **MVP** (materiais de apoio + perguntas na aula). Quiz e certificado
-  estão em `etapas/99-backlog-pos-mvp.md` e **não entram na v1**.
-- Decisões em aberto: ver seção final de `docs/01-decisoes.md`. Nenhuma delas
-  bloqueia a etapa 0.
+Quiz, certificado, PWA, trilhas e SSO estão fora da v1. Consulte
+`etapas/99-backlog-pos-mvp.md` antes de planejar funcionalidades pós-MVP.

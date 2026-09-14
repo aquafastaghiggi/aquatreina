@@ -1,0 +1,10 @@
+/var/www/aquafast-treina/shared/storage/logs/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+    su www-data www-data
+}
