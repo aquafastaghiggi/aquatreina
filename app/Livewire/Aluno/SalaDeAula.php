@@ -8,6 +8,7 @@ use App\Acoes\Progresso\ConcluirAula;
 use App\Enums\SituacaoAula;
 use App\Enums\SituacaoMatricula;
 use App\Models\Aula;
+use App\Models\Comentario;
 use App\Models\Curso;
 use App\Models\Matricula;
 use App\Models\ProgressoAula;
@@ -99,6 +100,16 @@ class SalaDeAula extends Component
         return $indice === false ? null : $aulas->get($indice + 1);
     }
 
+    #[Computed]
+    public function totalComentarios(): int
+    {
+        return Comentario::query()
+            ->visiveis(auth()->user())
+            ->where('aula_id', $this->aulaId)
+            ->whereNull('comentario_pai_id')
+            ->count();
+    }
+
     public function concluirManualmente(ConcluirAula $concluir): void
     {
         abort_unless($this->matricula->situacao === SituacaoMatricula::Ativa, 403);
@@ -111,6 +122,12 @@ class SalaDeAula extends Component
     {
         $this->percentualCurso = $percentual_curso;
         unset($this->progressoAtual, $this->aulasConcluidas, $this->matricula);
+    }
+
+    #[On('comentario-criado')]
+    public function comentarioCriado(): void
+    {
+        unset($this->totalComentarios);
     }
 
     public function render(FabricaProvedorVideo $provedores): View

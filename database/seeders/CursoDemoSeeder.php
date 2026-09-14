@@ -8,17 +8,21 @@ use App\Enums\NivelCurso;
 use App\Enums\OrigemMatricula;
 use App\Enums\ProvedorVideo;
 use App\Enums\SituacaoAula;
+use App\Enums\SituacaoComentario;
 use App\Enums\SituacaoCurso;
 use App\Enums\SituacaoMatricula;
 use App\Enums\SituacaoUsuario;
 use App\Models\Categoria;
+use App\Models\Comentario;
 use App\Models\Curso;
+use App\Models\Material;
 use App\Models\Matricula;
 use App\Models\ProgressoAula;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CursoDemoSeeder extends Seeder
@@ -62,6 +66,8 @@ class CursoDemoSeeder extends Seeder
             'Preparação do atendimento', 'Conferência operacional', 'Encerramento seguro',
         ], true);
 
+        $alunos = [];
+
         foreach (range(1, 5) as $numero) {
             $aluno = Usuario::query()->updateOrCreate(
                 ['email' => "aluno.demo{$numero}@example.test"],
@@ -74,6 +80,7 @@ class CursoDemoSeeder extends Seeder
                 ],
             );
             $aluno->syncRoles(['aluno']);
+            $alunos[$numero] = $aluno;
 
             if ($numero <= 3) {
                 $matricula = Matricula::query()->firstOrCreate(
@@ -84,7 +91,77 @@ class CursoDemoSeeder extends Seeder
             }
         }
 
+        $this->criarMateriaisEComentariosDemo($armazenamento, $responsavel, $alunos[1]);
+
         Cache::forget('catalogo:publicados');
+    }
+
+    private function criarMateriaisEComentariosDemo(Curso $curso, Usuario $responsavel, Usuario $aluno): void
+    {
+        $aulas = $curso->modulos()->with('aulas')->get()->flatMap->aulas->values();
+        $aula = $aulas->get(2) ?? $aulas->firstOrFail();
+        $caminho = "aulas/{$aula->id}/guia-demonstrativo.pdf";
+        Storage::disk('materiais')->put($caminho, $this->pdfDemonstracao());
+        Material::query()->updateOrCreate(
+            ['aula_id' => $aula->id, 'caminho' => $caminho],
+            [
+                'titulo' => 'Guia rápido dos produtos',
+                'disco' => 'materiais',
+                'mime' => 'application/pdf',
+                'tamanho_bytes' => Storage::disk('materiais')->size($caminho),
+                'posicao' => 0,
+            ],
+        );
+
+        $pergunta = Comentario::query()->updateOrCreate(
+            [
+                'aula_id' => $aula->id,
+                'usuario_id' => $aluno->id,
+                'corpo' => 'Qual é o principal cuidado ao orientar um cliente?',
+            ],
+            ['situacao' => SituacaoComentario::Aprovado, 'fixado' => true],
+        );
+        Comentario::query()->updateOrCreate(
+            [
+                'comentario_pai_id' => $pergunta->id,
+                'usuario_id' => $responsavel->id,
+            ],
+            [
+                'aula_id' => $aula->id,
+                'corpo' => 'Confirme a aplicação e consulte sempre a ficha técnica atualizada.',
+                'situacao' => SituacaoComentario::Aprovado,
+                'e_resposta' => true,
+            ],
+        );
+    }
+
+    private function pdfDemonstracao(): string
+    {
+        $conteudo = 'BT /F1 18 Tf 72 760 Td (Guia demonstrativo Aquafast) Tj ET';
+        $objetos = [
+            '<< /Type /Catalog /Pages 2 0 R >>',
+            '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+            '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
+            '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
+            '<< /Length '.strlen($conteudo)." >>\nstream\n{$conteudo}\nendstream",
+        ];
+        $pdf = "%PDF-1.4\n";
+        $posicoes = [0];
+
+        foreach ($objetos as $indice => $objeto) {
+            $posicoes[] = strlen($pdf);
+            $numero = $indice + 1;
+            $pdf .= "{$numero} 0 obj\n{$objeto}\nendobj\n";
+        }
+
+        $inicioXref = strlen($pdf);
+        $pdf .= "xref\n0 6\n0000000000 65535 f \n";
+
+        foreach (array_slice($posicoes, 1) as $posicao) {
+            $pdf .= sprintf("%010d 00000 n \n", $posicao);
+        }
+
+        return $pdf."trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n{$inicioXref}\n%%EOF\n";
     }
 
     private function criarProgressoDemo(Matricula $matricula, Curso $curso, int $perfil): void

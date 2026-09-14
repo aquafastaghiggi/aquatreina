@@ -101,6 +101,7 @@
                             <div wire:key="material-{{ $material->id }}" data-material-id="{{ $material->id }}" class="flex items-center gap-2 rounded-lg bg-gray-50 p-2 dark:bg-white/5">
                                 <button type="button" class="material-alca cursor-grab">⋮⋮</button>
                                 <input value="{{ $material->titulo }}" wire:change="renomearMaterial({{ $material->id }}, $event.target.value)" class="min-w-0 flex-1 bg-transparent" />
+                                <span class="text-xs tabular-nums text-gray-500">{{ $material->total_downloads }} downloads</span>
                                 <x-filament::icon-button wire:click="excluirMaterial({{ $material->id }})" wire:confirm="Excluir este material?" icon="heroicon-o-trash" color="danger" label="Excluir material" />
                             </div>
                         @endforeach

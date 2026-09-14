@@ -63,8 +63,7 @@
                 </div>
             </div>
 
-            @if ($this->aula->descricao || $this->aula->materiais->isNotEmpty())
-                <div x-data="{ aba: '{{ $this->aula->descricao ? 'sobre' : 'materiais' }}' }" class="mt-10">
+                <div x-data="{ aba: window.location.hash === '#perguntas' ? 'perguntas' : '{{ $this->aula->descricao ? 'sobre' : ($this->aula->materiais->isNotEmpty() ? 'materiais' : 'perguntas') }}' }" class="mt-10">
                     <div class="flex gap-5 border-b border-linha" role="tablist" aria-label="Conteúdo da aula">
                         @if ($this->aula->descricao)
                             <button type="button" @click="aba = 'sobre'" :class="aba === 'sobre' ? 'border-marca text-texto' : 'border-transparent text-texto-3'" class="border-b-2 px-1 py-3" role="tab">Sobre a aula</button>
@@ -72,6 +71,9 @@
                         @if ($this->aula->materiais->isNotEmpty())
                             <button type="button" @click="aba = 'materiais'" :class="aba === 'materiais' ? 'border-marca text-texto' : 'border-transparent text-texto-3'" class="border-b-2 px-1 py-3" role="tab">Materiais</button>
                         @endif
+                        <button type="button" @click="aba = 'perguntas'; history.replaceState(null, '', '#perguntas')" :class="aba === 'perguntas' ? 'border-marca text-texto' : 'border-transparent text-texto-3'" class="border-b-2 px-1 py-3" role="tab">
+                            Perguntas ({{ $this->totalComentarios }})
+                        </button>
                     </div>
                     @if ($this->aula->descricao)
                         <div x-show="aba === 'sobre'" class="prosa py-6">{!! $this->aula->descricao !!}</div>
@@ -79,15 +81,23 @@
                     @if ($this->aula->materiais->isNotEmpty())
                         <div x-show="aba === 'materiais'" class="space-y-3 py-6">
                             @foreach ($this->aula->materiais as $material)
-                                <div wire:key="material-{{ $material->id }}" class="rounded-lg border border-linha bg-superficie p-4">
-                                    <p class="font-medium">{{ $material->titulo }}</p>
-                                    <p class="mt-1 text-sm text-texto-3">Download disponível na próxima etapa.</p>
-                                </div>
+                                <a wire:key="material-{{ $material->id }}" href="{{ route('app.materiais.baixar', $material) }}" class="flex items-center justify-between gap-4 rounded-lg border border-linha bg-superficie p-4 hover:border-marca/60">
+                                    <span>
+                                        <span class="block font-medium">{{ $material->titulo }}</span>
+                                        <span class="mt-1 block text-sm uppercase text-texto-3">
+                                            {{ pathinfo($material->caminho, PATHINFO_EXTENSION) ?: 'arquivo' }} ·
+                                            {{ Number::fileSize($material->tamanho_bytes, precision: 1) }}
+                                        </span>
+                                    </span>
+                                    <span class="shrink-0 text-sm font-semibold text-marca">Baixar</span>
+                                </a>
                             @endforeach
                         </div>
                     @endif
+                    <div x-show="aba === 'perguntas'">
+                        <livewire:aluno.aba-comentarios :aula-id="$this->aula->id" :key="'comentarios-'.$this->aula->id" />
+                    </div>
                 </div>
-            @endif
         </main>
 
         <aside class="min-w-0 rounded-lg border border-linha bg-superficie p-5">

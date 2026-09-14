@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AmostraController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\ProgressoController;
 use App\Livewire\Aluno\Catalogo;
+use App\Livewire\Aluno\Notificacoes;
 use App\Livewire\Aluno\Painel;
 use App\Livewire\Aluno\Perfil;
 use App\Livewire\Aluno\SalaDeAula;
@@ -37,5 +39,8 @@ Route::middleware(['auth', 'verified', 'garantir.ativo', 'registrar.acesso'])
         Route::post('/progresso', [ProgressoController::class, 'registrar'])
             ->middleware('throttle:120,1')
             ->name('progresso');
+        Route::get('/materiais/{material}/baixar', [MaterialController::class, 'baixar'])
+            ->name('materiais.baixar');
         Route::get('/perfil', Perfil::class)->name('perfil');
+        Route::get('/notificacoes', Notificacoes::class)->name('notificacoes');
     });

@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AulasComMaiorAbandono extends TableWidget
 {
+    protected static ?int $sort = 4;
+
     protected int|string|array $columnSpan = 'full';
 
     public static function canView(): bool
