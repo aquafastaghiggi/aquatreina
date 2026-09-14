@@ -15,5 +15,9 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             ConfiguracaoSeeder::class,
         ]);
+
+        if (app()->environment(['local', 'testing'])) {
+            $this->call(CursoDemoSeeder::class);
+        }
     }
 }

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Fundamentos dos produtos Aquafast</title>
+  <desc id="desc">Composição abstrata em azul com recipientes e gotas</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08272b"/><stop offset="1" stop-color="#115965"/></linearGradient>
+    <linearGradient id="aqua" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#78e4e9"/><stop offset="1" stop-color="#31b9c5"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="1040" cy="110" r="250" fill="#42cad4" opacity=".1"/>
+  <circle cx="90" cy="700" r="330" fill="#42cad4" opacity=".08"/>
+  <g transform="translate(710 155)">
+    <rect x="0" y="90" width="170" height="360" rx="26" fill="#e8ffff" opacity=".92"/>
+    <rect x="35" y="15" width="100" height="95" rx="14" fill="url(#aqua)"/>
+    <rect x="30" y="210" width="110" height="105" rx="14" fill="#0d464f"/>
+    <path d="M85 231c-23 31-36 49-36 67a36 36 0 0 0 72 0c0-18-13-36-36-67Z" fill="#63dbe2"/>
+    <rect x="210" y="165" width="155" height="285" rx="24" fill="#bceff1"/>
+    <rect x="242" y="105" width="91" height="75" rx="12" fill="#3bc1cc"/>
+  </g>
+  <g fill="#f1ffff">
+    <text x="90" y="145" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="7">AQUAFAST TREINA</text>
+    <text x="90" y="260" font-family="Arial, sans-serif" font-size="66" font-weight="700">Fundamentos</text>
+    <text x="90" y="335" font-family="Arial, sans-serif" font-size="66" font-weight="700">dos produtos</text>
+  </g>
+  <text x="92" y="410" fill="#9edfe3" font-family="Arial, sans-serif" font-size="29">Aplicações, cuidados e boas práticas</text>
+</svg>
