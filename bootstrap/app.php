@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\CabecalhosSeguranca;
 use App\Http\Middleware\GarantirUsuarioAtivo;
 use App\Http\Middleware\RegistrarUltimoAcesso;
 use Illuminate\Foundation\Application;
@@ -15,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [CabecalhosSeguranca::class]);
         $middleware->alias([
             'garantir.ativo' => GarantirUsuarioAtivo::class,
             'registrar.acesso' => RegistrarUltimoAcesso::class,

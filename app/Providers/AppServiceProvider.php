@@ -12,6 +12,7 @@ use App\Servicos\Video\YoutubeProvedor;
 use Illuminate\Contracts\Cache\Factory as FabricaCache;
 use Illuminate\Http\Client\Factory as ClienteHttp;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -42,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->isProduction() || config('seguranca.forcar_https')) {
+            URL::forceScheme('https');
+        }
+
         Password::defaults(fn (): Password => Password::min(8)
             ->mixedCase()
             ->numbers()
