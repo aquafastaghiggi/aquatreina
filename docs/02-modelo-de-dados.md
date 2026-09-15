@@ -39,8 +39,8 @@ Autenticação e cadastro. Substitui a `users` padrão do Laravel — ver
 | `email_verified_at` | timestamp null | nome do framework, mantido |
 | `password` | string | nome do framework, mantido |
 | `telefone` | string(20) null | |
-| `empresa` | string(160) null | texto livre, preenchido pelo aluno |
-| `cargo` | string(120) null | |
+| `empresa` | string(160) null | preenchimento posterior no perfil, admin ou importação |
+| `cargo` | string(120) null | preenchimento posterior no perfil, admin ou importação |
 | `organizacao_id` | FK null | vínculo formal, atribuído pelo admin |
 | `situacao` | string(20) | `pendente` · `ativo` · `bloqueado` |
 | `avatar_caminho` | string null | |
@@ -49,9 +49,10 @@ Autenticação e cadastro. Substitui a `users` padrão do Laravel — ver
 | `termos_ip` | string(45) null | LGPD, suporta IPv6 |
 | `remember_token` | string(100) null | framework |
 
-`empresa` é texto livre e `organizacao_id` é o vínculo real. O aluno digita
-"Distrib. Sul"; o admin depois liga ao registro certo. Não force o aluno a
-escolher numa lista que ele não conhece.
+`empresa` é texto livre e `organizacao_id` é o vínculo real. Nenhum dos dois é
+pedido no cadastro público (D-09). Depois da aprovação, o aluno pode informar a
+empresa no perfil e o admin pode ligar o texto ao registro certo. Não force o
+aluno a escolher numa lista que ele não conhece.
 
 ### `organizacoes`
 

@@ -31,6 +31,16 @@ it('faz login com e-mail e senha válidos', function (): void {
     $this->assertAuthenticatedAs($usuario);
 });
 
+it('cadastro mostra apenas os dados essenciais em layout responsivo', function (): void {
+    $this->get(route('register'))
+        ->assertOk()
+        ->assertSee('grid-cols-1', false)
+        ->assertSee('sm:grid-cols-2', false)
+        ->assertSee('name="telefone"', false)
+        ->assertDontSee('name="empresa"', false)
+        ->assertDontSee('name="cargo"', false);
+});
+
 it('cadastro cria usuário aluno pendente para aprovação do admin', function (): void {
     Notification::fake();
     $this->post(route('register.store'), [
@@ -49,7 +59,9 @@ it('cadastro cria usuário aluno pendente para aprovação do admin', function (
 
     expect($usuario->situacao)->toBe(SituacaoUsuario::Pendente)
         ->and($usuario->hasRole('aluno'))->toBeTrue()
-        ->and($usuario->email_verified_at)->toBeNull();
+        ->and($usuario->email_verified_at)->toBeNull()
+        ->and($usuario->empresa)->toBeNull()
+        ->and($usuario->cargo)->toBeNull();
 
     Notification::assertNothingSent();
 });

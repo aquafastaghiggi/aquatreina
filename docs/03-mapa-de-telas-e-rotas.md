@@ -13,7 +13,7 @@ copiável está em `artefatos/rotas.md`.
 | `GET /cursos/{curso:slug}` | `cursos.mostrar` | Ementa com módulos e aulas listados (sem link), duração total, instrutor, botão de inscrição. Indexável. |
 | `GET /cursos/{curso:slug}/amostra/{aula:slug}` | `cursos.amostra` | Toca a aula marcada como `amostra_gratuita`. Sem login. |
 | `GET /entrar` · `POST /entrar` | `login` | Fortify |
-| `GET /cadastrar` · `POST /cadastrar` | `cadastro` | nome, e-mail, telefone, empresa, cargo, aceite de termos |
+| `GET /cadastrar` · `POST /cadastrar` | `cadastro` | nome, e-mail, telefone opcional, senha e aceite dos textos legais; sem empresa e cargo (D-09) |
 | `GET /senha/esqueci` · `POST` | `senha.solicitar` | Fortify |
 | `GET /senha/redefinir/{token}` · `POST` | `senha.redefinir` | Fortify |
 | `GET /termos` · `GET /privacidade` | `termos` · `privacidade` | páginas estáticas |

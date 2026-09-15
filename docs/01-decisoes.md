@@ -125,6 +125,23 @@ puder.
 
 ---
 
+## D-09 · Cadastro público mínimo, sem empresa e cargo
+
+**Contexto.** Em 15/09/2026 foi decidido reduzir o atrito do primeiro acesso,
+especialmente em celulares, e deixar a qualificação profissional para depois da
+aprovação administrativa.
+
+**Escolha.** O cadastro público solicita somente nome, e-mail, telefone
+opcional, senha e aceite dos textos legais. `empresa` e `cargo` não aparecem no
+formulário e também são ignorados caso sejam enviados manualmente na requisição.
+
+**Consequência.** As colunas permanecem opcionais no modelo porque podem ser
+preenchidas posteriormente pelo próprio aluno no perfil, pelo administrador ou
+pela importação. Relatórios por empresa dependem desse enriquecimento posterior.
+Esta decisão responde a A-05 sem criar vínculo obrigatório com organização.
+
+---
+
 ## Decisões ainda em aberto
 
 Nenhuma bloqueia a etapa 0. Precisam de resposta antes das etapas indicadas.
@@ -135,6 +152,5 @@ Nenhuma bloqueia a etapa 0. Precisam de resposta antes das etapas indicadas.
 | A-02 | Conta nova entra aprovada ou pendente? (padrão do pacote: pendente) | 2 |
 | A-03 | Quem grava os vídeos, e qual é o curso piloto? | 1 |
 | A-04 | Certificado é diferencial de adesão para esse público? Se for, sobe do backlog e o CPF volta à mesa. | pós-MVP |
-| A-05 | Precisa amarrar aluno à empresa já na v1 (relatório "quantos da Distribuidora X concluíram")? | 2 |
 | A-06 | Existe manual de marca da Aquafast (cores, tipografia, uso do logo)? | 2 |
 | A-07 | Hospedagem: vhost no servidor da intranet ou VPS isolada? | 6 |

@@ -1,14 +1,12 @@
 <x-layouts.publico titulo="Criar conta">
-    <section class="mx-auto max-w-xl px-5 py-14">
-        <h1 class="text-3xl font-semibold">Criar conta</h1>
-        <p class="mt-2 text-texto-2">Preencha seus dados profissionais.</p>
-        <form class="mt-8 grid gap-5 sm:grid-cols-2" method="POST" action="{{ route('register.store') }}">
+    <section class="mx-auto w-full max-w-2xl px-4 py-10 sm:px-6 sm:py-14">
+        <h1 class="text-2xl font-semibold sm:text-3xl">Criar conta</h1>
+        <p class="mt-2 max-w-xl text-texto-2">Informe seus dados de acesso. Depois do cadastro, um administrador analisará e liberará sua conta.</p>
+        <form class="mt-8 grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2" method="POST" action="{{ route('register.store') }}">
             @csrf
             <label class="campo sm:col-span-2">Nome<input name="nome" value="{{ old('nome') }}" autocomplete="name" required autofocus></label>
             <label class="campo sm:col-span-2">E-mail<input name="email" type="email" value="{{ old('email') }}" autocomplete="email" required></label>
-            <label class="campo">Telefone<input name="telefone" value="{{ old('telefone') }}" autocomplete="tel"></label>
-            <label class="campo">Cargo<input name="cargo" value="{{ old('cargo') }}" autocomplete="organization-title"></label>
-            <label class="campo sm:col-span-2">Empresa<input name="empresa" value="{{ old('empresa') }}" autocomplete="organization"></label>
+            <label class="campo sm:col-span-2"><span>Telefone <span class="font-normal text-texto-3">(opcional)</span></span><input name="telefone" value="{{ old('telefone') }}" autocomplete="tel" inputmode="tel"></label>
             <label class="campo">Senha<input name="password" type="password" autocomplete="new-password" required></label>
             <label class="campo">Confirmar senha<input name="password_confirmation" type="password" autocomplete="new-password" required></label>
             <div class="absolute -left-[9999px]" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
