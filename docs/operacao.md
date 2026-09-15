@@ -21,7 +21,9 @@ rota autenticada da aplicação.
    `php artisan key:generate` e preencha credenciais somente no servidor.
 5. Instale o vhost, worker, cron e logrotate a partir de `deploy/`.
 6. Emita o certificado TLS e só então habilite o vhost HTTPS.
-7. Execute `deploy/scripts/deploy.sh`.
+7. Execute `deploy/scripts/deploy.sh`. O script publica a versão inicial dos
+   textos legais somente se ela ainda não existir; alterações posteriores feitas
+   no painel não são sobrescritas.
 8. Confirme `/saude`, os logs, a fila e o scheduler.
 
 O branch `main` desse repositório é a fonte oficial da VPS. Cada publicação
@@ -115,10 +117,11 @@ restauração sobrescrevendo produção.
 ## 7. Checklist de publicação
 
 - confirmar que SMTP, SPF e DKIM passaram nos testes de Gmail, Outlook e domínio corporativo;
-- obter aprovação jurídica das versões vigentes de termos e privacidade;
+- validar `treinamentos@aquafast.com.br` como canal de atendimento e obter
+  aprovação jurídica das versões vigentes de termos e privacidade;
 - confirmar que todo cadastro novo permanece pendente até aprovação do admin;
 - criar contas nominais de admin e instrutor, sem compartilhar senha;
-- executar o fluxo real: cadastro, verificação, aprovação, aula, material e pergunta;
+- executar o fluxo real: cadastro, aprovação administrativa, aula, material e pergunta;
 - verificar `/saude` pelo monitor externo;
 - comprovar reinício automático do worker;
 - comprovar uma restauração de backup em ambiente isolado.

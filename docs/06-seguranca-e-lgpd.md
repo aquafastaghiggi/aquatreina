@@ -53,7 +53,10 @@ Mínimo necessário:
 | nome | identificar o aluno |
 | e-mail | login e notificação |
 | telefone | contato do comercial |
-| empresa, cargo | segmentar relatório |
+| empresa, cargo | opcionais após a aprovação, para segmentar relatório |
+
+Por decisão D-09, `empresa` e `cargo` não são coletados no cadastro público.
+Podem ser informados depois no perfil, pelo administrador ou por importação.
 
 **Não coletar CPF.** Só faria sentido com certificado nominal, que está no
 backlog. Se A-04 mudar isso, a coleta entra com finalidade declarada.
@@ -67,6 +70,18 @@ Não coletar: data de nascimento, endereço, dado bancário, documento.
 - Grava `termos_aceitos_em` e `termos_ip`.
 - Mudança material nos termos exige novo aceite no próximo login.
 - `/termos` e `/privacidade` públicas e versionadas.
+- A minuta inicial foi adaptada ao serviço a partir do modelo da Secretaria de
+  Governo Digital, do aviso da ANPD e dos direitos previstos no art. 18 da LGPD.
+  Isso não substitui a revisão jurídica antes do go-live.
+
+Referências consultadas em 15/09/2026:
+
+- Modelo para elaboração de Termo de Uso e Política de Privacidade — Secretaria
+  de Governo Digital: `https://www.gov.br/governodigital/pt-br/privacidade-e-seguranca/ppsi/guia_termo_uso_politica_privacidade.pdf`
+- Aviso de Privacidade — ANPD:
+  `https://www.gov.br/anpd/pt-br/acesso-a-informacao/aviso-de-privacidade`
+- Lei nº 13.709/2018 — LGPD compilada:
+  `https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm`
 
 ## 6. Direitos do titular
 

@@ -14,6 +14,7 @@ composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 npm ci
 npm run build
 php artisan migrate --force
+php artisan db:seed --class=TextoLegalSeeder --force
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache

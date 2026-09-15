@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             UsuarioAdminSeeder::class,
             CategoriaSeeder::class,
             ConfiguracaoSeeder::class,
+            TextoLegalSeeder::class,
         ]);
 
         if (app()->environment(['local', 'testing'])) {
