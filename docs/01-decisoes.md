@@ -47,15 +47,14 @@ reescrever a sala de aula.
 **Contexto.** O aluno se inscreve sozinho; não há matrícula manual no caminho
 feliz.
 
-**Escolha.** Cadastro público, verificação de e-mail obrigatória antes do
-primeiro play, e uma configuração `aprovacao_manual` que faz conta nova entrar
-como `pendente`.
+**Escolha.** Cadastro público sem verificação de e-mail. Toda conta nova entra
+como `pendente` e somente um administrador pode aprová-la no painel.
 
 **Por quê.** Formulário aberto na internet enche de cadastro falso em semanas, e
 aí o relatório de "alunos ativos" não significa nada.
 
-**Consequência.** Sobe com `aprovacao_manual = true`. Desligar depois é uma
-linha; ligar depois de a base já estar suja, não.
+**Consequência.** Não existe caminho de autoaprovação. O e-mail continua sendo
+usado para login, notificações e recuperação de senha.
 
 ---
 

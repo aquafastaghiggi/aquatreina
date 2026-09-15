@@ -92,9 +92,8 @@ os dois sentidos.
 | `ativo` | tudo que o papel permite |
 | `bloqueado` | nada. Logout forçado na próxima requisição. |
 
-Conta nova entra como `pendente` ou `ativo` conforme a configuração
-`aprovacao_manual`. E-mail não verificado nunca assiste aula, em nenhuma
-situação.
+Conta nova sempre entra como `pendente`. Somente o administrador pode mudar a
+situacao para `ativo`; não há verificação de e-mail no cadastro.
 
 ## RN-09 · Publicação de curso
 
@@ -127,7 +126,6 @@ Definidas em `config/treina.php`, lidas do `.env`:
 | `percentual_conclusao` | 90 | RN-01 |
 | `intervalo_ping` | 10 | RN-02 |
 | `tolerancia_salto` | `intervalo_ping * 2.5` | RN-02 |
-| `aprovacao_manual` | true | RN-08 |
 | `limite_comentarios_minuto` | 10 | RN-06 |
 
 Nenhum desses números deve aparecer solto no código.

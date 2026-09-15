@@ -40,7 +40,7 @@ no repositório e nunca ser editadas diretamente no servidor.
 | Processamento | `QUEUE_CONNECTION`, `CACHE_STORE` | Filas e cache em banco |
 | E-mail | `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME` | SMTP corporativo |
 | Vídeo | `YOUTUBE_API_KEY` | Metadados; sem chave, usa oEmbed |
-| Regras | `TREINA_PERCENTUAL_CONCLUSAO`, `TREINA_INTERVALO_PING`, `TREINA_APROVACAO_MANUAL` | Valores iniciais das configurações |
+| Regras | `TREINA_PERCENTUAL_CONCLUSAO`, `TREINA_INTERVALO_PING` | Valores iniciais das configurações |
 | Primeiro acesso | `ADMIN_NOME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Seed do administrador inicial |
 
 Em produção, use obrigatoriamente `APP_ENV=production`, `APP_DEBUG=false`, URL
@@ -116,7 +116,7 @@ restauração sobrescrevendo produção.
 
 - confirmar que SMTP, SPF e DKIM passaram nos testes de Gmail, Outlook e domínio corporativo;
 - obter aprovação jurídica das versões vigentes de termos e privacidade;
-- manter `aprovacao_manual` habilitado;
+- confirmar que todo cadastro novo permanece pendente até aprovação do admin;
 - criar contas nominais de admin e instrutor, sem compartilhar senha;
 - executar o fluxo real: cadastro, verificação, aprovação, aula, material e pergunta;
 - verificar `/saude` pelo monitor externo;

@@ -49,7 +49,7 @@ item por item.
 
 ### 0.4 Autenticação
 
-- [ ] Fortify: login, logout, cadastro, reset de senha, verificação de e-mail
+- [ ] Fortify: login, logout, cadastro e reset de senha
 - [ ] Rotas em português (`/entrar`, `/cadastrar`, `/senha/esqueci`) conforme `artefatos/rotas.md`
 - [ ] Cadastro coleta: nome, e-mail, telefone, empresa, cargo, aceite de termos
 - [ ] Grava `termos_aceitos_em` e `termos_ip`
@@ -61,7 +61,7 @@ item por item.
 
 - [ ] Papéis `aluno`, `instrutor`, `admin` via spatie
 - [ ] Novo cadastro recebe `aluno` automaticamente
-- [ ] `situacao` inicial conforme `config('treina.aprovacao_manual')`
+- [ ] `situacao` inicial sempre `pendente`
 - [ ] Middleware `garantir.ativo`: `pendente` → `/aguardando-aprovacao`,
       `bloqueado` → logout com mensagem
 - [ ] Middleware `registrar.acesso`: atualiza `ultimo_acesso_em` no máximo 1x/hora (RN-11)
@@ -96,7 +96,7 @@ item por item.
 
 - [ ] cadastro cria usuário com papel `aluno` e situação correta
 - [ ] cadastro grava `termos_aceitos_em` e `termos_ip`
-- [ ] usuário sem e-mail verificado não acessa `/app`
+- [ ] usuário ativo acessa `/app` sem verificação de e-mail
 - [ ] usuário `pendente` cai em `/aguardando-aprovacao` (RN-08)
 - [ ] usuário `bloqueado` é deslogado (RN-08)
 - [ ] aluno não acessa `/admin`
@@ -108,7 +108,7 @@ item por item.
 
 1. `php artisan migrate:fresh --seed` roda do zero sem erro.
 2. É possível se cadastrar, receber o e-mail (log), verificar e chegar em `/app`.
-3. Com `aprovacao_manual = true`, o novo usuário vê `/aguardando-aprovacao`;
+3. O novo usuário vê `/aguardando-aprovacao` até o admin aprová-lo;
    o admin aprova em `/admin` e o acesso libera.
 4. Reset de senha funciona ponta a ponta.
 5. `/admin` bloqueia aluno e libera admin.

@@ -101,7 +101,7 @@ it('anonimiza dados e comentários sem apagar matrícula e progresso e registra 
         ->and(DB::table('activity_log')->where('description', 'usuario_anonimizado')->exists())->toBeTrue();
 });
 
-it('mudança de aprovação manual afeta o próximo cadastro', function (): void {
+it('cadastro permanece pendente mesmo com configuração legada desligada', function (): void {
     Role::findOrCreate('aluno', 'web');
     Configuracao::definir('aprovacao_manual', false);
 
@@ -110,7 +110,7 @@ it('mudança de aprovação manual afeta o próximo cadastro', function (): void
         'password_confirmation' => 'SenhaForte123!', 'aceite_termos' => '1', 'website' => '',
     ])->assertRedirect();
 
-    expect(Usuario::query()->where('email', 'automatico@example.com')->firstOrFail()->situacao)->toBe(SituacaoUsuario::Ativo);
+    expect(Usuario::query()->where('email', 'automatico@example.com')->firstOrFail()->situacao)->toBe(SituacaoUsuario::Pendente);
 });
 
 it('comando de conferência corrige o progresso divergente', function (): void {

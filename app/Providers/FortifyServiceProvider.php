@@ -38,7 +38,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(fn () => view('auth.cadastrar'));
         Fortify::requestPasswordResetLinkView(fn () => view('auth.senha-esqueci'));
         Fortify::resetPasswordView(fn (Request $request) => view('auth.senha-redefinir', ['request' => $request]));
-        Fortify::verifyEmailView(fn () => view('auth.verificar-email'));
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
@@ -52,10 +51,6 @@ class FortifyServiceProvider extends ServiceProvider
             }
 
             return Limit::none();
-        });
-
-        RateLimiter::for('verificacao', function (Request $request) {
-            return Limit::perHour(3)->by((string) ($request->user()?->getAuthIdentifier() ?? $request->ip()));
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

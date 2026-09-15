@@ -22,7 +22,6 @@ Route::view('/privacidade', 'publico.privacidade')->name('privacidade');
 | GET/POST | `/cadastrar` | `register` |
 | GET/POST | `/senha/esqueci` | `password.request` |
 | GET/POST | `/senha/redefinir/{token}` | `password.reset` |
-| GET | `/email/verificar` | `verification.notice` |
 | GET | `/email/verificar/{id}/{hash}` | `verification.verify` |
 | POST | `/email/reenviar` | `verification.send` |
 | GET | `/aguardando-aprovacao` | `conta.pendente` |

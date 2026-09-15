@@ -38,8 +38,7 @@
 ### 5.3 Configurações
 
 - [ ] Página `/admin/configuracoes` lendo e gravando a tabela `configuracoes`
-- [ ] `aprovacao_manual`, `percentual_conclusao`, `intervalo_ping`,
-      `texto_boas_vindas`
+- [ ] `percentual_conclusao`, `intervalo_ping`, `texto_boas_vindas`
 - [ ] Edição dos textos de `/termos` e `/privacidade`, com versionamento
 - [ ] Mudança material nos termos exige novo aceite no próximo login
 
@@ -68,7 +67,7 @@
 - [ ] importação não duplica usuário com e-mail já existente
 - [ ] anonimização limpa os campos certos e preserva matrículas e progresso
 - [ ] anonimização registra em `activity_log`
-- [ ] mudar `aprovacao_manual` altera a situação do próximo cadastro
+- [ ] cadastro novo permanece pendente até aprovação administrativa
 - [ ] `treina:conferir-progresso` corrige `percentual_progresso` divergente
 
 ---

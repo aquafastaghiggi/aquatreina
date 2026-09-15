@@ -9,7 +9,7 @@ Um lugar só para acompanhar o avanço. O detalhe está em cada arquivo de
 
 - [ ] `migrate:fresh --seed` roda do zero
 - [ ] Cadastro → e-mail → verificação → `/app` funciona
-- [ ] `aprovacao_manual` leva a `/aguardando-aprovacao`; admin aprova e libera
+- [ ] cadastro novo leva a `/aguardando-aprovacao`; admin aprova e libera
 - [ ] Reset de senha funciona ponta a ponta
 - [ ] `/admin` bloqueia aluno, libera admin
 - [ ] Nenhuma referência à tabela `users`

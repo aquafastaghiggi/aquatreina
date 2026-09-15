@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Enums\SituacaoUsuario;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class Usuario extends Authenticatable implements FilamentUser, MustVerifyEmail
+class Usuario extends Authenticatable implements FilamentUser
 {
     use HasFactory;
     use HasRoles;

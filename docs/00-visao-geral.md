@@ -46,7 +46,7 @@ precisa ser **consultável fora de ordem**, e a busca precisa funcionar.
 
 Dentro:
 
-- Cadastro público com verificação de e-mail e aprovação opcional
+- Cadastro público com aprovação obrigatória pelo administrador
 - Catálogo, página de curso e inscrição em um clique
 - Sala de aula com player, índice, progresso e conclusão automática
 - Materiais de apoio com download autenticado

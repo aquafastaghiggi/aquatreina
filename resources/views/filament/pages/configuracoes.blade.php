@@ -2,7 +2,7 @@
     <form wire:submit="salvar" class="space-y-6">
         <x-filament::section heading="Operação">
             <div class="grid gap-5 md:grid-cols-2">
-                <label class="flex items-center gap-3"><x-filament::input.checkbox wire:model="aprovacaoManual" /> Aprovação manual de novos cadastros</label>
+                <p class="rounded-lg bg-gray-50 p-4 text-sm dark:bg-white/5">Todo novo cadastro aguarda aprovação obrigatória de um administrador.</p>
                 <label>Conclusão automática (%)<x-filament::input.wrapper><x-filament::input type="number" wire:model="percentualConclusao" /></x-filament::input.wrapper></label>
                 <label>Intervalo de ping (segundos)<x-filament::input.wrapper><x-filament::input type="number" wire:model="intervaloPing" /></x-filament::input.wrapper></label>
                 <label>Texto de boas-vindas<x-filament::input.wrapper><x-filament::input wire:model="textoBoasVindas" /></x-filament::input.wrapper></label>

@@ -27,17 +27,17 @@ Route::get('/cursos/{curso:slug}/amostra/{aula:slug}', [AmostraController::class
 Route::get('/termos', [TextoLegalController::class, 'termos'])->name('termos');
 Route::get('/privacidade', [TextoLegalController::class, 'privacidade'])->name('privacidade');
 Route::get('/saude', [OperacaoController::class, 'saude'])->name('saude');
-Route::view('/aguardando-aprovacao', 'conta.aguardando')->middleware(['auth', 'verified'])->name('conta.pendente');
-Route::middleware(['auth', 'verified'])->group(function (): void {
+Route::view('/aguardando-aprovacao', 'conta.aguardando')->middleware('auth')->name('conta.pendente');
+Route::middleware('auth')->group(function (): void {
     Route::get('/aceitar-termos', [TextoLegalController::class, 'aceite'])->name('termos.aceite');
     Route::post('/aceitar-termos', [TextoLegalController::class, 'aceitar'])->name('termos.aceitar');
 });
-Route::middleware(['auth', 'verified', 'can:acessar-admin'])->prefix('admin')->name('admin.')->group(function (): void {
+Route::middleware(['auth', 'can:acessar-admin'])->prefix('admin')->name('admin.')->group(function (): void {
     Route::get('/usuarios/modelo-importacao', [OperacaoController::class, 'modeloImportacao'])->name('usuarios.modelo');
     Route::get('/exportacoes/{arquivo}', [OperacaoController::class, 'baixarExportacao'])->name('exportacoes.baixar');
 });
 
-Route::middleware(['auth', 'verified', 'garantir.ativo', 'registrar.acesso'])
+Route::middleware(['auth', 'garantir.ativo', 'registrar.acesso'])
     ->prefix('app')
     ->name('app.')
     ->group(function (): void {

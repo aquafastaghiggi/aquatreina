@@ -133,7 +133,6 @@ Não cachear progresso: ele já é denormalizado em `matriculas`.
 return [
     'percentual_conclusao' => (int) env('TREINA_PERCENTUAL_CONCLUSAO', 90),
     'intervalo_ping' => (int) env('TREINA_INTERVALO_PING', 10),
-    'aprovacao_manual' => (bool) env('TREINA_APROVACAO_MANUAL', true),
     'limite_comentarios_minuto' => 10,
     'upload' => ['max_mb' => 20, 'tipos' => ['pdf', 'xlsx', 'docx', 'pptx', 'png', 'jpg', 'zip']],
 ];

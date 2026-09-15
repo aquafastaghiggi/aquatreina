@@ -12,12 +12,11 @@ Três camadas, em ordem de custo:
 
 1. **Honeypot + rate limit.** Campo escondido que só bot preenche; `throttle` de
    5 cadastros por IP por hora. Grátis.
-2. **Verificação de e-mail obrigatória** antes do primeiro play. Já previsto.
-3. **Aprovação manual** — configuração `aprovacao_manual`. Conta nasce
-   `pendente` e o admin libera.
+2. **Aprovação manual obrigatória.** A conta nasce `pendente` e somente o admin
+   libera pelo painel. Não há verificação de e-mail no cadastro.
 
-Padrão do pacote: **`aprovacao_manual = true`**. Desligar depois é uma linha;
-limpar base já suja não é.
+Não existe autoaprovação na v1. O e-mail informado continua necessário para
+login, notificações e recuperação de senha.
 
 Não use CAPTCHA de terceiro na v1. As três camadas acima resolvem o volume
 esperado, e CAPTCHA acrescenta um processador de dados externo à conversa de

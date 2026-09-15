@@ -57,7 +57,7 @@
 
 - [ ] Curso piloto publicado e revisado de ponta a ponta
 - [ ] Textos de `/termos` e `/privacidade` aprovados pelo jurídico
-- [ ] `aprovacao_manual` ligado
+- [ ] Cadastro confirmado como pendente até aprovação do admin
 - [ ] Usuários admin e instrutor criados
 - [ ] Teste de aceitação: um usuário real se cadastra, é aprovado, assiste uma
       aula inteira, baixa um material e faz uma pergunta
@@ -99,6 +99,6 @@ Acompanhe por 30 dias, contra as métricas de `docs/00-visao-geral.md`:
 - taxa de conclusão por curso
 - tempo entre cadastro e primeira aula concluída
 - perguntas sem resposta há mais de 3 dias
-- taxa de cadastro falso (se baixa, considere desligar `aprovacao_manual`)
+- taxa de cadastro falso
 
 Só depois disso abra `etapas/99-backlog-pos-mvp.md`.

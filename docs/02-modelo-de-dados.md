@@ -161,8 +161,7 @@ Thread é rasa de propósito: pergunta → respostas. Sem resposta de resposta.
 Chave/valor para o que o admin muda sem deploy.
 `chave` unique · `valor` text · `tipo` (`bool`·`int`·`string`·`json`).
 
-Chaves da v1: `aprovacao_manual`, `percentual_conclusao`, `intervalo_ping`,
-`texto_boas_vindas`.
+Chaves da v1: `percentual_conclusao`, `intervalo_ping`, `texto_boas_vindas`.
 
 ---
 

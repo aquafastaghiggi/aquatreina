@@ -21,8 +21,6 @@ class Configuracoes extends Page
 
     protected string $view = 'filament.pages.configuracoes';
 
-    public bool $aprovacaoManual = true;
-
     public int $percentualConclusao = 90;
 
     public int $intervaloPing = 10;
@@ -40,7 +38,6 @@ class Configuracoes extends Page
 
     public function mount(): void
     {
-        $this->aprovacaoManual = (bool) Configuracao::valor('aprovacao_manual', true);
         $this->percentualConclusao = (int) Configuracao::valor('percentual_conclusao', 90);
         $this->intervaloPing = (int) Configuracao::valor('intervalo_ping', 10);
         $this->textoBoasVindas = (string) Configuracao::valor('texto_boas_vindas', '');
@@ -51,12 +48,11 @@ class Configuracoes extends Page
     public function salvar(): void
     {
         $dados = $this->validate([
-            'aprovacaoManual' => ['boolean'], 'percentualConclusao' => ['required', 'integer', 'min:1', 'max:100'],
+            'percentualConclusao' => ['required', 'integer', 'min:1', 'max:100'],
             'intervaloPing' => ['required', 'integer', 'min:5', 'max:120'], 'textoBoasVindas' => ['nullable', 'string', 'max:1000'],
             'termos' => ['required', 'string'], 'privacidade' => ['required', 'string'],
         ]);
 
-        Configuracao::definir('aprovacao_manual', $dados['aprovacaoManual']);
         Configuracao::definir('percentual_conclusao', $dados['percentualConclusao']);
         Configuracao::definir('intervalo_ping', $dados['intervaloPing']);
         Configuracao::definir('texto_boas_vindas', $dados['textoBoasVindas']);

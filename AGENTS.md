@@ -83,7 +83,7 @@ você provavelmente está escondendo suposições em vez de reportá-las.
 | Camada | Escolha | Observação |
 |---|---|---|
 | Framework | Laravel 12, PHP 8.3+ | |
-| Auth | Laravel Fortify | Sem Jetstream. Verificação de e-mail obrigatória. |
+| Auth | Laravel Fortify | Sem Jetstream. Aprovação obrigatória pelo admin; sem verificação de e-mail. |
 | Front do aluno | Livewire 3 + Alpine + Tailwind | |
 | Admin | Filament 4 em `/admin` | |
 | Banco | MySQL 8 | |

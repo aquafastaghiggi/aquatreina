@@ -11,10 +11,10 @@ beforeEach(function (): void {
     Role::findOrCreate('admin');
 });
 
-it('usuário sem e-mail verificado não acessa a área do aluno', function (): void {
+it('usuário ativo acessa sem verificação de e-mail', function (): void {
     $usuario = Usuario::factory()->naoVerificado()->create();
 
-    $this->actingAs($usuario)->get('/app')->assertRedirect(route('verification.notice'));
+    $this->actingAs($usuario)->get('/app')->assertOk();
 });
 
 it('usuário pendente cai em aguardando aprovação (RN-08)', function (): void {

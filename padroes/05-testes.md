@@ -55,7 +55,7 @@ tests/
 
 | Etapa | Testes obrigatórios |
 |---|---|
-| 0 | login, cadastro, verificação de e-mail, bloqueio por `situacao` (RN-08) |
+| 0 | login, cadastro pendente, aprovação administrativa, bloqueio por `situacao` (RN-08) |
 | 1 | extração de ID de vídeo (tabela de casos), CRUD de curso via Policy, publicação com RN-09 |
 | 2 | inscrição idempotente (RN-05), catálogo só lista publicados, aula rascunho dá 404 (RN-03) |
 | 3 | RN-01 nos dois caminhos, RN-02 nos cinco cenários, RN-04 nos dois sentidos |

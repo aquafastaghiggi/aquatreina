@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 use App\Enums\SituacaoUsuario;
 use App\Models\Usuario;
-use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Role;
 
 beforeEach(function (): void {
@@ -34,9 +31,8 @@ it('faz login com e-mail e senha válidos', function (): void {
     $this->assertAuthenticatedAs($usuario);
 });
 
-it('cadastro cria usuário aluno com situação pendente quando aprovação manual está ativa', function (): void {
-    config()->set('treina.aprovacao_manual', true);
-
+it('cadastro cria usuário aluno pendente para aprovação do admin', function (): void {
+    Notification::fake();
     $this->post(route('register.store'), [
         'nome' => 'Maria Distribuidora',
         'email' => 'maria@example.test',
@@ -52,7 +48,10 @@ it('cadastro cria usuário aluno com situação pendente quando aprovação manu
     $usuario = Usuario::query()->where('email', 'maria@example.test')->firstOrFail();
 
     expect($usuario->situacao)->toBe(SituacaoUsuario::Pendente)
-        ->and($usuario->hasRole('aluno'))->toBeTrue();
+        ->and($usuario->hasRole('aluno'))->toBeTrue()
+        ->and($usuario->email_verified_at)->toBeNull();
+
+    Notification::assertNothingSent();
 });
 
 it('cadastro grava aceite dos termos e IP', function (): void {
@@ -70,19 +69,6 @@ it('cadastro grava aceite dos termos e IP', function (): void {
 
     expect($usuario->termos_aceitos_em)->not->toBeNull()
         ->and($usuario->termos_ip)->toBe('2001:db8::10');
-});
-
-it('verifica o e-mail por link assinado', function (): void {
-    Event::fake([Verified::class]);
-    $usuario = Usuario::factory()->naoVerificado()->create();
-    $url = URL::temporarySignedRoute('verification.verify', now()->addMinutes(10), [
-        'id' => $usuario->id,
-        'hash' => sha1($usuario->email),
-    ]);
-
-    $this->actingAs($usuario)->get($url)->assertRedirect('/app?verified=1');
-
-    expect($usuario->fresh()->hasVerifiedEmail())->toBeTrue();
 });
 
 it('redefine a senha ponta a ponta', function (): void {

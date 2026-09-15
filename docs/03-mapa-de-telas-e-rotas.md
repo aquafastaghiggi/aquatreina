@@ -16,19 +16,17 @@ copiável está em `artefatos/rotas.md`.
 | `GET /cadastrar` · `POST /cadastrar` | `cadastro` | nome, e-mail, telefone, empresa, cargo, aceite de termos |
 | `GET /senha/esqueci` · `POST` | `senha.solicitar` | Fortify |
 | `GET /senha/redefinir/{token}` · `POST` | `senha.redefinir` | Fortify |
-| `GET /email/verificar` | `verification.notice` | nome do framework, mantido |
-| `GET /email/verificar/{id}/{hash}` | `verification.verify` | assinada |
 | `GET /termos` · `GET /privacidade` | `termos` · `privacidade` | páginas estáticas |
 
-**Página de conta pendente.** Usuário com `situacao = pendente` que verificou o
-e-mail cai em `GET /aguardando-aprovacao` (`conta.pendente`), não numa tela de
-erro. Middleware `garantir.ativo`.
+**Página de conta pendente.** Usuário com `situacao = pendente` cai em
+`GET /aguardando-aprovacao` (`conta.pendente`) até um administrador aprová-lo.
+Middleware `garantir.ativo`.
 
 ---
 
 ## Área do aluno — `/app`
 
-Middleware: `auth` · `verified` · `garantir.ativo`.
+Middleware: `auth` · `garantir.ativo`.
 
 | Rota | Nome | Tela |
 |---|---|---|

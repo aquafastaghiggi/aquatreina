@@ -295,7 +295,6 @@ CREATE TABLE configuracoes (
 -- Valores iniciais de configuracao
 -- ---------------------------------------------------------------------
 INSERT INTO configuracoes (chave, valor, tipo, descricao, created_at, updated_at) VALUES
- ('aprovacao_manual',     '1',  'bool', 'Conta nova entra como pendente e exige aprovacao do admin', NOW(), NOW()),
  ('percentual_conclusao', '90', 'int',  'Percentual do video que conclui a aula automaticamente (RN-01)', NOW(), NOW()),
  ('intervalo_ping',       '10', 'int',  'Intervalo em segundos entre os pings de progresso (RN-02)', NOW(), NOW()),
  ('texto_boas_vindas',    '',   'string', 'Texto exibido no painel do aluno', NOW(), NOW());
