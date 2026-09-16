@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $titulo ?? 'Minha área' }} — Aquafast Treina</title>
+    <title>{{ $titulo ?? 'Minha área' }} — Universidade Aquafast</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-fundo text-texto antialiased">
     <header class="border-b border-linha bg-superficie">
         <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="Área do aluno">
-            <a href="{{ route('app.painel') }}" class="font-semibold focus-ring">Aquafast <span class="text-marca">Treina</span></a>
+            <a href="{{ route('app.painel') }}" class="font-semibold focus-ring">Universidade <span class="text-marca">Aquafast</span></a>
             <div class="flex items-center gap-4 text-sm">
                 <span class="hidden text-texto-2 sm:inline">{{ auth()->user()->nome }}</span>
                 <a href="{{ route('app.notificacoes') }}" class="relative rounded-md p-1 text-texto-2 hover:text-marca" aria-label="Notificações">

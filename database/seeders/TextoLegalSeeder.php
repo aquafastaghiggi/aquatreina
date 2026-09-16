@@ -14,7 +14,7 @@ class TextoLegalSeeder extends Seeder
         $this->publicarSeAusente('termos', <<<'TEXTO'
 1. Apresentação e aceitação
 
-Estes Termos de Uso regulam o acesso ao Aquafast Treina, plataforma gratuita de capacitação sobre produtos e serviços Aquafast destinada principalmente a distribuidores, representantes comerciais e clientes corporativos.
+Estes Termos de Uso regulam o acesso ao Universidade Aquafast, plataforma gratuita de capacitação sobre produtos e serviços Aquafast destinada principalmente a distribuidores, representantes comerciais e clientes corporativos.
 
 Ao criar uma conta e utilizar a plataforma, você declara que leu e concorda com estes Termos e com a Política de Privacidade. Caso não concorde, não prossiga com o cadastro nem utilize as áreas restritas.
 
@@ -52,7 +52,7 @@ A conta poderá ser bloqueada em caso de violação destes Termos, risco à segu
 
 9. Privacidade
 
-O tratamento de dados pessoais relacionado ao cadastro e ao uso da plataforma está descrito na Política de Privacidade do Aquafast Treina, que integra estes Termos.
+O tratamento de dados pessoais relacionado ao cadastro e ao uso da plataforma está descrito na Política de Privacidade do Universidade Aquafast, que integra estes Termos.
 
 10. Atualizações destes Termos
 
@@ -60,13 +60,13 @@ Estes Termos podem ser alterados para refletir mudanças legais, operacionais ou
 
 11. Legislação e contato
 
-Estes Termos são regidos pela legislação brasileira, preservados os direitos que não possam ser limitados por contrato. Dúvidas sobre a plataforma podem ser encaminhadas para treinamentos@aquafast.com.br ou para os canais oficiais da Aquafast.
+Estes Termos são regidos pela legislação brasileira, preservados os direitos que não possam ser limitados por contrato. Dúvidas sobre a plataforma podem ser encaminhadas para universidade@aquafast.com.br ou para os canais oficiais da Aquafast.
 TEXTO);
 
         $this->publicarSeAusente('privacidade', <<<'TEXTO'
 1. Objetivo
 
-Esta Política de Privacidade explica como a Aquafast, responsável pelo Aquafast Treina, trata dados pessoais de visitantes e usuários da plataforma. O tratamento observa a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais — LGPD) e os princípios de finalidade, adequação, necessidade, transparência, segurança e prevenção.
+Esta Política de Privacidade explica como a Aquafast, responsável pelo Universidade Aquafast, trata dados pessoais de visitantes e usuários da plataforma. O tratamento observa a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais — LGPD) e os princípios de finalidade, adequação, necessidade, transparência, segurança e prevenção.
 
 2. Dados tratados
 
@@ -105,7 +105,7 @@ Alguns fornecedores de tecnologia podem armazenar ou processar dados fora do Bra
 
 6. Cookies e tecnologias semelhantes
 
-O Aquafast Treina utiliza cookies estritamente necessários para sessão, autenticação, segurança e proteção contra falsificação de requisições. A versão inicial não utiliza cookies de publicidade nem ferramentas de análise comportamental de terceiros. Recursos externos incorporados podem aplicar tecnologias próprias conforme suas políticas.
+O Universidade Aquafast utiliza cookies estritamente necessários para sessão, autenticação, segurança e proteção contra falsificação de requisições. A versão inicial não utiliza cookies de publicidade nem ferramentas de análise comportamental de terceiros. Recursos externos incorporados podem aplicar tecnologias próprias conforme suas políticas.
 
 7. Retenção e eliminação
 
@@ -117,7 +117,7 @@ Quando a exclusão da conta for atendida por anonimização, os identificadores 
 
 Nos termos da LGPD, o titular pode solicitar, quando aplicável: confirmação do tratamento; acesso; correção; anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade; portabilidade; informação sobre compartilhamentos; revogação do consentimento; oposição; e revisão de decisões tomadas unicamente por tratamento automatizado.
 
-O próprio usuário pode consultar e corrigir dados disponíveis em seu perfil e exportar uma cópia dos dados mantidos pela plataforma. Outras solicitações podem ser encaminhadas para treinamentos@aquafast.com.br ou para os canais oficiais da Aquafast. Poderemos pedir informações adicionais para confirmar a identidade do solicitante e proteger a conta.
+O próprio usuário pode consultar e corrigir dados disponíveis em seu perfil e exportar uma cópia dos dados mantidos pela plataforma. Outras solicitações podem ser encaminhadas para universidade@aquafast.com.br ou para os canais oficiais da Aquafast. Poderemos pedir informações adicionais para confirmar a identidade do solicitante e proteger a conta.
 
 9. Segurança
 
@@ -131,7 +131,7 @@ A plataforma é destinada ao público profissional e não foi concebida para o c
 
 Esta Política pode ser atualizada para refletir mudanças legais, operacionais ou tecnológicas. A versão e a data de publicação ficam indicadas nesta página. Alterações materiais serão comunicadas pelos meios disponíveis e, quando necessário, será solicitado novo aceite.
 
-Dúvidas ou solicitações sobre privacidade podem ser enviadas para treinamentos@aquafast.com.br ou apresentadas pelos canais oficiais da Aquafast.
+Dúvidas ou solicitações sobre privacidade podem ser enviadas para universidade@aquafast.com.br ou apresentadas pelos canais oficiais da Aquafast.
 TEXTO);
     }
 

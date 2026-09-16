@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $titulo ?? 'Aquafast Treina' }}</title>
+    <title>{{ $titulo ?? 'Universidade Aquafast' }}</title>
     @isset($descricao)<meta name="description" content="{{ $descricao }}">@endisset
     @isset($ogTitulo)<meta property="og:title" content="{{ $ogTitulo }}">@endisset
     @isset($ogDescricao)<meta property="og:description" content="{{ $ogDescricao }}">@endisset
@@ -14,7 +14,7 @@
 <body class="min-h-screen bg-fundo text-texto antialiased">
     <header class="border-b border-linha bg-superficie/80 backdrop-blur">
         <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="Navegação principal">
-            <a href="{{ route('vitrine') }}" class="text-lg font-semibold tracking-tight text-texto focus-ring">Aquafast <span class="text-marca">Treina</span></a>
+            <a href="{{ route('vitrine') }}" class="text-lg font-semibold tracking-tight text-texto focus-ring">Universidade <span class="text-marca">Aquafast</span></a>
             <div class="flex items-center gap-3 text-sm">
                 @auth
                     <a href="{{ route('app.painel') }}" class="botao-primario">Minha área</a>
@@ -27,7 +27,7 @@
     </header>
     <main>{{ $slot }}</main>
     <footer class="mx-auto mt-16 flex max-w-6xl flex-wrap gap-5 border-t border-linha px-5 py-8 text-sm text-texto-3">
-        <span>© {{ date('Y') }} Aquafast</span>
+        <span>© {{ date('Y') }} Universidade Aquafast</span>
         <a class="link" href="{{ route('termos') }}">Termos de uso</a>
         <a class="link" href="{{ route('privacidade') }}">Privacidade</a>
     </footer>

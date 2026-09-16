@@ -11,7 +11,7 @@ it('publica os termos e a privacidade padrão sem aviso provisório', function (
     $this->get(route('termos'))
         ->assertOk()
         ->assertSee('Uso permitido')
-        ->assertSee('treinamentos@aquafast.com.br')
+        ->assertSee('universidade@aquafast.com.br')
         ->assertDontSee('Texto jurídico provisório');
 
     $this->get(route('privacidade'))

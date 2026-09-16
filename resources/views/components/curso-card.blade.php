@@ -6,12 +6,12 @@
             @if ($capaUrl)
                 <img src="{{ $capaUrl }}" alt="" class="h-full w-full object-cover transition duration-200 group-hover:scale-[1.02] motion-reduce:transition-none" loading="lazy">
             @else
-                <div class="flex h-full items-center justify-center text-sm text-texto-3">Aquafast Treina</div>
+                <div class="flex h-full items-center justify-center text-sm text-texto-3">Universidade Aquafast</div>
             @endif
         </div>
         <div class="p-5">
             <div class="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wide text-marca">
-                <span>{{ $curso->categoria?->nome ?? 'Treinamento' }}</span>
+                <span>{{ $curso->categoria?->nome ?? 'Produto Aquafast' }}</span>
                 @if ($inscrito)<span class="text-sucesso">Inscrito</span>@endif
             </div>
             <h3 class="mt-3 line-clamp-2 min-h-12 text-balance text-lg font-semibold text-texto">{{ $curso->titulo }}</h3>
