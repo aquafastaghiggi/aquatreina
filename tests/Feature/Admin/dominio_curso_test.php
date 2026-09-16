@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Acoes\Curso\ArquivarCurso;
 use App\Acoes\Curso\PublicarCurso;
 use App\Acoes\Curso\ReordenarCurriculo;
 use App\Acoes\Curso\SalvarAula;
@@ -13,6 +14,7 @@ use App\Models\Curso;
 use App\Models\Modulo;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Gate;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Role;
 
 beforeEach(function (): void {
@@ -103,6 +105,32 @@ it('admin acessa os resources e o construtor de currículo', function (): void {
     $this->get('/admin/categorias')->assertOk();
     $this->get('/admin/organizacoes')->assertOk();
     $this->get("/admin/cursos/{$curso->id}/curriculo")->assertOk();
+});
+
+it('publicar curso registra a atividade no log de auditoria', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $curso = Curso::factory()->create(['capa_caminho' => null]);
+    $modulo = Modulo::factory()->for($curso)->create();
+    Aula::factory()->for($modulo)->create([
+        'situacao' => SituacaoAula::Publicada,
+        'duracao_segundos' => 735,
+        'video_id' => 'dQw4w9WgXcQ',
+    ]);
+
+    app(PublicarCurso::class)->executar($curso, $admin);
+
+    expect(Activity::query()->where('subject_type', Curso::class)->where('subject_id', $curso->id)->where('causer_id', $admin->id)->count())->toBe(1);
+});
+
+it('arquivar curso registra a atividade no log de auditoria', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $curso = Curso::factory()->create();
+
+    app(ArquivarCurso::class)->executar($curso, $admin);
+
+    expect(Activity::query()->where('subject_type', Curso::class)->where('subject_id', $curso->id)->where('causer_id', $admin->id)->count())->toBe(1);
 });
 
 it('publicar aula dispara o recálculo de caches do curso', function (): void {

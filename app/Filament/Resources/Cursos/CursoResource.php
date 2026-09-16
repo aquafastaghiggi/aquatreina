@@ -114,7 +114,7 @@ class CursoResource extends Resource
                         Gate::authorize('update', $record);
 
                         try {
-                            app(PublicarCurso::class)->executar($record);
+                            app(PublicarCurso::class)->executar($record, auth()->user());
                             Notification::make()->title('Curso publicado')->success()->send();
                         } catch (CursoIncompleto $erro) {
                             Notification::make()
@@ -130,7 +130,7 @@ class CursoResource extends Resource
                     ->visible(fn (Curso $record): bool => $record->situacao !== SituacaoCurso::Arquivado)
                     ->action(function (Curso $record): void {
                         Gate::authorize('update', $record);
-                        app(ArquivarCurso::class)->executar($record);
+                        app(ArquivarCurso::class)->executar($record, auth()->user());
                         Notification::make()->title('Curso arquivado')->success()->send();
                     }),
                 EditAction::make(),

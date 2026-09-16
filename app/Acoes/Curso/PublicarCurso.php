@@ -9,6 +9,7 @@ use App\Enums\SituacaoCurso;
 use App\Eventos\CursoPublicado;
 use App\Excecoes\CursoIncompleto;
 use App\Models\Curso;
+use App\Models\Usuario;
 use Illuminate\Contracts\Cache\Factory as Cache;
 use Illuminate\Contracts\Events\Dispatcher;
 
@@ -20,7 +21,7 @@ final class PublicarCurso
         private readonly Cache $cache,
     ) {}
 
-    public function executar(Curso $curso): Curso
+    public function executar(Curso $curso, ?Usuario $executor = null): Curso
     {
         $curso->load('modulos.aulas');
         $aulasPublicadas = $curso->modulos->flatMap->aulas
@@ -58,6 +59,8 @@ final class PublicarCurso
         $curso = $this->recalcularCaches->executar($curso);
         $this->cache->store()->forget('catalogo:publicados');
         $this->eventos->dispatch(new CursoPublicado($curso));
+
+        activity()->causedBy($executor)->performedOn($curso)->log('Curso publicado');
 
         return $curso;
     }

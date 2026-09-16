@@ -58,6 +58,9 @@ class Configuracoes extends Page
         Configuracao::definir('texto_boas_vindas', $dados['textoBoasVindas']);
         $this->versionar('termos', $dados['termos']);
         $this->versionar('privacidade', $dados['privacidade']);
+
+        activity()->causedBy(auth()->user())->log('Configurações atualizadas');
+
         Notification::make()->title('Configurações salvas')->success()->send();
     }
 
