@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Enums\SituacaoUsuario;
+use App\Models\TextoLegal;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -34,6 +35,7 @@ class UsuarioAdminSeeder extends Seeder
                 'situacao' => SituacaoUsuario::Ativo,
                 'email_verified_at' => now(),
                 'termos_aceitos_em' => now(),
+                'termos_versao_aceita' => TextoLegal::vigente('termos')?->versao,
                 'termos_ip' => '127.0.0.1',
             ],
         );
