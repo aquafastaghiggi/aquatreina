@@ -7,6 +7,7 @@ namespace App\Acoes\Progresso;
 use App\Enums\SituacaoAula;
 use App\Enums\SituacaoMatricula;
 use App\Models\Aula;
+use App\Models\Configuracao;
 use App\Models\Matricula;
 use App\Models\ProgressoAula;
 use App\Models\Usuario;
@@ -58,7 +59,8 @@ final class RegistrarProgresso
             }
 
             $dados = ['posicao_maxima' => $posicao];
-            $tolerancia = (float) config('treina.tolerancia_salto');
+            $intervaloPing = (int) Configuracao::valor('intervalo_ping', config('treina.intervalo_ping'));
+            $tolerancia = $intervaloPing * 2.5;
             $avancoNormal = $delta <= $tolerancia;
 
             if ($avancoNormal) {

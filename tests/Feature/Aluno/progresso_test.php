@@ -7,6 +7,7 @@ use App\Enums\SituacaoAula;
 use App\Enums\SituacaoCurso;
 use App\Enums\SituacaoMatricula;
 use App\Models\Aula;
+use App\Models\Configuracao;
 use App\Models\Curso;
 use App\Models\Matricula;
 use App\Models\Modulo;
@@ -96,4 +97,24 @@ it('rejeita ping sem matricula ativa (RN-02)', function (): void {
         'aula_id' => $cenario['aula']->id,
         'posicao' => 10,
     ])->assertForbidden();
+});
+
+it('aceita posicao exatamente na tolerancia maxima da duracao (RN-02)', function (): void {
+    $cenario = cenarioProgresso();
+
+    $this->actingAs($cenario['aluno'])->postJson(route('app.progresso'), [
+        'aula_id' => $cenario['aula']->id,
+        'posicao' => 105,
+    ])->assertOk();
+});
+
+it('acompanha o intervalo_ping configurado em runtime ao calcular a tolerancia de salto (RN-02)', function (): void {
+    $cenario = cenarioProgresso();
+    Configuracao::definir('intervalo_ping', 60);
+
+    app(RegistrarProgresso::class)->executar($cenario['aluno'], $cenario['aula'], 60);
+
+    $progresso = ProgressoAula::query()->firstOrFail();
+    expect($progresso->posicao_maxima)->toBe(60)
+        ->and($progresso->segundos_assistidos)->toBe(60);
 });
