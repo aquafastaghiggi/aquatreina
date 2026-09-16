@@ -8,7 +8,7 @@ return [
     'percentual_conclusao' => (int) env('TREINA_PERCENTUAL_CONCLUSAO', 90),
     'intervalo_ping' => $intervaloPing,
     'tolerancia_salto' => $intervaloPing * 2.5,
-    'limite_comentarios_minuto' => 10,
+    'limite_comentarios_minuto' => (int) env('TREINA_LIMITE_COMENTARIOS_MINUTO', 10),
     'upload' => [
         'max_mb' => 20,
         'tipos' => ['pdf', 'xlsx', 'docx', 'pptx', 'png', 'jpg', 'zip'],

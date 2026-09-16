@@ -21,9 +21,9 @@ class Configuracoes extends Page
 
     protected string $view = 'filament.pages.configuracoes';
 
-    public int $percentualConclusao = 90;
+    public int $percentualConclusao;
 
-    public int $intervaloPing = 10;
+    public int $intervaloPing;
 
     public string $textoBoasVindas = '';
 
@@ -38,8 +38,8 @@ class Configuracoes extends Page
 
     public function mount(): void
     {
-        $this->percentualConclusao = (int) Configuracao::valor('percentual_conclusao', 90);
-        $this->intervaloPing = (int) Configuracao::valor('intervalo_ping', 10);
+        $this->percentualConclusao = (int) Configuracao::valor('percentual_conclusao', config('treina.percentual_conclusao'));
+        $this->intervaloPing = (int) Configuracao::valor('intervalo_ping', config('treina.intervalo_ping'));
         $this->textoBoasVindas = (string) Configuracao::valor('texto_boas_vindas', '');
         $this->termos = (string) (TextoLegal::vigente('termos')?->conteudo ?? 'Termos de uso do Aquafast Treina.');
         $this->privacidade = (string) (TextoLegal::vigente('privacidade')?->conteudo ?? 'Política de privacidade do Aquafast Treina.');
