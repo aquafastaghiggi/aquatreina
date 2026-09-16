@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             ConfiguracaoSeeder::class,
             TextoLegalSeeder::class,
+            TrilhaProdutoSeeder::class,
         ]);
 
         if (app()->environment(['local', 'testing'])) {
