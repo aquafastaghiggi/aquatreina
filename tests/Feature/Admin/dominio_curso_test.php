@@ -6,14 +6,19 @@ use App\Acoes\Curso\ArquivarCurso;
 use App\Acoes\Curso\PublicarCurso;
 use App\Acoes\Curso\ReordenarCurriculo;
 use App\Acoes\Curso\SalvarAula;
+use App\Enums\NivelCurso;
 use App\Enums\SituacaoAula;
 use App\Excecoes\CursoIncompleto;
+use App\Filament\Pages\ConstrutorCurriculo;
 use App\Filament\Resources\Cursos\CursoResource;
+use App\Filament\Resources\Cursos\Pages\CreateCurso;
 use App\Models\Aula;
+use App\Models\Categoria;
 use App\Models\Curso;
 use App\Models\Modulo;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Role;
 
@@ -92,6 +97,28 @@ it('publica curso completo e recalcula os caches (RN-09)', function (): void {
         ->and($curso->total_aulas)->toBe(1)
         ->and($curso->minutos_estimados)->toBe(13)
         ->and($curso->publicado_em)->not->toBeNull();
+});
+
+it('criar curso redireciona direto para o construtor de currículo', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $categoria = Categoria::factory()->create();
+
+    $componente = Livewire::actingAs($admin)
+        ->test(CreateCurso::class)
+        ->fillForm([
+            'titulo' => 'Curso de Teste',
+            'slug' => 'curso-de-teste',
+            'categoria_id' => $categoria->id,
+            'nivel' => NivelCurso::Basico->value,
+            'responsavel_id' => $admin->id,
+        ])
+        ->call('create')
+        ->assertHasNoFormErrors();
+
+    $curso = Curso::query()->where('slug', 'curso-de-teste')->firstOrFail();
+
+    $componente->assertRedirect(ConstrutorCurriculo::getUrl(['registro' => $curso->id]));
 });
 
 it('admin acessa os resources e o construtor de currículo', function (): void {

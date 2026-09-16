@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Acoes\Usuario\AprovarUsuario;
 use App\Acoes\Usuario\BloquearUsuario;
 use App\Enums\SituacaoUsuario;
+use App\Filament\Resources\Usuarios\UsuarioResource;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Activitylog\Models\Activity;
@@ -47,6 +48,18 @@ it('aprova e bloqueia usuário registrando as ações no activity log', function
     app(BloquearUsuario::class)->executar($usuario, $admin);
     expect($usuario->fresh()->situacao)->toBe(SituacaoUsuario::Bloqueado)
         ->and(Activity::query()->where('subject_id', $usuario->id)->count())->toBe(2);
+});
+
+it('mostra no menu a contagem de usuarios pendentes de aprovacao', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    Usuario::factory()->create(['situacao' => SituacaoUsuario::Pendente]);
+    Usuario::factory()->create(['situacao' => SituacaoUsuario::Pendente]);
+    Usuario::factory()->create(['situacao' => SituacaoUsuario::Ativo]);
+
+    $this->actingAs($admin);
+
+    expect(UsuarioResource::getNavigationBadge())->toBe('2');
 });
 
 it('so admin pode aprovar bloquear e anonimizar usuario (UsuarioPolicy)', function (): void {

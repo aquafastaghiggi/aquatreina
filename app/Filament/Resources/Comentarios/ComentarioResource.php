@@ -23,6 +23,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
+use UnitEnum;
 
 class ComentarioResource extends Resource
 {
@@ -31,6 +32,10 @@ class ComentarioResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeftRight;
 
     protected static ?string $navigationLabel = 'Perguntas';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Comunidade';
+
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'pergunta';
 
@@ -137,6 +142,18 @@ class ComentarioResource extends Resource
     public static function getPages(): array
     {
         return ['index' => ListComentarios::route('/')];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $total = static::getEloquentQuery()->where('situacao', SituacaoComentario::Pendente)->count();
+
+        return $total > 0 ? (string) $total : null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'danger';
     }
 
     private static function cursosDisponiveis(): array

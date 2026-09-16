@@ -36,12 +36,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\HtmlString;
+use UnitEnum;
 
 class CursoResource extends Resource
 {
     protected static ?string $model = Curso::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Conteúdo';
+
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'curso';
 

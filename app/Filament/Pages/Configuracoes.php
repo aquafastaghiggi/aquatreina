@@ -10,12 +10,17 @@ use BackedEnum;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class Configuracoes extends Page
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     protected static ?string $navigationLabel = 'Configurações';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Operação';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $slug = 'configuracoes';
 

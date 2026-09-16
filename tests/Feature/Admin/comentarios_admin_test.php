@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\SituacaoComentario;
 use App\Enums\SituacaoCurso;
 use App\Filament\Resources\Comentarios\ComentarioResource;
 use App\Filament\Widgets\ConclusaoPorCurso;
@@ -42,4 +43,19 @@ it('painel admin coloca perguntas sem resposta antes dos indicadores', function 
     $this->actingAs($admin)->get('/admin')->assertOk();
 
     expect(PerguntasSemResposta::getSort())->toBeLessThan(ConclusaoPorCurso::getSort());
+});
+
+it('mostra no menu a contagem de perguntas pendentes de moderacao', function (): void {
+    Role::findOrCreate('admin', 'web');
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $curso = Curso::factory()->create(['situacao' => SituacaoCurso::Publicado]);
+    $aula = Aula::factory()->for(Modulo::factory()->for($curso))->create();
+    Comentario::factory()->for($aula)->create(['situacao' => SituacaoComentario::Pendente]);
+    Comentario::factory()->for($aula)->create(['situacao' => SituacaoComentario::Pendente]);
+    Comentario::factory()->for($aula)->create(['situacao' => SituacaoComentario::Aprovado]);
+
+    $this->actingAs($admin);
+
+    expect(ComentarioResource::getNavigationBadge())->toBe('2');
 });

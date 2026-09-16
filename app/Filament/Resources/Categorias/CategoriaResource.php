@@ -19,12 +19,17 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class CategoriaResource extends Resource
 {
     protected static ?string $model = Categoria::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Conteúdo';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $modelLabel = 'categoria';
 

@@ -22,6 +22,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Gate;
+use UnitEnum;
 
 class UsuarioResource extends Resource
 {
@@ -30,6 +31,10 @@ class UsuarioResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     protected static ?string $navigationLabel = 'Usuários';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Comunidade';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $modelLabel = 'usuário';
 
@@ -111,5 +116,17 @@ class UsuarioResource extends Resource
             'index' => ManageUsuarios::route('/'),
             'view' => ViewUsuario::route('/{record}'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $total = static::getEloquentQuery()->where('situacao', SituacaoUsuario::Pendente)->count();
+
+        return $total > 0 ? (string) $total : null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'warning';
     }
 }
