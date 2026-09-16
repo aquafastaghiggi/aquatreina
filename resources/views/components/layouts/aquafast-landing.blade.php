@@ -20,7 +20,7 @@
   <header class="topbar">
     <div class="container nav-wrap">
       <a class="brand" href="{{ route('vitrine') }}#inicio" aria-label="Aquafast Universidade">
-        <span class="brand-aqua">AQUA<span>FAST</span></span>
+        <img src="{{ asset('images/marca/aquafast-logo-navy.svg') }}" alt="Aquafast" class="brand-logo-img">
         <span class="brand-divider"></span>
         <span class="brand-university">Universidade</span>
       </a>
@@ -46,7 +46,7 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <a class="brand" href="{{ route('vitrine') }}#inicio"><span class="brand-aqua">AQUA<span>FAST</span></span><span class="brand-divider"></span><span class="brand-university">Universidade</span></a>
+      <a class="brand" href="{{ route('vitrine') }}#inicio"><img src="{{ asset('images/marca/aquafast-logo-navy.svg') }}" alt="Aquafast" class="brand-logo-img"><span class="brand-divider"></span><span class="brand-university">Universidade</span></a>
       <nav><a href="{{ route('vitrine') }}#como-funciona">Como funciona</a><a href="{{ route('vitrine') }}#produtos">Produtos</a><a href="{{ route('vitrine') }}#premiacao">Premiação</a></nav>
       <div class="social">♪　◎　▶</div>
       <p>Juntos por um<br>futuro mais limpo.</p>
