@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Enums\SituacaoUsuario;
 use App\Models\Usuario;
 use App\Servicos\Video\ExtratorIdVideo;
 use App\Servicos\Video\LeitorMetadadosVideo;
@@ -52,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
             ->numbers()
             ->uncompromised());
 
-        Gate::define('acessar-admin', fn (Usuario $usuario): bool => $usuario->hasAnyRole(['admin', 'instrutor']));
+        Gate::define('acessar-admin', fn (Usuario $usuario): bool => $usuario->situacao === SituacaoUsuario::Ativo
+            && $usuario->hasAnyRole(['admin', 'instrutor']));
     }
 }

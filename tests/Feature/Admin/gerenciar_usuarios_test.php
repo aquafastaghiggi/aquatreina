@@ -20,6 +20,20 @@ it('libera o painel administrativo para admin', function (): void {
     $this->actingAs($admin)->get('/admin')->assertOk();
 });
 
+it('nega o painel administrativo para admin bloqueado (RN-08)', function (): void {
+    $admin = Usuario::factory()->create(['situacao' => SituacaoUsuario::Bloqueado]);
+    $admin->assignRole('admin');
+
+    $this->actingAs($admin)->get('/admin')->assertForbidden();
+});
+
+it('nega o painel administrativo para admin pendente (RN-08)', function (): void {
+    $admin = Usuario::factory()->create(['situacao' => SituacaoUsuario::Pendente]);
+    $admin->assignRole('admin');
+
+    $this->actingAs($admin)->get('/admin')->assertForbidden();
+});
+
 it('aprova e bloqueia usuário registrando as ações no activity log', function (): void {
     $admin = Usuario::factory()->create();
     $admin->assignRole('admin');
