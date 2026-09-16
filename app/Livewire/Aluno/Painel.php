@@ -31,16 +31,31 @@ class Painel extends Component
     }
 
     #[Computed]
-    public function sugestoes(): mixed
+    public function produtos(): mixed
     {
         return Curso::query()->publicados()
-            ->whereDoesntHave('matriculas', fn ($consulta) => $consulta
-                ->where('usuario_id', auth()->id())
-                ->whereIn('situacao', [SituacaoMatricula::Ativa->value, SituacaoMatricula::Concluida->value]))
-            ->with(['categoria', 'modulos.aulas'])
+            ->whereHas('categoria', fn ($consulta) => $consulta
+                ->where('slug', config('treina.categoria_trilhas_produto_slug')))
+            ->with('categoria')
             ->orderBy('posicao')
-            ->limit(3)
-            ->get();
+            ->get()
+            ->map(function (Curso $curso): Curso {
+                $curso->setAttribute('minha_matricula', $this->matriculas->firstWhere('curso_id', $curso->id));
+
+                return $curso;
+            });
+    }
+
+    /**
+     * Matrículas fora da trilha de produtos (categorias legadas, se existirem).
+     * Mantido para não esconder conteúdo antigo do aluno.
+     */
+    #[Computed]
+    public function outrasMatriculas(): mixed
+    {
+        $idsProdutos = $this->produtos->pluck('id');
+
+        return $this->matriculas->reject(fn (Matricula $matricula): bool => $idsProdutos->contains($matricula->curso_id));
     }
 
     public function render(ApresentacaoCurso $apresentacao): View
@@ -48,7 +63,8 @@ class Painel extends Component
         return view('livewire.aluno.painel', [
             'apresentacao' => $apresentacao,
             'emAndamento' => $this->matriculas->where('situacao', SituacaoMatricula::Ativa),
-            'concluidas' => $this->matriculas->where('situacao', SituacaoMatricula::Concluida),
+            'outrasEmAndamento' => $this->outrasMatriculas->where('situacao', SituacaoMatricula::Ativa),
+            'outrasConcluidas' => $this->outrasMatriculas->where('situacao', SituacaoMatricula::Concluida),
             'textoBoasVindas' => Configuracao::valor('texto_boas_vindas', ''),
         ])->layout('components.layouts.aluno', ['titulo' => 'Minha área']);
     }
