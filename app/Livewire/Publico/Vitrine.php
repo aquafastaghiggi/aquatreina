@@ -12,6 +12,6 @@ class Vitrine extends Component
     public function render(): View
     {
         return view('livewire.publico.vitrine')
-            ->layout('components.layouts.publico', ['titulo' => 'Universidade Aquafast — Aprenda. Crie. Venda. Ganhe.']);
+            ->layout('components.layouts.aquafast-landing', ['titulo' => 'Universidade Aquafast — Transforme seu conteúdo em renda.']);
     }
 }

@@ -15,13 +15,15 @@ it('mostra o hero, os passos, os produtos e o programa de premiacao da landing p
         ->assertSee('Aprenda com nossos conteúdos')
         ->assertSee('Poste seus vídeos')
         ->assertSee('Ganhe comissão')
-        ->assertSee('Produtos que geram resultados.')
-        ->assertSee('Limpeza')
-        ->assertSee('Kits especiais')
-        ->assertSee('Programa de Premiação')
+        ->assertSee('Produtos que')
+        ->assertSee('LIMPEZA')
+        ->assertSee('KITS ESPECIAIS')
+        ->assertSee('Mais do que um curso,')
+        ->assertSee('Você cria. Você vende.')
         ->assertSee('Aprendiz')
         ->assertSee('Elite')
-        ->assertSee('Perguntas frequentes')
+        ->assertSee('R$ 1 milhão')
+        ->assertSee('Seu conteúdo pode ir mais longe.')
         ->assertSee('Quero começar agora', false);
 });
 
