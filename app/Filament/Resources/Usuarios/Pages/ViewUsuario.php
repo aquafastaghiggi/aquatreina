@@ -6,8 +6,10 @@ namespace App\Filament\Resources\Usuarios\Pages;
 
 use App\Acoes\Usuario\AnonimizarUsuario;
 use App\Filament\Resources\Usuarios\UsuarioResource;
+use App\Models\Usuario;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
+use Illuminate\Support\Facades\Gate;
 
 class ViewUsuario extends ViewRecord
 {
@@ -19,6 +21,7 @@ class ViewUsuario extends ViewRecord
             Action::make('anonimizar')
                 ->label('Anonimizar usuário')
                 ->color('danger')
+                ->authorize(fn (Usuario $record): bool => Gate::allows('anonimizar', $record))
                 ->requiresConfirmation()
                 ->modalHeading('Anonimizar usuário de forma irreversível?')
                 ->modalDescription('Os dados pessoais serão removidos. Matrículas e progresso serão preservados para fins estatísticos.')

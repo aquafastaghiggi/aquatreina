@@ -6,11 +6,13 @@ use App\Acoes\Usuario\AprovarUsuario;
 use App\Acoes\Usuario\BloquearUsuario;
 use App\Enums\SituacaoUsuario;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Role;
 
 beforeEach(function (): void {
     Role::findOrCreate('admin');
+    Role::findOrCreate('instrutor');
 });
 
 it('libera o painel administrativo para admin', function (): void {
@@ -45,4 +47,19 @@ it('aprova e bloqueia usuário registrando as ações no activity log', function
     app(BloquearUsuario::class)->executar($usuario, $admin);
     expect($usuario->fresh()->situacao)->toBe(SituacaoUsuario::Bloqueado)
         ->and(Activity::query()->where('subject_id', $usuario->id)->count())->toBe(2);
+});
+
+it('so admin pode aprovar bloquear e anonimizar usuario (UsuarioPolicy)', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $instrutor = Usuario::factory()->create();
+    $instrutor->assignRole('instrutor');
+    $usuario = Usuario::factory()->create();
+
+    expect(Gate::forUser($admin)->allows('aprovar', $usuario))->toBeTrue()
+        ->and(Gate::forUser($admin)->allows('bloquear', $usuario))->toBeTrue()
+        ->and(Gate::forUser($admin)->allows('anonimizar', $usuario))->toBeTrue()
+        ->and(Gate::forUser($instrutor)->allows('aprovar', $usuario))->toBeFalse()
+        ->and(Gate::forUser($instrutor)->allows('bloquear', $usuario))->toBeFalse()
+        ->and(Gate::forUser($instrutor)->allows('anonimizar', $usuario))->toBeFalse();
 });

@@ -21,6 +21,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Gate;
 
 class UsuarioResource extends Resource
 {
@@ -81,12 +82,14 @@ class UsuarioResource extends Resource
                     ->label('Aprovar')
                     ->color('success')
                     ->visible(fn (Usuario $record): bool => $record->situacao !== SituacaoUsuario::Ativo)
+                    ->authorize(fn (Usuario $record): bool => Gate::allows('aprovar', $record))
                     ->requiresConfirmation()
                     ->action(fn (Usuario $record) => app(AprovarUsuario::class)->executar($record, auth()->user())),
                 Action::make('bloquear')
                     ->label('Bloquear')
                     ->color('danger')
                     ->visible(fn (Usuario $record): bool => $record->situacao !== SituacaoUsuario::Bloqueado)
+                    ->authorize(fn (Usuario $record): bool => Gate::allows('bloquear', $record))
                     ->requiresConfirmation()
                     ->action(fn (Usuario $record) => app(BloquearUsuario::class)->executar($record, auth()->user())),
             ]);
