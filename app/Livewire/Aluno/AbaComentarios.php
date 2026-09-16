@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Livewire\Aluno;
 
 use App\Acoes\Comentario\CriarComentario;
-use App\Enums\SituacaoMatricula;
 use App\Models\Aula;
 use App\Models\Comentario;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -23,18 +22,15 @@ class AbaComentarios extends Component
     #[Locked]
     public int $aulaId;
 
+    #[Locked]
+    public int $matriculaId;
+
     public string $corpo = '';
 
-    public function mount(int $aulaId): void
+    public function mount(int $aulaId, int $matriculaId): void
     {
-        $aula = Aula::query()->with('modulo')->findOrFail($aulaId);
-        $matriculado = auth()->user()->matriculas()
-            ->where('curso_id', $aula->modulo->curso_id)
-            ->whereIn('situacao', [SituacaoMatricula::Ativa, SituacaoMatricula::Concluida])
-            ->exists();
-        abort_unless($matriculado, 403);
-
-        $this->aulaId = $aula->id;
+        $this->aulaId = $aulaId;
+        $this->matriculaId = $matriculaId;
     }
 
     #[Computed]

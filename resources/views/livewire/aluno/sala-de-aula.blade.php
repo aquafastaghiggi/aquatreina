@@ -95,7 +95,7 @@
                         </div>
                     @endif
                     <div x-show="aba === 'perguntas'">
-                        <livewire:aluno.aba-comentarios :aula-id="$this->aula->id" :key="'comentarios-'.$this->aula->id" />
+                        <livewire:aluno.aba-comentarios :aula-id="$this->aula->id" :matricula-id="$matriculaId" :key="'comentarios-'.$this->aula->id" />
                     </div>
                 </div>
         </main>
