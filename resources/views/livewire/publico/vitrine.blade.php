@@ -92,22 +92,6 @@
   </div>
 </section>
 
-<section class="why-section" id="duvidas">
-  <div class="container why-layout">
-    <div class="why-copy">
-      <span class="eyebrow eyebrow-light">POR QUE FAZER O CURSO?</span>
-      <h2>Mais do que um curso,<br>é uma oportunidade.</h2>
-      <p>Aqui você aprende, se conecta com uma marca forte e ainda pode transformar seu conteúdo em uma fonte de renda real.</p>
-    </div>
-
-    <div class="why-points">
-      <article><div class="why-icon">⌂</div><h3>100% gratuito</h3><p>Sem taxas,<br>sem surpresas.</p></article>
-      <article><div class="why-icon">◉◉</div><h3>Suporte e comunidade</h3><p>Tire dúvidas e<br>troque experiências.</p></article>
-      <article><div class="why-icon">☆</div><h3>Crescimento<br>junto com a marca</h3><p>Quanto mais você cresce,<br>mais a gente te valoriza.</p></article>
-    </div>
-  </div>
-</section>
-
 <section class="rewards-section" id="premiacao">
   <div class="container rewards-layout">
     <div class="rewards-copy">

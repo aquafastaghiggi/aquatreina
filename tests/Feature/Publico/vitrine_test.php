@@ -18,13 +18,14 @@ it('mostra o hero, os passos, os produtos e o programa de premiacao da landing p
         ->assertSee('Produtos que')
         ->assertSee('LIMPEZA')
         ->assertSee('KITS ESPECIAIS')
-        ->assertSee('Mais do que um curso,')
         ->assertSee('Você cria. Você vende.')
         ->assertSee('Aprendiz')
         ->assertSee('Elite')
         ->assertSee('R$ 1 milhão')
         ->assertSee('Seu conteúdo pode ir mais longe.')
-        ->assertSee('Quero começar agora', false);
+        ->assertSee('Quero começar agora', false)
+        ->assertDontSee('Dúvidas')
+        ->assertDontSee('Mais do que um curso');
 });
 
 it('mostra ir para minha area em vez do cta de cadastro quando ja autenticado', function (): void {

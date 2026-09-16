@@ -29,7 +29,6 @@
         <a href="{{ route('vitrine') }}#como-funciona">Como funciona</a>
         <a href="{{ route('vitrine') }}#produtos">Produtos</a>
         <a href="{{ route('vitrine') }}#premiacao">Premiação</a>
-        <a href="{{ route('vitrine') }}#duvidas">Dúvidas</a>
       </nav>
 
       <div class="nav-actions">
@@ -48,7 +47,7 @@
   <footer class="footer">
     <div class="container footer-grid">
       <a class="brand" href="{{ route('vitrine') }}#inicio"><span class="brand-aqua">AQUA<span>FAST</span></span><span class="brand-divider"></span><span class="brand-university">Universidade</span></a>
-      <nav><a href="{{ route('vitrine') }}#como-funciona">Como funciona</a><a href="{{ route('vitrine') }}#produtos">Produtos</a><a href="{{ route('vitrine') }}#premiacao">Premiação</a><a href="{{ route('vitrine') }}#duvidas">Dúvidas</a></nav>
+      <nav><a href="{{ route('vitrine') }}#como-funciona">Como funciona</a><a href="{{ route('vitrine') }}#produtos">Produtos</a><a href="{{ route('vitrine') }}#premiacao">Premiação</a></nav>
       <div class="social">♪　◎　▶</div>
       <p>Juntos por um<br>futuro mais limpo.</p>
     </div>
