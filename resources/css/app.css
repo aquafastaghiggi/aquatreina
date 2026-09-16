@@ -7,18 +7,18 @@
 @source "../**/*.vue";
 
 @theme {
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --color-fundo: #0b1719;
-    --color-superficie: #112226;
-    --color-superficie-2: #172e33;
-    --color-linha: #23403f;
-    --color-texto: #e6efed;
-    --color-texto-2: #a9c1bf;
-    --color-texto-3: #7c9a99;
-    --color-marca: #4fbfc6;
-    --color-marca-suave: #12363a;
-    --color-sucesso: #79c79b;
-    --color-atencao: #dd8e58;
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-fundo: #ffffff;
+    --color-superficie: #f0f7fc;
+    --color-superficie-2: #e9f2fb;
+    --color-linha: #bdd9f2;
+    --color-texto: #161c3b;
+    --color-texto-2: #6f7386;
+    --color-texto-3: #9ca3af;
+    --color-marca: #001689;
+    --color-marca-suave: #d2e1f1;
+    --color-sucesso: #047404;
+    --color-atencao: #b45309;
 }
 
 @layer components {
