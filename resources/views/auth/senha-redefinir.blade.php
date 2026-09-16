@@ -1,7 +1,7 @@
 <x-layouts.publico titulo="Redefinir senha">
-    <section class="mx-auto max-w-md px-5 py-14">
-        <h1 class="text-3xl font-semibold">Redefinir senha</h1>
-        <form class="mt-8 space-y-5" method="POST" action="{{ route('password.update') }}">
+    <section class="mx-auto max-w-md px-5 py-10">
+        <h1 class="text-2xl font-semibold">Redefinir senha</h1>
+        <form class="mt-6 space-y-4" method="POST" action="{{ route('password.update') }}">
             @csrf
             <input name="token" type="hidden" value="{{ $request->route('token') }}">
             <label class="campo">E-mail<input name="email" type="email" value="{{ old('email', $request->email) }}" required></label>

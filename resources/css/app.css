@@ -24,10 +24,10 @@
 @layer components {
     .focus-ring { @apply rounded-md outline-none focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
     .link { @apply rounded-md text-marca underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
-    .botao-primario { @apply inline-flex items-center justify-center rounded-md bg-marca px-5 py-3 font-semibold text-fundo outline-none transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
-    .botao-secundario { @apply inline-flex items-center justify-center rounded-md border border-linha bg-superficie-2 px-5 py-3 font-semibold text-texto outline-none transition hover:border-marca focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
-    .campo { @apply grid gap-2 text-sm font-medium text-texto-2; }
-    .campo input { @apply w-full rounded-md border border-linha bg-superficie-2 px-4 py-3 text-texto outline-none placeholder:text-texto-3 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
+    .botao-primario { @apply inline-flex items-center justify-center rounded-md bg-marca px-4 py-2.5 font-semibold text-fundo outline-none transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
+    .botao-secundario { @apply inline-flex items-center justify-center rounded-md border border-linha bg-superficie-2 px-4 py-2.5 font-semibold text-texto outline-none transition hover:border-marca focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo motion-reduce:transition-none; }
+    .campo { @apply grid gap-1.5 text-sm font-medium text-texto-2; }
+    .campo input { @apply w-full rounded-md border border-linha bg-superficie-2 px-3.5 py-2.5 text-sm text-texto outline-none placeholder:text-texto-3 focus-visible:ring-2 focus-visible:ring-marca focus-visible:ring-offset-2 focus-visible:ring-offset-fundo; }
     .erro { @apply rounded-md border border-atencao/50 bg-atencao/10 p-3 text-sm text-atencao; }
     .sucesso { @apply rounded-md border border-sucesso/50 bg-sucesso/10 p-3 text-sm text-sucesso; }
     .aviso { @apply my-6 rounded-md border border-atencao/50 bg-atencao/10 p-4 text-atencao; }

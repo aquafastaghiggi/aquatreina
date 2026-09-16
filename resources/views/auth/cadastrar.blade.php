@@ -1,8 +1,8 @@
 <x-layouts.publico titulo="Criar conta">
-    <section class="mx-auto w-full max-w-2xl px-4 py-10 sm:px-6 sm:py-14">
-        <h1 class="text-2xl font-semibold sm:text-3xl">Criar conta</h1>
-        <p class="mt-2 max-w-xl text-texto-2">Informe seus dados de acesso. Depois do cadastro, um administrador analisará e liberará sua conta.</p>
-        <form class="mt-8 grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2" method="POST" action="{{ route('register.store') }}">
+    <section class="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-10">
+        <h1 class="text-2xl font-semibold">Criar conta</h1>
+        <p class="mt-2 max-w-xl text-sm text-texto-2">Informe seus dados de acesso. Depois do cadastro, um administrador analisará e liberará sua conta.</p>
+        <form class="mt-6 grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2" method="POST" action="{{ route('register.store') }}">
             @csrf
             <label class="campo sm:col-span-2">Nome<input name="nome" value="{{ old('nome') }}" autocomplete="name" required autofocus></label>
             <label class="campo sm:col-span-2">E-mail<input name="email" type="email" value="{{ old('email') }}" autocomplete="email" required></label>

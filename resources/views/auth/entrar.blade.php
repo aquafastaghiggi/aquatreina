@@ -1,8 +1,8 @@
 <x-layouts.publico titulo="Entrar">
-    <section class="mx-auto max-w-md px-5 py-14">
-        <h1 class="text-3xl font-semibold">Entrar</h1>
-        <p class="mt-2 text-texto-2">Acesse seus treinamentos Aquafast.</p>
-        <form class="mt-8 space-y-5" method="POST" action="{{ route('login.store') }}">
+    <section class="mx-auto max-w-md px-5 py-10">
+        <h1 class="text-2xl font-semibold">Entrar</h1>
+        <p class="mt-2 text-sm text-texto-2">Acesse seus treinamentos Aquafast.</p>
+        <form class="mt-6 space-y-4" method="POST" action="{{ route('login.store') }}">
             @csrf
             <label class="campo">E-mail<input name="email" type="email" value="{{ old('email') }}" autocomplete="email" required autofocus></label>
             <label class="campo">Senha<input name="password" type="password" autocomplete="current-password" required></label>
