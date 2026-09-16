@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -29,8 +30,13 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Universidade Aquafast')
+            ->brandLogo(asset('images/marca/aquafast-logo-navy.svg'))
+            ->brandLogoHeight('1.75rem')
+            ->favicon(asset('images/marca/aquafast-favicon-300.png'))
+            ->font('Outfit', provider: GoogleFontProvider::class)
             ->colors([
-                'primary' => Color::Cyan,
+                'primary' => Color::hex('#001689'),
             ])
             ->navigationGroups([
                 'Conteúdo',
