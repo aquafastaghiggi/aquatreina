@@ -62,14 +62,14 @@ it('coloca o envio de boas vindas na fila ao matricular', function (): void {
     Queue::assertPushed(CallQueuedListener::class, fn (CallQueuedListener $job): bool => $job->class === EnviarBoasVindasAoAlunoMatriculado::class);
 });
 
-it('exibe curso matriculado no painel do aluno', function (): void {
+it('matricula em curso fora da trilha de produtos nao aparece na grade do painel', function (): void {
     $aluno = Usuario::factory()->create();
     $curso = Curso::factory()->create(['titulo' => 'Operação segura Aquafast', 'situacao' => SituacaoCurso::Publicado]);
     Matricula::factory()->for($aluno, 'usuario')->for($curso)->create();
 
     $this->actingAs($aluno)->get(route('app.painel'))
         ->assertOk()
-        ->assertSee('Operação segura Aquafast');
+        ->assertDontSee('Operação segura Aquafast');
 });
 
 it('nao permite que aluno veja matricula de outra pessoa', function (): void {

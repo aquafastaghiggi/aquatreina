@@ -15,6 +15,7 @@ use App\Filament\Resources\Cursos\Pages\CreateCurso;
 use App\Models\Aula;
 use App\Models\Categoria;
 use App\Models\Curso;
+use App\Models\Matricula;
 use App\Models\Modulo;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Gate;
@@ -43,6 +44,17 @@ it('instrutor não edita curso de outro instrutor', function (): void {
     expect(CursoResource::getEloquentQuery()->pluck('id')->all())->toBe([$cursoProprio->id]);
 });
 
+it('admin só exclui curso sem alunos matriculados', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $cursoSemAlunos = Curso::factory()->create();
+    $cursoComAlunos = Curso::factory()->create();
+    Matricula::factory()->for($cursoComAlunos, 'curso')->create();
+
+    expect(Gate::forUser($admin)->allows('delete', $cursoSemAlunos))->toBeTrue()
+        ->and(Gate::forUser($admin)->allows('delete', $cursoComAlunos))->toBeFalse();
+});
+
 it('publicar curso incompleto falha e lista todas as pendências (RN-09)', function (): void {
     $curso = Curso::factory()->create([
         'titulo' => '',
@@ -61,6 +73,23 @@ it('publicar curso incompleto falha e lista todas as pendências (RN-09)', funct
             ->toContain('aula')
             ->toContain('capa');
     }
+});
+
+it('salvar aula grava a descrição editada no editor de texto rico', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $curso = Curso::factory()->for($admin, 'responsavel')->create();
+    $modulo = Modulo::factory()->for($curso)->create();
+    $aula = Aula::factory()->for($modulo)->create(['descricao' => '<p>conteúdo original</p>']);
+
+    Livewire::actingAs($admin)
+        ->test(ConstrutorCurriculo::class, ['registro' => (string) $curso->id])
+        ->call('selecionarAula', $aula->id)
+        ->fillForm(['descricao' => '<p><strong>negrito</strong></p>'], 'descricaoAulaForm')
+        ->call('salvarAula')
+        ->assertHasNoErrors();
+
+    expect($aula->fresh()->descricao)->toBe('<p><strong>negrito</strong></p>');
 });
 
 it('reordenar currículo persiste posições de módulos e aulas', function (): void {

@@ -19,10 +19,10 @@ final class CabecalhosSeguranca
             "object-src 'none'",
             "frame-ancestors 'self'",
             'frame-src https://www.youtube-nocookie.com',
-            "script-src 'self' 'unsafe-inline' https://www.youtube.com",
-            "style-src 'self' 'unsafe-inline'",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "img-src 'self' data: https://i.ytimg.com https://img.youtube.com",
-            "font-src 'self' data:",
+            "font-src 'self' data: https://fonts.gstatic.com",
             "connect-src 'self'",
             "form-action 'self'",
         ]));

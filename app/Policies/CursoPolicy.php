@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Enums\SituacaoCurso;
 use App\Models\Curso;
 use App\Models\Usuario;
 
 class CursoPolicy
 {
-    public function before(Usuario $usuario): ?bool
+    public function before(Usuario $usuario, string $ability): ?bool
     {
+        if ($ability === 'delete') {
+            return null;
+        }
+
         return $usuario->hasRole('admin') ? true : null;
     }
 
@@ -37,8 +40,11 @@ class CursoPolicy
 
     public function delete(Usuario $usuario, Curso $curso): bool
     {
-        return $this->pertenceAoInstrutor($usuario, $curso)
-            && $curso->situacao === SituacaoCurso::Rascunho;
+        if ($curso->matriculas()->exists()) {
+            return false;
+        }
+
+        return $usuario->hasRole('admin') || $this->pertenceAoInstrutor($usuario, $curso);
     }
 
     private function pertenceAoInstrutor(Usuario $usuario, Curso $curso): bool

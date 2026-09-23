@@ -16,6 +16,7 @@ use App\Filament\Resources\Cursos\Pages\ListCursos;
 use App\Models\Curso;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -107,7 +108,7 @@ class CursoResource extends Resource
             ])
             ->recordActions([
                 Action::make('curriculo')
-                    ->label('Currículo')
+                    ->label('Módulos')
                     ->icon(Heroicon::OutlinedQueueList)
                     ->url(fn (Curso $record): string => ConstrutorCurriculo::getUrl(['registro' => $record->getKey()])),
                 Action::make('publicar')
@@ -139,6 +140,9 @@ class CursoResource extends Resource
                         Notification::make()->title('Curso arquivado')->success()->send();
                     }),
                 EditAction::make(),
+                DeleteAction::make()
+                    ->visible(fn (Curso $record): bool => Gate::allows('delete', $record))
+                    ->successNotificationTitle('Curso excluído'),
             ]);
     }
 

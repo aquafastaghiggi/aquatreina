@@ -41,6 +41,11 @@ class Configuracoes extends Page
         return auth()->user()?->hasRole('admin') === true;
     }
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public function mount(): void
     {
         $this->percentualConclusao = (int) Configuracao::valor('percentual_conclusao', config('treina.percentual_conclusao'));

@@ -3,7 +3,7 @@
 
     <div class="flex flex-wrap items-end justify-between gap-4">
         <div><p class="text-sm text-marca">Olá, {{ auth()->user()->nome }}</p><h1 class="mt-1 text-3xl font-semibold">Sua Universidade Aquafast</h1></div>
-        <div class="flex gap-4"><a href="{{ route('app.catalogo') }}" class="link">Ver produtos</a><a href="{{ route('app.perfil') }}" class="link">Perfil</a></div>
+        <div class="flex gap-4"><a href="{{ route('app.perfil') }}" class="link">Perfil</a></div>
     </div>
 
     @if ($textoBoasVindas !== '')
@@ -17,8 +17,8 @@
         <p class="mt-4 max-w-3xl text-texto-2">A Aquafast nasceu em 2001, em Guaporé, no Rio Grande do Sul, e construiu sua história levando produtos de limpeza, cuidado e perfumação para milhares de lares, tornando-se <strong class="text-texto">uma das principais marcas do segmento no Sul do país</strong>.</p>
         <p class="mt-4 max-w-3xl text-texto-2">Aqui você vai conhecer nossa história, nossa estrutura e tudo o que existe por trás dos produtos que agora você também poderá apresentar para a sua audiência.</p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
-            <div class="flex aspect-video items-center justify-center rounded-lg border border-dashed border-linha bg-superficie text-sm text-texto-3">Foto da empresa — em breve</div>
-            <div class="flex aspect-video items-center justify-center rounded-lg border border-dashed border-linha bg-superficie text-sm text-texto-3">Vídeo institucional Aquafast — em breve</div>
+            <img src="{{ asset('images/landing/empresa.webp') }}" alt="Sede da Aquafast" class="aspect-video w-full rounded-lg object-cover">
+            <video src="{{ asset('videos/institucional.mp4') }}" controls preload="metadata" class="aspect-video w-full rounded-lg bg-black"></video>
         </div>
     </section>
 
@@ -50,17 +50,6 @@
         <h2 class="text-2xl font-semibold">Agora vamos conhecer os produtos?</h2>
         <p class="mt-4 max-w-3xl text-texto-2">Preparamos uma trilha de conteúdos para ensinar você a apresentar e demonstrar corretamente cada produto Aquafast. Escolha o produto que deseja conhecer.</p>
 
-        @if ($emAndamento->isNotEmpty())
-            @php($recente = $emAndamento->first())
-            <div class="mt-8 rounded-lg border border-marca/50 bg-marca-suave p-7 shadow-lg shadow-black/10">
-                <p class="text-sm font-semibold text-marca">Continue de onde parou</p>
-                <div class="mt-2 flex flex-wrap items-end justify-between gap-4">
-                    <div><h3 class="text-2xl font-semibold">{{ $recente->curso->titulo }}</h3><p class="mt-2 text-texto-2">{{ $recente->percentual_progresso }}% concluído</p></div>
-                    <a href="{{ $recente->ultimaAula ? route('app.aula', [$recente->curso, $recente->ultimaAula]) : route('app.curso', $recente->curso) }}" class="botao-primario">Continuar</a>
-                </div>
-            </div>
-        @endif
-
         @if ($this->produtos->isEmpty())
             <div class="mt-8 rounded-lg border border-linha bg-superficie p-8 text-center">
                 <h3 class="text-xl font-semibold">Os primeiros produtos estão sendo preparados.</h3>
@@ -70,36 +59,14 @@
             <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($this->produtos as $produto)
                     <x-curso-card
-                        wire:key="produto-{{ $produto->id }}"
+                        wire:key="produto-{{ $produto->id }}-{{ $loop->index }}"
                         :curso="$produto"
                         :capa-url="$apresentacao->urlCapa($produto)"
                         :inscrito="$produto->minha_matricula !== null"
                         :percentual="$produto->minha_matricula?->percentual_progresso"
+                        :videos-embed="$produto->videos_embed"
                     />
                 @endforeach
-            </div>
-        @endif
-
-        @if ($outrasEmAndamento->isNotEmpty() || $outrasConcluidas->isNotEmpty())
-            <div class="mt-10 border-t border-linha pt-10">
-                <h3 class="text-xl font-semibold">Outras trilhas</h3>
-                @if ($outrasEmAndamento->isNotEmpty())
-                    <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                        @foreach ($outrasEmAndamento as $matricula)
-                            <x-curso-card wire:key="outra-{{ $matricula->id }}" :curso="$matricula->curso" :capa-url="$apresentacao->urlCapa($matricula->curso)" :inscrito="true" :percentual="$matricula->percentual_progresso" />
-                        @endforeach
-                    </div>
-                @endif
-                @if ($outrasConcluidas->isNotEmpty())
-                    <details class="mt-5 rounded-lg border border-linha bg-superficie p-5">
-                        <summary class="cursor-pointer text-lg font-semibold">Concluídos ({{ $outrasConcluidas->count() }})</summary>
-                        <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                            @foreach ($outrasConcluidas as $matricula)
-                                <x-curso-card wire:key="outra-concluida-{{ $matricula->id }}" :curso="$matricula->curso" :capa-url="$apresentacao->urlCapa($matricula->curso)" :inscrito="true" :percentual="100" />
-                            @endforeach
-                        </div>
-                    </details>
-                @endif
             </div>
         @endif
     </section>
@@ -123,4 +90,5 @@
         </div>
         <p class="mt-8 text-center text-xl font-semibold uppercase tracking-wide text-texto">Crie. Ensine. Venda. Cresça com a Aquafast.</p>
     </section>
+
 </div>

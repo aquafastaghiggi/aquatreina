@@ -50,37 +50,33 @@
             </div>
         </x-filament::section>
 
-        <div class="space-y-6">
+        <div class="space-y-4">
             <x-filament::section>
                 <x-slot name="heading">Edição da aula</x-slot>
 
                 @if ($aulaSelecionadaId)
-                    <form wire:submit="salvarAula" class="space-y-4">
+                    <div class="space-y-3">
                         <x-filament::input.wrapper><x-filament::input wire:model="aulaTitulo" placeholder="Título" /></x-filament::input.wrapper>
-                        <textarea wire:model="aulaDescricao" rows="5" placeholder="Descrição" class="w-full rounded-lg border-gray-300 dark:border-white/10 dark:bg-white/5"></textarea>
+
+                        {{ $this->descricaoAulaForm }}
+
                         <x-filament::input.wrapper><x-filament::input wire:model="linkVideo" placeholder="Cole o link do YouTube" /></x-filament::input.wrapper>
                         @error('link_video') <p class="text-sm text-danger-600">{{ $message }}</p> @enderror
 
                         @if ($mensagemMetadados)
-                            <p class="rounded-lg bg-success-50 p-3 text-sm text-success-700 dark:bg-success-500/10">{{ $mensagemMetadados }}</p>
+                            <p class="rounded-lg bg-success-50 p-2 text-sm text-success-700 dark:bg-success-500/10">{{ $mensagemMetadados }}</p>
                         @endif
 
-                        <label class="block text-sm font-medium">Duração em segundos
-                            <x-filament::input.wrapper><x-filament::input type="number" min="0" wire:model="duracaoSegundos" /></x-filament::input.wrapper>
-                        </label>
-                        @if ($duracaoSegundos === 0)
-                            <p class="rounded-lg bg-warning-50 p-3 text-sm text-warning-700 dark:bg-warning-500/10">Sem duração, a conclusão automática não funcionará.</p>
-                        @endif
-
-                        <div class="grid gap-3 sm:grid-cols-2">
-                            <label class="flex items-center gap-2"><input type="checkbox" wire:model="amostraGratuita"> Amostra gratuita</label>
-                            <select wire:model="situacaoAula" class="rounded-lg border-gray-300 dark:border-white/10 dark:bg-white/5">
-                                <option value="rascunho">Rascunho</option>
-                                <option value="publicada">Publicada</option>
-                            </select>
+                        <div class="grid grid-cols-2 items-end gap-3">
+                            <label class="block text-sm font-medium">Duração em segundos
+                                <x-filament::input.wrapper><x-filament::input type="number" min="0" wire:model="duracaoSegundos" /></x-filament::input.wrapper>
+                            </label>
+                            <label class="flex items-center gap-2 pb-2.5"><input type="checkbox" wire:model="amostraGratuita"> Amostra gratuita</label>
                         </div>
-                        <x-filament::button type="submit">Salvar aula</x-filament::button>
-                    </form>
+                        @if ($duracaoSegundos === 0)
+                            <p class="rounded-lg bg-warning-50 p-2 text-sm text-warning-700 dark:bg-warning-500/10">Sem duração, a conclusão automática não funcionará.</p>
+                        @endif
+                    </div>
                 @else
                     <p class="text-sm text-gray-500">Selecione ou crie uma aula.</p>
                 @endif
@@ -105,6 +101,19 @@
                                 <x-filament::icon-button wire:click="excluirMaterial({{ $material->id }})" wire:confirm="Excluir este material?" icon="heroicon-o-trash" color="danger" label="Excluir material" />
                             </div>
                         @endforeach
+                    </div>
+                </x-filament::section>
+
+                <x-filament::section>
+                    <x-slot name="heading">Salvar</x-slot>
+                    <div class="space-y-3">
+                        <label class="block text-sm font-medium">Situação
+                            <select wire:model="situacaoAula" class="mt-1 w-full rounded-lg border-gray-300 dark:border-white/10 dark:bg-white/5">
+                                <option value="rascunho">Rascunho</option>
+                                <option value="publicada">Publicada</option>
+                            </select>
+                        </label>
+                        <x-filament::button wire:click="salvarAula">Salvar aula</x-filament::button>
                     </div>
                 </x-filament::section>
             @endif

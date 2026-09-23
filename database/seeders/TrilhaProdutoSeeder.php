@@ -119,6 +119,16 @@ class TrilhaProdutoSeeder extends Seeder
                     ideias: 'Compare o toque da roupa antes e depois, e destaque o perfume que fica no tecido.',
                 ),
             ],
+            [
+                'titulo' => 'Aromatizador de Ambientes',
+                'subtitulo' => 'Mais bem-estar e sofisticação para todos os ambientes',
+                'descricao' => $this->roteiro(
+                    problema: 'Ambientes sem cheiro agradável ou com odores indesejados em casa, no trabalho ou no comércio.',
+                    diferenciais: 'Aromas inspiradores e perfume que dura o dia todo, deixando o ambiente mais acolhedor.',
+                    uso: 'Borrife no ambiente ou posicione o difusor em salas, quartos, escritórios ou pontos comerciais.',
+                    ideias: 'Mostre o antes e depois do ambiente perfumado, ou a reação de quem sente o aroma pela primeira vez.',
+                ),
+            ],
         ];
     }
 

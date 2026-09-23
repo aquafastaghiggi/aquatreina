@@ -13,8 +13,10 @@ use App\Models\Curso;
 use App\Models\Material;
 use App\Models\Modulo;
 use BackedEnum;
+use Filament\Forms\Components\RichEditor;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +47,8 @@ class ConstrutorCurriculo extends Page
 
     public string $aulaTitulo = '';
 
-    public string $aulaDescricao = '';
+    /** @var array{descricao: string} */
+    public array $aulaConteudo = ['descricao' => ''];
 
     public string $linkVideo = '';
 
@@ -79,6 +82,15 @@ class ConstrutorCurriculo extends Page
     public function getTitle(): string
     {
         return 'Currículo: '.$this->curso->titulo;
+    }
+
+    public function descricaoAulaForm(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                RichEditor::make('descricao')->hiddenLabel(),
+            ])
+            ->statePath('aulaConteudo');
     }
 
     public function criarModulo(): void
@@ -128,7 +140,7 @@ class ConstrutorCurriculo extends Page
         $aula = $this->aulaAutorizada($aulaId);
         $this->aulaSelecionadaId = $aula->id;
         $this->aulaTitulo = $aula->titulo;
-        $this->aulaDescricao = (string) $aula->descricao;
+        $this->aulaConteudo = ['descricao' => (string) $aula->descricao];
         $this->linkVideo = '';
         $this->duracaoSegundos = $aula->duracao_segundos;
         $this->amostraGratuita = $aula->amostra_gratuita;
@@ -140,14 +152,14 @@ class ConstrutorCurriculo extends Page
     {
         $dados = $this->validate([
             'aulaTitulo' => ['required', 'string', 'max:180'],
-            'aulaDescricao' => ['nullable', 'string'],
             'linkVideo' => ['nullable', 'string', 'max:500'],
             'duracaoSegundos' => ['required', 'integer', 'min:0'],
             'amostraGratuita' => ['boolean'],
             'situacaoAula' => ['required', 'in:rascunho,publicada'],
         ]);
+        $descricao = (string) ($this->descricaoAulaForm->getState()['descricao'] ?? '');
         $aula = $salvar->executar($this->aulaAutorizada((int) $this->aulaSelecionadaId), [
-            'titulo' => $dados['aulaTitulo'], 'descricao' => $dados['aulaDescricao'],
+            'titulo' => $dados['aulaTitulo'], 'descricao' => $descricao,
             'link_video' => $dados['linkVideo'], 'duracao_segundos' => $dados['duracaoSegundos'],
             'amostra_gratuita' => $dados['amostraGratuita'], 'situacao' => $dados['situacaoAula'],
         ]);
@@ -261,7 +273,7 @@ class ConstrutorCurriculo extends Page
 
     private function limparAulaSelecionada(): void
     {
-        $this->reset('aulaSelecionadaId', 'aulaTitulo', 'aulaDescricao', 'linkVideo', 'duracaoSegundos',
+        $this->reset('aulaSelecionadaId', 'aulaTitulo', 'aulaConteudo', 'linkVideo', 'duracaoSegundos',
             'amostraGratuita', 'situacaoAula', 'mensagemMetadados');
         $this->situacaoAula = SituacaoAula::Rascunho->value;
     }

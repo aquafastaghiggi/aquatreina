@@ -21,6 +21,7 @@ use App\Models\Usuario;
 use App\Servicos\Importacao\ImportadorUsuarios;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Livewire;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Spatie\Permission\Models\Role;
@@ -135,4 +136,17 @@ it('admin acessa relatórios configurações e importação', function (): void 
     $this->actingAs($admin)->get('/admin/relatorios')->assertOk();
     $this->actingAs($admin)->get('/admin/configuracoes')->assertOk();
     $this->actingAs($admin)->get('/admin/usuarios/importar')->assertOk();
+});
+
+it('relatório por aluno renderiza a situação do usuário sem erro', function (): void {
+    Role::findOrCreate('admin', 'web');
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    Usuario::factory()->create(['situacao' => SituacaoUsuario::Ativo]);
+
+    Livewire::actingAs($admin)
+        ->test(App\Filament\Pages\Relatorios::class)
+        ->call('mudarAba', 'alunos')
+        ->assertOk()
+        ->assertSee('Ativo');
 });

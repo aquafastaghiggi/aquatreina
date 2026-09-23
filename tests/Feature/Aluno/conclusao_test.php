@@ -103,11 +103,6 @@ it('concluir a ultima aula conclui a matricula (RN-04)', function (): void {
     expect($cenario['matricula']->fresh()->situacao)->toBe(SituacaoMatricula::Concluida)
         ->and($cenario['matricula']->fresh()->percentual_progresso)->toBe(100);
 
-    $this->actingAs($cenario['aluno'])
-        ->get(route('app.painel'))
-        ->assertOk()
-        ->assertSee('Concluídos (1)');
-
     Queue::assertPushed(
         CallQueuedListener::class,
         fn (CallQueuedListener $job): bool => $job->class === EnviarEmailAoConcluirCurso::class,

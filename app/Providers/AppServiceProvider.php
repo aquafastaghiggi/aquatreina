@@ -46,12 +46,10 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->isProduction() || config('seguranca.forcar_https')) {
             URL::forceScheme('https');
+            URL::forceRootUrl((string) config('app.url'));
         }
 
-        Password::defaults(fn (): Password => Password::min(8)
-            ->mixedCase()
-            ->numbers()
-            ->uncompromised());
+        Password::defaults(fn (): Password => Password::min(8));
 
         Gate::define('acessar-admin', fn (Usuario $usuario): bool => $usuario->situacao === SituacaoUsuario::Ativo
             && $usuario->hasAnyRole(['admin', 'instrutor']));

@@ -26,6 +26,8 @@ class Relatorios extends Page
 
     protected static ?string $navigationLabel = 'Relatórios';
 
+    protected static ?string $title = 'Relatórios';
+
     protected static string|UnitEnum|null $navigationGroup = 'Operação';
 
     protected static ?int $navigationSort = 1;

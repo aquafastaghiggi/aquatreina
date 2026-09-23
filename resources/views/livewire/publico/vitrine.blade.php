@@ -21,31 +21,7 @@
     </div>
 
     <div class="hero-visual" aria-label="Visual de divulgação Aquafast">
-      <div class="blur-orb orb-1"></div>
-      <div class="blur-orb orb-2"></div>
-
-      <div class="phone">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="phone-top">8:01 <span>◉ ◉ ◉</span></div>
-          <div class="phone-person">
-            <div class="person-head"></div>
-            <div class="person-body"></div>
-            <div class="bottle bottle-main">AQUA<br>FAST</div>
-          </div>
-          <div class="phone-caption">Produtos que<br>fazem a diferença<br>no seu dia a dia 💙</div>
-          <div class="phone-user">@aquafast</div>
-          <div class="phone-bottom">⌂　⌕　＋　▣　◉</div>
-        </div>
-      </div>
-
-      <div class="handwritten">Você<br>cria.<br>A gente<br>cresce<br>junto.</div>
-
-      <div class="hero-products">
-        <div class="prod-shape tall"></div>
-        <div class="prod-shape white"></div>
-        <div class="prod-shape pouch"></div>
-      </div>
+      <img class="hero-graphic" src="{{ asset('images/landing/hero-visual.webp') }}" alt="Criadora divulgando produtos Aquafast no celular — você cria, a gente cresce junto.">
     </div>
   </div>
 </section>
@@ -83,12 +59,7 @@
       @endguest
     </div>
 
-    <div class="product-cards">
-      <article class="product-card blue"><div class="product-visual bottle-blue"></div><span class="product-tag">⚙ LIMPEZA</span><p>Qualidade que<br>o seu público confia.</p></article>
-      <article class="product-card pink"><div class="product-visual bottle-white"></div><span class="product-tag">♙ CUIDADO</span><p>Produtos para o<br>dia a dia.</p></article>
-      <article class="product-card green"><div class="product-visual wipes"></div><span class="product-tag">♲ PRATICIDADE</span><p>Soluções que fazem<br>a diferença.</p></article>
-      <article class="product-card yellow"><div class="product-visual kit"></div><span class="product-tag">☆ KITS ESPECIAIS</span><p>Mais valor para<br>suas indicações.</p></article>
-    </div>
+    <img class="products-graphic" src="{{ asset('images/landing/produtos-linha.webp') }}" alt="Linha de produtos Aquafast: Aromatizador de Ambientes, Home Spray, Amaciante Concentrado, Desengordurante de Uso Geral, Lava Roupas Líquido e Multiuso Poder O2">
   </div>
 </section>
 

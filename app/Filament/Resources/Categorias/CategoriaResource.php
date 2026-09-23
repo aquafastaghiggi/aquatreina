@@ -58,6 +58,12 @@ class CategoriaResource extends Resource
             ->columns([
                 TextColumn::make('nome')->label('Nome')->searchable(),
                 TextColumn::make('slug')->label('Slug'),
+                TextColumn::make('cursos.titulo')
+                    ->label('Cursos')
+                    ->listWithLineBreaks()
+                    ->limitList(3)
+                    ->expandableLimitedList()
+                    ->placeholder('—'),
                 ColorColumn::make('cor')->label('Cor'),
                 TextColumn::make('posicao')->label('Posição')->sortable(),
             ])

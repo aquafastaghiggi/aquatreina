@@ -29,6 +29,7 @@ final class YoutubeProvedor implements ProvedorVideo
             'modestbranding' => 1,
             'playsinline' => 1,
             'enablejsapi' => 1,
+            'controls' => 0,
             'origin' => rtrim($this->urlAplicacao, '/'),
             'cc_lang_pref' => 'pt',
         ]);
