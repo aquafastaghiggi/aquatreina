@@ -91,6 +91,88 @@
   </div>
 </section>
 
+<section class="university-section" aria-labelledby="university-title">
+  <div class="container university-layout">
+    <div class="university-copy">
+      <span class="eyebrow eyebrow-plain">POR DENTRO DA PLATAFORMA</span>
+      <h2 id="university-title">Uma Universidade feita para você crescer</h2>
+      <p class="university-subtitle">Conteúdo prático, conhecimento sobre os produtos e tudo o que você precisa para evoluir como afiliado Aquafast.</p>
+
+      <div class="university-points">
+        <article class="university-point">
+          <div class="university-point-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />
+              <path d="M8 4v13a3 3 0 0 0 3 3" />
+              <path d="M9 8h6M9 12h5" />
+            </svg>
+          </div>
+          <div>
+            <h3>TREINAMENTOS PASSO A PASSO</h3>
+            <p>Aprenda no seu ritmo com conteúdos rápidos e objetivos.</p>
+          </div>
+        </article>
+
+        <article class="university-point">
+          <div class="university-point-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 20V5a2 2 0 0 1 2-2h9l3 3v14" />
+              <path d="M9 10h7M9 14h5" />
+              <path d="M4 20h17" />
+            </svg>
+          </div>
+          <div>
+            <h3>CONHEÇA OS PRODUTOS</h3>
+            <p>Entenda os diferenciais e descubra como apresentar cada produto para sua audiência.</p>
+          </div>
+        </article>
+
+        <article class="university-point">
+          <div class="university-point-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5h16v14H4z" />
+              <path d="M8 9h8M8 13h5" />
+              <path d="m16 15 2 2 3-4" />
+            </svg>
+          </div>
+          <div>
+            <h3>CONTEÚDOS PARA AFILIADOS</h3>
+            <p>Tenha acesso a materiais pensados para ajudar na criação dos seus conteúdos.</p>
+          </div>
+        </article>
+
+        <article class="university-point">
+          <div class="university-point-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19V5" />
+              <path d="M4 19h16" />
+              <path d="m7 15 4-4 3 3 5-7" />
+              <path d="M16 7h3v3" />
+            </svg>
+          </div>
+          <div>
+            <h3>ACOMPANHE SUA EVOLUÇÃO</h3>
+            <p>Continue aprendendo e avance dentro da sua jornada como afiliado Aquafast.</p>
+          </div>
+        </article>
+      </div>
+
+      @guest
+        <a class="btn btn-outline university-cta" href="{{ route('register') }}">Conhecer a Universidade <span>→</span></a>
+      @else
+        <a class="btn btn-outline university-cta" href="{{ route('app.painel') }}">Conhecer a Universidade <span>→</span></a>
+      @endguest
+    </div>
+
+    <div class="university-preview" aria-label="Prévia real da área logada da Universidade Aquafast">
+      <div class="university-preview-glow" aria-hidden="true"></div>
+      <div class="university-preview-frame">
+        <img src="{{ asset('images/landing/universidade-area-logada.webp') }}" alt="Área logada da Universidade Aquafast com painel de treinamentos do aluno.">
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="products-section" id="produtos">
   <div class="container products-layout">
     <div class="products-copy">

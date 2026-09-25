@@ -16,6 +16,12 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
             'VENDA',
             'EVOLUA',
             'Como funciona?',
+            'Uma Universidade feita para você crescer',
+            'TREINAMENTOS PASSO A PASSO',
+            'CONHEÇA OS PRODUTOS',
+            'CONTEÚDOS PARA AFILIADOS',
+            'ACOMPANHE SUA EVOLUÇÃO',
+            'Produtos que',
         ])
         ->assertSee('Aprenda a criar conteúdos, conheça os produtos Aquafast e desenvolva seu potencial como afiliado.')
         ->assertSee('Como funciona?')
@@ -23,6 +29,9 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('Aprenda com nossos conteúdos')
         ->assertSee('Poste seus vídeos')
         ->assertSee('Ganhe comissão')
+        ->assertSee('Conteúdo prático, conhecimento sobre os produtos e tudo o que você precisa para evoluir como afiliado Aquafast.')
+        ->assertSee('Conhecer a Universidade', false)
+        ->assertSee('universidade-area-logada.webp', false)
         ->assertSee('Produtos que')
         ->assertSee('produtos-linha.webp', false)
         ->assertSee('Você cria. Você vende.')
