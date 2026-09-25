@@ -184,12 +184,13 @@
     <div class="products-visual" aria-label="Produtos reais Aquafast para demonstrações em conteúdo">
       <span class="products-visual-tag">Produtos reais para demonstrar</span>
       <div class="products-collage">
-        <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/aromatizador.webp') }}" alt="Aromatizador de Ambientes Aquafast">
-        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/lava-roupas.webp') }}" alt="Lava Roupas Líquido Aquafast">
-        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/multiuso-o2.webp') }}" alt="Multiuso Poder O2 Aquafast">
-        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/desengordurante-cozinha.webp') }}" alt="Desengordurante de Cozinha Aquafast">
-        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/desengordurante-geral.webp') }}" alt="Desengordurante de Uso Geral Aquafast">
-        <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/amaciante.webp') }}" alt="Amaciante Concentrado Aquafast">
+        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/frascos/aromatizador-oriental.webp') }}" alt="Aromatizador de Ambientes Oriental Aquafast">
+        <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/frascos/home-spray-oriental.webp') }}" alt="Home Spray Oriental Aquafast">
+        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/frascos/amaciante-oriental.webp') }}" alt="Amaciante Concentrado Oriental Aquafast">
+        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/frascos/multiuso-alcool-bicarbonato.webp') }}" alt="Multiuso Álcool e Bicarbonato Aquafast">
+        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/frascos/lava-roupas-total-clean.webp') }}" alt="Lava Roupas Lavagem Rápida Total Clean Aquafast">
+        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/frascos/desengordurante-cozinha-limao.webp') }}" alt="Desengordurante Cozinha Limão Aquafast">
+        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/frascos/multiuso-poder-o2.webp') }}" alt="Multiuso Poder O2 Aquafast">
       </div>
     </div>
 
