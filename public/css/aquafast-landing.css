@@ -12,3 +12,7 @@
 @media(max-width:640px){.products-section{padding:58px 0 62px}.products-section .container{width:min(100% - 28px,1200px)}.products-intro h2{font-size:31px}.products-intro p{font-size:15px}.products-visual{border-radius:16px;padding:58px 14px 24px}.products-visual-tag{left:16px;top:16px;font-size:10px}.products-collage{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.product-shot,.product-shot-small,.product-shot-mid,.product-shot-tall{height:150px}.product-shot:nth-child(n){transform:none}.products-visual:hover .product-shot:nth-child(n){transform:none}.product-idea{grid-template-columns:42px 1fr;gap:14px}.product-idea-icon{width:42px;height:42px;border-radius:11px}.product-idea h3{font-size:12px;line-height:1.35}.product-idea p{font-size:13px}.products-training-callout{display:grid;gap:16px;padding:18px}.products-training-link{width:100%;min-height:50px}.products-sample-note{text-align:left}}
 
 @media(prefers-reduced-motion:reduce){.product-shot{transition:none}.products-visual:hover .product-shot:nth-child(n){transform:none}}
+
+.products-visual::before{display:none}.products-brand-mark{position:absolute;right:28px;top:28px;z-index:2;width:130px;height:130px;object-fit:contain;padding:27px;border:1px solid rgba(19,128,248,.18);border-radius:999px;background:rgba(255,255,255,.62);box-shadow:0 16px 32px rgba(28,74,140,.06)}
+
+@media(max-width:640px){.products-brand-mark{right:16px;top:16px;width:74px;height:74px;padding:16px}}

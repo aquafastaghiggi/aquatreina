@@ -44,6 +44,7 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('Dentro da Universidade você encontra treinamentos e orientações para começar a produzir seus conteúdos.')
         ->assertSee('Ver treinamentos', false)
         ->assertSee('A Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.')
+        ->assertSee('products-brand-mark', false)
         ->assertSee('produtos/frascos/aromatizador-oriental.webp', false)
         ->assertSee('produtos/frascos/home-spray-oriental.webp', false)
         ->assertSee('produtos/frascos/amaciante-oriental.webp', false)

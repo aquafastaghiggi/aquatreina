@@ -183,6 +183,7 @@
 
     <div class="products-visual" aria-label="Produtos reais Aquafast para demonstrações em conteúdo">
       <span class="products-visual-tag">Produtos reais para demonstrar</span>
+      <img class="products-brand-mark" src="{{ asset('images/marca/aquafast-logo-navy.svg') }}" alt="Aquafast">
       <div class="products-collage">
         <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/frascos/aromatizador-oriental.webp') }}" alt="Aromatizador de Ambientes Oriental Aquafast">
         <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/frascos/home-spray-oriental.webp') }}" alt="Home Spray Oriental Aquafast">
