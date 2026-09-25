@@ -26,6 +26,51 @@
   </div>
 </section>
 
+<section class="benefits-section" aria-labelledby="benefits-title">
+  <div class="container">
+    <div class="benefits-intro">
+      <h2 id="benefits-title">Tudo para você começar e evoluir</h2>
+      <p>Aprenda a criar conteúdos, conheça os produtos Aquafast e desenvolva seu potencial como afiliado.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <article class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+            <path d="M8 7h8M8 11h6" />
+          </svg>
+        </div>
+        <h3>APRENDA</h3>
+        <p>Treinamentos rápidos e práticos para você criar conteúdos melhores e entender como aproveitar o TikTok Shop.</p>
+      </article>
+
+      <article class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" />
+            <path d="m14 6 3-3 3 3M17 3v7" />
+          </svg>
+        </div>
+        <h3>VENDA</h3>
+        <p>Conheça os produtos Aquafast e aprenda formas simples e criativas de apresentá-los para sua audiência.</p>
+      </article>
+
+      <article class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+            <path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4" />
+          </svg>
+        </div>
+        <h3>EVOLUA</h3>
+        <p>Acompanhe sua jornada, alcance novos níveis e desbloqueie benefícios dentro do programa de afiliados Aquafast.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="steps-section" id="como-funciona">
   <div class="container steps-layout">
     <div class="steps-intro">
