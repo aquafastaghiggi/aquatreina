@@ -21,7 +21,8 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
             'CONHEÇA OS PRODUTOS',
             'CONTEÚDOS PARA AFILIADOS',
             'ACOMPANHE SUA EVOLUÇÃO',
-            'Produtos que',
+            'CRIE. DEMONSTRE. COMPARTILHE.',
+            'Produtos que viram conteúdo',
         ])
         ->assertSee('Aprenda a criar conteúdos, conheça os produtos Aquafast e desenvolva seu potencial como afiliado.')
         ->assertSee('Como funciona?')
@@ -32,8 +33,23 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('Conteúdo prático, conhecimento sobre os produtos e tudo o que você precisa para evoluir como afiliado Aquafast.')
         ->assertSee('Conhecer a Universidade', false)
         ->assertSee('universidade-area-logada.webp', false)
-        ->assertSee('Produtos que')
-        ->assertSee('produtos-linha.webp', false)
+        ->assertSee('Demonstre resultados, mostre aplicações reais e transforme os produtos Aquafast em conteúdos que ajudam sua audiência e geram oportunidades de venda.')
+        ->assertSee('DEMONSTRE O RESULTADO')
+        ->assertSee('Mostre o produto em uso e apresente de forma clara o resultado da limpeza.')
+        ->assertSee('MOSTRE COMO USAR')
+        ->assertSee('Crie conteúdos simples ensinando onde e como utilizar cada produto.')
+        ->assertSee('COMPARTILHE SUA EXPERIÊNCIA')
+        ->assertSee('Mostre situações reais de uso e apresente os produtos de forma natural para sua audiência.')
+        ->assertSee('Não sabe o que gravar?')
+        ->assertSee('Dentro da Universidade você encontra treinamentos e orientações para começar a produzir seus conteúdos.')
+        ->assertSee('Ver treinamentos', false)
+        ->assertSee('A Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.')
+        ->assertSee('produtos/aromatizador.webp', false)
+        ->assertSee('produtos/lava-roupas.webp', false)
+        ->assertSee('produtos/multiuso-o2.webp', false)
+        ->assertSee('produtos/desengordurante-cozinha.webp', false)
+        ->assertSee('produtos/desengordurante-geral.webp', false)
+        ->assertSee('produtos/amaciante.webp', false)
         ->assertSee('Você cria. Você vende.')
         ->assertSee('Aprendiz')
         ->assertSee('Elite')

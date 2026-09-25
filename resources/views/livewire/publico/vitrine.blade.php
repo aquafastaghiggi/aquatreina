@@ -175,18 +175,82 @@
 
 <section class="products-section" id="produtos">
   <div class="container products-layout">
-    <div class="products-copy">
-      <span class="eyebrow eyebrow-plain">PRODUTOS AQUAFAST</span>
-      <h2>Produtos que<br>geram resultados.</h2>
-      <p>A Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.</p>
-      @guest
-        <a class="btn btn-outline" href="{{ route('register') }}">Conheça os produtos <span>→</span></a>
-      @else
-        <a class="btn btn-outline" href="{{ route('app.painel') }}">Conheça os produtos <span>→</span></a>
-      @endguest
+    <div class="products-intro">
+      <span class="eyebrow eyebrow-plain">CRIE. DEMONSTRE. COMPARTILHE.</span>
+      <h2>Produtos que viram conteúdo</h2>
+      <p>Demonstre resultados, mostre aplicações reais e transforme os produtos Aquafast em conteúdos que ajudam sua audiência e geram oportunidades de venda.</p>
     </div>
 
-    <img class="products-graphic" src="{{ asset('images/landing/produtos-linha.webp') }}" alt="Linha de produtos Aquafast: Aromatizador de Ambientes, Home Spray, Amaciante Concentrado, Desengordurante de Uso Geral, Lava Roupas Líquido e Multiuso Poder O2">
+    <div class="products-visual" aria-label="Produtos reais Aquafast para demonstrações em conteúdo">
+      <span class="products-visual-tag">Produtos reais para demonstrar</span>
+      <div class="products-collage">
+        <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/aromatizador.webp') }}" alt="Aromatizador de Ambientes Aquafast">
+        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/lava-roupas.webp') }}" alt="Lava Roupas Líquido Aquafast">
+        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/multiuso-o2.webp') }}" alt="Multiuso Poder O2 Aquafast">
+        <img class="product-shot product-shot-tall" src="{{ asset('images/landing/produtos/desengordurante-cozinha.webp') }}" alt="Desengordurante de Cozinha Aquafast">
+        <img class="product-shot product-shot-mid" src="{{ asset('images/landing/produtos/desengordurante-geral.webp') }}" alt="Desengordurante de Uso Geral Aquafast">
+        <img class="product-shot product-shot-small" src="{{ asset('images/landing/produtos/amaciante.webp') }}" alt="Amaciante Concentrado Aquafast">
+      </div>
+    </div>
+
+    <div class="products-actions">
+      <div class="products-ideas">
+        <article class="product-idea">
+          <span class="product-idea-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 13.5V6.8C4 5.8 4.8 5 5.8 5h12.4c1 0 1.8.8 1.8 1.8v10.4c0 1-.8 1.8-1.8 1.8H11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.5 10.2l3 2 4-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.8 18.2l2.1-2.1 1.7 1.7 3.4-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>DEMONSTRE O RESULTADO</h3>
+            <p>Mostre o produto em uso e apresente de forma clara o resultado da limpeza.</p>
+          </div>
+        </article>
+
+        <article class="product-idea">
+          <span class="product-idea-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6.5 4.5h11A2.5 2.5 0 0 1 20 7v10a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17V7a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M10 9l4.2 3L10 15V9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>MOSTRE COMO USAR</h3>
+            <p>Crie conteúdos simples ensinando onde e como utilizar cada produto.</p>
+          </div>
+        </article>
+
+        <article class="product-idea">
+          <span class="product-idea-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 11.2V8.4A3.4 3.4 0 0 1 10.4 5h3.2A3.4 3.4 0 0 1 17 8.4v7.2a3.4 3.4 0 0 1-3.4 3.4h-3.2A3.4 3.4 0 0 1 7 15.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M10.2 11.9l1.7 1.7 3.4-3.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 14.4h5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>COMPARTILHE SUA EXPERIÊNCIA</h3>
+            <p>Mostre situações reais de uso e apresente os produtos de forma natural para sua audiência.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="products-training-callout">
+        <div>
+          <strong>Não sabe o que gravar?</strong>
+          <p>Dentro da Universidade você encontra treinamentos e orientações para começar a produzir seus conteúdos.</p>
+        </div>
+        @guest
+          <a class="btn btn-outline products-training-link" href="{{ route('register') }}">Ver treinamentos <span>→</span></a>
+        @else
+          <a class="btn btn-outline products-training-link" href="{{ route('app.painel') }}">Ver treinamentos <span>→</span></a>
+        @endguest
+      </div>
+
+      <p class="products-sample-note">A Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.</p>
+    </div>
   </div>
 </section>
 
