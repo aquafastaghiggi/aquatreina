@@ -19,7 +19,7 @@
 <body>
   <header class="topbar">
     <div class="container nav-wrap">
-      <a class="brand" href="{{ route('vitrine') }}#inicio" aria-label="Aquafast Universidade">
+      <a class="brand" href="{{ route('vitrine') }}#inicio" aria-label="Universidade Aquafast">
         <img src="{{ asset('images/marca/aquafast-logo-navy.svg') }}" alt="Aquafast" class="brand-logo-img">
         <span class="brand-divider"></span>
         <span class="brand-university">Universidade</span>

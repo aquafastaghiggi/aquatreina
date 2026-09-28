@@ -2,7 +2,7 @@
 <section class="hero" id="inicio">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">CURSO 100% GRATUITO · TIKTOK SHOP</span>
+      <span class="eyebrow">PROGRAMA GRATUITO · TIKTOK SHOP</span>
       <h1>Transforme<br>seu conteúdo<br><span>em renda.</span></h1>
       <p class="hero-text">Aprenda a criar conteúdos para a Aquafast, divulgar nossos kits no TikTok Shop e ganhar comissão por cada venda.</p>
 
@@ -13,9 +13,9 @@
       </div>
 
       @guest
-        <a class="btn btn-primary btn-large" href="{{ route('register') }}">Quero ser afiliado Aquafast <span>→</span></a>
+        <a class="btn btn-primary btn-large" href="{{ route('register') }}">Criar conta grátis <span>→</span></a>
       @else
-        <a class="btn btn-primary btn-large" href="{{ route('app.painel') }}">Ir para minha área <span>→</span></a>
+        <a class="btn btn-primary btn-large" href="{{ route('app.painel') }}">Começar minha jornada <span>→</span></a>
       @endguest
       <p class="microcopy">É rápido, gratuito e sem burocracia.</p>
     </div>
@@ -65,7 +65,7 @@
           </svg>
         </div>
         <h3>EVOLUA</h3>
-        <p>Acompanhe sua jornada, alcance novos níveis e desbloqueie benefícios dentro do programa de afiliados Aquafast.</p>
+        <p>Acompanhe sua jornada, alcance novos níveis e desbloqueie benefícios dentro do Programa de Afiliados Aquafast.</p>
       </article>
     </div>
   </div>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="steps-grid">
-      <article class="step-card"><span class="step-num">1</span><div class="step-icon">♙+</div><h3>Crie sua conta gratuitamente</h3><p>Cadastre-se na Universidade de Afiliados Aquafast.</p></article>
+      <article class="step-card"><span class="step-num">1</span><div class="step-icon">♙+</div><h3>Crie sua conta gratuitamente</h3><p>Cadastre-se na Universidade Aquafast.</p></article>
       <div class="step-arrow">→</div>
       <article class="step-card"><span class="step-num">2</span><div class="step-icon">▶</div><h3>Aprenda com nossos conteúdos</h3><p>Acesse treinamentos exclusivos e veja como divulgar os produtos da forma certa.</p></article>
       <div class="step-arrow">→</div>
@@ -158,9 +158,9 @@
       </div>
 
       @guest
-        <a class="btn btn-outline university-cta" href="{{ route('register') }}">Conhecer a Universidade <span>→</span></a>
+        <a class="btn btn-outline university-cta" href="{{ route('register') }}">Criar conta grátis <span>→</span></a>
       @else
-        <a class="btn btn-outline university-cta" href="{{ route('app.painel') }}">Conhecer a Universidade <span>→</span></a>
+        <a class="btn btn-outline university-cta" href="{{ route('app.painel') }}">Começar minha jornada <span>→</span></a>
       @endguest
     </div>
 
@@ -262,7 +262,11 @@
       <span class="eyebrow eyebrow-plain">PROGRAMA DE PREMIAÇÃO</span>
       <h2>Você cria. Você vende.<br>Você sobe de nível.</h2>
       <p>Quanto mais você cresce, mais a gente te recompensa. Além das comissões do TikTok Shop, reconhecemos os afiliados que se destacam divulgando a Aquafast.</p>
-      <a class="btn btn-outline" href="#premiacao">Ver regras completas <span>→</span></a>
+      @guest
+        <a class="btn btn-outline" href="{{ route('register') }}">Começar minha jornada <span>→</span></a>
+      @else
+        <a class="btn btn-outline" href="{{ route('app.painel') }}">Começar minha jornada <span>→</span></a>
+      @endguest
     </div>
 
     <div class="reward-cards">
@@ -291,7 +295,7 @@
       </div>
       <span class="eyebrow eyebrow-plain">PERGUNTAS FREQUENTES</span>
       <h2 id="faq-title">Ficou com alguma dúvida?</h2>
-      <p>Confira as respostas para as principais dúvidas sobre a Universidade Aquafast e o programa de afiliados.</p>
+      <p>Confira as respostas para as principais dúvidas sobre a Universidade Aquafast e o Programa de Afiliados Aquafast.</p>
     </div>
 
     <div class="faq-accordion">
@@ -345,7 +349,7 @@
           <span>Como funcionam as comissões?</span>
         </summary>
         <div class="faq-answer">
-          <p>As comissões seguem as condições vigentes do programa e do TikTok Shop. A Universidade apresenta orientações para você criar conteúdos e divulgar os produtos Aquafast sem inventar percentuais, prazos ou regras comerciais fora das condições vigentes.</p>
+          <p>As comissões seguem as condições vigentes do Programa de Afiliados Aquafast e do TikTok Shop. A Universidade Aquafast apresenta orientações para você criar conteúdos e divulgar os produtos Aquafast sem inventar percentuais, prazos ou regras comerciais fora das condições vigentes.</p>
         </div>
       </details>
 
@@ -366,13 +370,13 @@
     <div>
       <span class="eyebrow eyebrow-light">PRONTO PARA COMEÇAR?</span>
       <h2>Seu conteúdo pode ir mais longe.</h2>
-      <p>Cadastre-se agora e faça parte da Universidade de Afiliados Aquafast.</p>
+      <p>Cadastre-se agora e faça parte da Universidade Aquafast.</p>
     </div>
     <div class="cta-action">
       @guest
-        <a class="btn btn-white" href="{{ route('register') }}">Quero começar agora <span>→</span></a>
+        <a class="btn btn-white" href="{{ route('register') }}">Criar conta grátis <span>→</span></a>
       @else
-        <a class="btn btn-white" href="{{ route('app.painel') }}">Ir para minha área <span>→</span></a>
+        <a class="btn btn-white" href="{{ route('app.painel') }}">Começar minha jornada <span>→</span></a>
       @endguest
       <small>É gratuito, rápido e sem complicação.</small>
     </div>
