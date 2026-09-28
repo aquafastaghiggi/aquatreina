@@ -45,14 +45,16 @@ it('lista os produtos publicados com video da trilha aprenda na pratica no paine
         ->assertSee('Poder O2');
 });
 
-it('bloqueia copiar e clique direito na area do aluno', function (): void {
+it('bloqueia copiar, clique direito e impressao na area do aluno', function (): void {
     $aluno = Usuario::factory()->create();
 
     $this->actingAs($aluno)->get(route('app.painel'))
         ->assertOk()
         ->assertSee('user-select: none', false)
         ->assertSee("addEventListener('copy'", false)
-        ->assertSee("addEventListener('contextmenu'", false);
+        ->assertSee("addEventListener('contextmenu'", false)
+        ->assertSee('@media print', false)
+        ->assertSee("evento.key === 'p'", false);
 });
 
 it('nao lista produto em rascunho no painel', function (): void {

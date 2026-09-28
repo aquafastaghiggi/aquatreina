@@ -13,11 +13,25 @@
     <style>
         body { -webkit-user-select: none; user-select: none; }
         input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }
+        @media print {
+            body::before {
+                content: 'Impressão desativada — conteúdo protegido da Universidade Aquafast.';
+                display: block;
+                padding: 40px;
+                font-size: 20px;
+                text-align: center;
+            }
+            body > * { display: none !important; }
+        }
     </style>
     <script>
         document.addEventListener('copy', (evento) => evento.preventDefault());
         document.addEventListener('cut', (evento) => evento.preventDefault());
         document.addEventListener('contextmenu', (evento) => evento.preventDefault());
+        document.addEventListener('keydown', (evento) => {
+            const teclaPrint = (evento.ctrlKey || evento.metaKey) && (evento.key === 'p' || evento.key === 'P');
+            if (teclaPrint) evento.preventDefault();
+        });
     </script>
 </head>
 <body class="min-h-screen bg-fundo text-texto antialiased">

@@ -12,6 +12,7 @@ use App\Models\Aula;
 use App\Models\Curso;
 use App\Models\Material;
 use App\Models\Modulo;
+use App\Servicos\Video\ProvedorVideo as ServicoVideo;
 use BackedEnum;
 use Filament\Forms\Components\RichEditor;
 use Filament\Notifications\Notification;
@@ -84,6 +85,26 @@ class ConstrutorCurriculo extends Page
         return 'Currículo: '.$this->curso->titulo;
     }
 
+    #[Computed]
+    public function thumbAulaSelecionada(): ?string
+    {
+        $videoId = $this->curso->modulos->flatMap->aulas
+            ->firstWhere('id', $this->aulaSelecionadaId)
+            ?->video_id;
+
+        return $videoId === null ? null : app(ServicoVideo::class)->urlThumb($videoId);
+    }
+
+    #[Computed]
+    public function thumbFallbackAulaSelecionada(): ?string
+    {
+        $videoId = $this->curso->modulos->flatMap->aulas
+            ->firstWhere('id', $this->aulaSelecionadaId)
+            ?->video_id;
+
+        return $videoId === null ? null : app(ServicoVideo::class)->urlThumbFallback($videoId);
+    }
+
     public function descricaoAulaForm(Schema $schema): Schema
     {
         return $schema
@@ -141,7 +162,7 @@ class ConstrutorCurriculo extends Page
         $this->aulaSelecionadaId = $aula->id;
         $this->aulaTitulo = $aula->titulo;
         $this->aulaConteudo = ['descricao' => (string) $aula->descricao];
-        $this->linkVideo = '';
+        $this->linkVideo = $aula->video_id !== null ? "https://youtu.be/{$aula->video_id}" : '';
         $this->duracaoSegundos = $aula->duracao_segundos;
         $this->amostraGratuita = $aula->amostra_gratuita;
         $this->situacaoAula = $aula->situacao->value;

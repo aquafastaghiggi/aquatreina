@@ -60,6 +60,15 @@
 
                         {{ $this->descricaoAulaForm }}
 
+                        @if ($this->thumbAulaSelecionada)
+                            <img
+                                src="{{ $this->thumbAulaSelecionada }}"
+                                onerror="this.onerror=null;this.src='{{ $this->thumbFallbackAulaSelecionada }}'"
+                                alt="Miniatura do vídeo atual"
+                                class="aspect-video w-full rounded-lg border border-gray-200 object-cover dark:border-white/10"
+                            >
+                        @endif
+
                         <x-filament::input.wrapper><x-filament::input wire:model="linkVideo" placeholder="Cole o link do YouTube" /></x-filament::input.wrapper>
                         @error('link_video') <p class="text-sm text-danger-600">{{ $message }}</p> @enderror
 

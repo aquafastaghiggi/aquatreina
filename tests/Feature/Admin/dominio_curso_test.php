@@ -7,6 +7,7 @@ use App\Acoes\Curso\PublicarCurso;
 use App\Acoes\Curso\ReordenarCurriculo;
 use App\Acoes\Curso\SalvarAula;
 use App\Enums\NivelCurso;
+use App\Enums\ProvedorVideo;
 use App\Enums\SituacaoAula;
 use App\Excecoes\CursoIncompleto;
 use App\Filament\Pages\ConstrutorCurriculo;
@@ -90,6 +91,24 @@ it('salvar aula grava a descrição editada no editor de texto rico', function (
         ->assertHasNoErrors();
 
     expect($aula->fresh()->descricao)->toBe('<p><strong>negrito</strong></p>');
+});
+
+it('ao selecionar aula com video, preenche o link atual e expoe a miniatura', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $curso = Curso::factory()->for($admin, 'responsavel')->create();
+    $modulo = Modulo::factory()->for($curso)->create();
+    $aula = Aula::factory()->for($modulo)->create([
+        'provedor' => ProvedorVideo::Youtube,
+        'video_id' => 'abc12345678',
+    ]);
+
+    $componente = Livewire::actingAs($admin)
+        ->test(ConstrutorCurriculo::class, ['registro' => (string) $curso->id])
+        ->call('selecionarAula', $aula->id);
+
+    expect($componente->get('linkVideo'))->toBe('https://youtu.be/abc12345678')
+        ->and($componente->instance()->thumbAulaSelecionada)->toBe('https://i.ytimg.com/vi/abc12345678/maxresdefault.jpg');
 });
 
 it('reordenar currículo persiste posições de módulos e aulas', function (): void {
