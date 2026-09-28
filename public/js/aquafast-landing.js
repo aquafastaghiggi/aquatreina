@@ -6,3 +6,18 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{
     target.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
+
+const menuToggle=document.querySelector('.menu-toggle');
+const navLinks=document.getElementById('nav-links');
+if(menuToggle&&navLinks){
+  menuToggle.addEventListener('click',()=>{
+    const aberto=navLinks.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded',aberto?'true':'false');
+  });
+  navLinks.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      navLinks.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded','false');
+    });
+  });
+}

@@ -25,7 +25,7 @@
         <span class="brand-university">Universidade</span>
       </a>
 
-      <nav class="nav-links" aria-label="Navegação principal">
+      <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
         <a href="{{ route('vitrine') }}#como-funciona">Como funciona</a>
         <a href="{{ route('vitrine') }}#produtos">Produtos</a>
         <a href="{{ route('vitrine') }}#premiacao">Premiação</a>
@@ -38,6 +38,9 @@
           <a class="login" href="{{ route('login') }}">Entrar</a>
           <a class="btn btn-primary btn-small" href="{{ route('register') }}">Criar conta grátis</a>
         @endauth
+        <button type="button" class="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
