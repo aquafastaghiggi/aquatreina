@@ -48,7 +48,6 @@
     <div class="container footer-grid">
       <a class="brand" href="{{ route('vitrine') }}#inicio"><img src="{{ asset('images/marca/aquafast-logo-navy.svg') }}" alt="Aquafast" class="brand-logo-img"><span class="brand-divider"></span><span class="brand-university">Universidade</span></a>
       <nav><a href="{{ route('vitrine') }}#como-funciona">Como funciona</a><a href="{{ route('vitrine') }}#produtos">Produtos</a><a href="{{ route('vitrine') }}#premiacao">Premiação</a></nav>
-      <div class="social">♪　◎　▶</div>
       <p>Juntos por um<br>futuro mais limpo.</p>
     </div>
     <div class="container" style="padding-top:18px;font-size:11px;color:#8a95a8;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between">
