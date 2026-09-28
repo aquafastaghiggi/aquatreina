@@ -279,6 +279,88 @@
   <p class="container footnote">* Comissão conforme condições vigentes do programa/TikTok Shop.</p>
 </section>
 
+<section class="faq-section" id="duvidas" aria-labelledby="faq-title">
+  <div class="container faq-container">
+    <div class="faq-heading">
+      <div class="faq-heading-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19v.01" />
+          <path d="M9.2 9a3 3 0 1 1 4.7 2.5c-1.2.8-1.9 1.5-1.9 3" />
+          <path d="M4.5 6.5A9 9 0 0 1 12 3a9 9 0 0 1 7.5 13.95L21 21l-4.05-1.5A9 9 0 0 1 12 21a9 9 0 0 1-7.5-14.5Z" />
+        </svg>
+      </div>
+      <span class="eyebrow eyebrow-plain">PERGUNTAS FREQUENTES</span>
+      <h2 id="faq-title">Ficou com alguma dúvida?</h2>
+      <p>Confira as respostas para as principais dúvidas sobre a Universidade Aquafast e o programa de afiliados.</p>
+    </div>
+
+    <div class="faq-accordion">
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>A Universidade Aquafast é gratuita?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sim. O acesso à Universidade Aquafast e aos treinamentos disponíveis para afiliados é gratuito.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>Preciso ter muitos seguidores para participar?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Não. Você pode começar mesmo com uma audiência pequena. O mais importante é criar conteúdos autênticos, úteis e consistentes.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>Preciso comprar produtos para começar?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>A página não informa compra obrigatória para começar. O que está definido é que a Universidade ensina você a conhecer os produtos e que a Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>Como funcionam as amostras de produtos?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>A Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>O que vou encontrar dentro da Universidade?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Você terá acesso a treinamentos, conteúdos sobre os produtos Aquafast e materiais desenvolvidos para ajudar na sua evolução como afiliado.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>Como funcionam as comissões?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>As comissões seguem as condições vigentes do programa e do TikTok Shop. A Universidade apresenta orientações para você criar conteúdos e divulgar os produtos Aquafast sem inventar percentuais, prazos ou regras comerciais fora das condições vigentes.</p>
+        </div>
+      </details>
+
+      <details name="faq-home" class="faq-item">
+        <summary>
+          <span>Como funciona o Programa de Premiação?</span>
+        </summary>
+        <div class="faq-answer">
+          <p>O programa possui diferentes níveis de evolução. Conforme os critérios de cada nível são alcançados, novas conquistas e premiações são desbloqueadas. Consulte a jornada apresentada acima para conhecer os níveis e requisitos.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="final-cta" id="cta-final">
   <div class="container cta-box">
     <div>

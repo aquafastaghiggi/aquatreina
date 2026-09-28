@@ -23,6 +23,10 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
             'ACOMPANHE SUA EVOLUÇÃO',
             'CRIE. DEMONSTRE. COMPARTILHE.',
             'Produtos que viram conteúdo',
+            'Você cria. Você vende.',
+            'PERGUNTAS FREQUENTES',
+            'Ficou com alguma dúvida?',
+            'Seu conteúdo pode ir mais longe.',
         ])
         ->assertSee('Aprenda a criar conteúdos, conheça os produtos Aquafast e desenvolva seu potencial como afiliado.')
         ->assertSee('Como funciona?')
@@ -56,9 +60,23 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('Aprendiz')
         ->assertSee('Elite')
         ->assertSee('R$ 1 milhão')
+        ->assertSee('Confira as respostas para as principais dúvidas sobre a Universidade Aquafast e o programa de afiliados.')
+        ->assertSee('A Universidade Aquafast é gratuita?')
+        ->assertSee('Sim. O acesso à Universidade Aquafast e aos treinamentos disponíveis para afiliados é gratuito.')
+        ->assertSee('Preciso ter muitos seguidores para participar?')
+        ->assertSee('Não. Você pode começar mesmo com uma audiência pequena. O mais importante é criar conteúdos autênticos, úteis e consistentes.')
+        ->assertSee('Preciso comprar produtos para começar?')
+        ->assertSee('A página não informa compra obrigatória para começar. O que está definido é que a Universidade ensina você a conhecer os produtos e que a Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.')
+        ->assertSee('Como funcionam as amostras de produtos?')
+        ->assertSee('O que vou encontrar dentro da Universidade?')
+        ->assertSee('Você terá acesso a treinamentos, conteúdos sobre os produtos Aquafast e materiais desenvolvidos para ajudar na sua evolução como afiliado.')
+        ->assertSee('Como funcionam as comissões?')
+        ->assertSee('As comissões seguem as condições vigentes do programa e do TikTok Shop.')
+        ->assertSee('Como funciona o Programa de Premiação?')
+        ->assertSee('O programa possui diferentes níveis de evolução. Conforme os critérios de cada nível são alcançados, novas conquistas e premiações são desbloqueadas. Consulte a jornada apresentada acima para conhecer os níveis e requisitos.')
+        ->assertSee('<details name="faq-home" class="faq-item">', false)
         ->assertSee('Seu conteúdo pode ir mais longe.')
         ->assertSee('Quero começar agora', false)
-        ->assertDontSee('Dúvidas')
         ->assertDontSee('Mais do que um curso');
 });
 
