@@ -34,6 +34,7 @@
                     allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
                     allowfullscreen
                 ></iframe>
+                <x-marca-dagua-video />
             </div>
 
             @if (($progressoAtual?->posicao_maxima ?? 0) > 0 && ! $concluida)

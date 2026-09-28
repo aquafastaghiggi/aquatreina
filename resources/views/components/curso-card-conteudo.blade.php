@@ -6,6 +6,7 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
         ></iframe>
+        <x-marca-dagua-video />
     @elseif ($capaUrl)
         <img src="{{ $capaUrl }}" alt="" class="h-full w-full object-cover transition duration-200 group-hover:scale-[1.02] motion-reduce:transition-none" loading="lazy">
     @else

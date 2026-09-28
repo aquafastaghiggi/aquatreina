@@ -10,6 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body { -webkit-user-select: none; user-select: none; }
+        input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }
+    </style>
+    <script>
+        document.addEventListener('copy', (evento) => evento.preventDefault());
+        document.addEventListener('cut', (evento) => evento.preventDefault());
+        document.addEventListener('contextmenu', (evento) => evento.preventDefault());
+    </script>
 </head>
 <body class="min-h-screen bg-fundo text-texto antialiased">
     <header class="border-b border-linha bg-superficie">

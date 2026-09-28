@@ -45,6 +45,16 @@ it('lista os produtos publicados com video da trilha aprenda na pratica no paine
         ->assertSee('Poder O2');
 });
 
+it('bloqueia copiar e clique direito na area do aluno', function (): void {
+    $aluno = Usuario::factory()->create();
+
+    $this->actingAs($aluno)->get(route('app.painel'))
+        ->assertOk()
+        ->assertSee('user-select: none', false)
+        ->assertSee("addEventListener('copy'", false)
+        ->assertSee("addEventListener('contextmenu'", false);
+});
+
 it('nao lista produto em rascunho no painel', function (): void {
     $aluno = Usuario::factory()->create();
     $categoria = Categoria::factory()->create(['slug' => config('treina.categoria_trilhas_produto_slug')]);
@@ -89,6 +99,7 @@ it('card de produto com video embute o player direto, sem link pra pagina do cur
         ->assertOk()
         ->assertSee('<iframe', false)
         ->assertSee('https://www.youtube-nocookie.com/embed/abc12345678', false)
+        ->assertSee('aquafast-logo-white.svg', false)
         ->assertDontSee(route('cursos.mostrar', $curso), false);
 });
 

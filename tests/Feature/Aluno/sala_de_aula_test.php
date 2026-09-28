@@ -57,6 +57,18 @@ it('nao refaz a consulta de aula e matricula entre sala de aula e aba de comenta
         ->and($consultasExistsMatricula)->toBeLessThanOrEqual(1);
 });
 
+it('mostra a marca dagua sobre o video da aula', function (): void {
+    $aluno = Usuario::factory()->create();
+    $curso = Curso::factory()->create(['situacao' => SituacaoCurso::Publicado]);
+    $modulo = Modulo::factory()->for($curso)->create();
+    $aula = Aula::factory()->for($modulo)->create(['situacao' => SituacaoAula::Publicada]);
+    Matricula::factory()->for($aluno, 'usuario')->for($curso)->create();
+
+    $this->actingAs($aluno)->get(route('app.aula', [$curso, $aula]))
+        ->assertOk()
+        ->assertSee('aquafast-logo-white.svg', false);
+});
+
 it('entrada do curso redireciona para a proxima aula nao concluida', function (): void {
     $aluno = Usuario::factory()->create();
     $curso = Curso::factory()->create(['situacao' => SituacaoCurso::Publicado]);
