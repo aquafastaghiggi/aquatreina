@@ -69,7 +69,7 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('A Universidade Aquafast é gratuita?')
         ->assertSee('Sim. O acesso à Universidade Aquafast e aos treinamentos disponíveis para afiliados é gratuito.')
         ->assertSee('Preciso ter muitos seguidores para participar?')
-        ->assertSee('Não. Você pode começar mesmo com uma audiência pequena. O mais importante é criar conteúdos autênticos, úteis e consistentes.')
+        ->assertSee('Não é necessário ter uma grande audiência, mas você precisa ter o TikTok Shop ativo na sua conta, com permissão para divulgar produtos como afiliado. O mais importante é criar conteúdos autênticos, úteis e consistentes.')
         ->assertSee('Preciso comprar produtos para começar?')
         ->assertSee('A página não informa compra obrigatória para começar. O que está definido é que a Universidade ensina você a conhecer os produtos e que a Aquafast poderá liberar amostras reembolsáveis, mediante avaliação dos perfis que estejam alinhados à nossa marca.')
         ->assertSee('Como funcionam as amostras de produtos?')

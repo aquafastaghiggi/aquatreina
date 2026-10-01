@@ -313,7 +313,7 @@
           <span>Preciso ter muitos seguidores para participar?</span>
         </summary>
         <div class="faq-answer">
-          <p>Não. Você pode começar mesmo com uma audiência pequena. O mais importante é criar conteúdos autênticos, úteis e consistentes.</p>
+          <p>Não é necessário ter uma grande audiência, mas você precisa ter o TikTok Shop ativo na sua conta, com permissão para divulgar produtos como afiliado. O mais importante é criar conteúdos autênticos, úteis e consistentes.</p>
         </div>
       </details>
 
