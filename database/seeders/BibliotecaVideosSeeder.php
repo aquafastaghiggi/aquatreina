@@ -59,7 +59,13 @@ class BibliotecaVideosSeeder extends Seeder
                         $dados['publicada_em'] = now();
                     }
 
-                    $modulo->aulas()->updateOrCreate(['slug' => Str::slug($aula['titulo'])], $dados);
+                    $chave = $aula['video_id'] !== null
+                        ? ['video_id' => $aula['video_id']]
+                        : ['slug' => Str::slug($aula['titulo'])];
+
+                    $dados['slug'] = Str::slug($aula['titulo']);
+
+                    $modulo->aulas()->updateOrCreate($chave, $dados);
                 }
             }
 
@@ -83,9 +89,9 @@ class BibliotecaVideosSeeder extends Seeder
                 [
                     'titulo' => 'Remoção de manchas',
                     'aulas' => [
-                        ['titulo' => 'Manchas em blusa branca', 'arquivo' => '23 Poder O2 Blusa Branca.MOV', 'video_id' => 'JoJh4zjI6-E'],
-                        ['titulo' => 'Manchas em tênis branco', 'arquivo' => 'Poder 02 tênis branco.MOV', 'video_id' => 'TQjlMFLM42I'],
-                        ['titulo' => 'Mancha de molho', 'arquivo' => 'Reels poder O2 mancha de molho.MOV', 'video_id' => '3fNP5NfRq4A'],
+                        ['titulo' => 'Mancha de canetinha na roupa', 'arquivo' => '23 Poder O2 Blusa Branca.MOV', 'video_id' => 'JoJh4zjI6-E'],
+                        ['titulo' => 'Limpeza de tênis', 'arquivo' => 'Poder 02 tênis branco.MOV', 'video_id' => 'TQjlMFLM42I'],
+                        ['titulo' => 'Mancha de maquiagem na roupa', 'arquivo' => 'Reels poder O2 mancha de molho.MOV', 'video_id' => '3fNP5NfRq4A'],
                     ],
                 ],
             ],
@@ -94,8 +100,8 @@ class BibliotecaVideosSeeder extends Seeder
                     'titulo' => 'Limpeza do dia a dia',
                     'aulas' => [
                         ['titulo' => 'Limpeza do banheiro', 'arquivo' => '26 Multiuso Banheiro.MOV', 'video_id' => null],
-                        ['titulo' => 'Álcool e bicarbonato', 'arquivo' => 'Reels álcool e bicarbonato.MOV', 'video_id' => 'aL8TSm-RQ6U'],
-                        ['titulo' => 'Mancha em uniforme', 'arquivo' => 'Reels Mancha Uniforme.MOV', 'video_id' => 'hTxNunR-I1U'],
+                        ['titulo' => 'Mancha de canetinha na bancada', 'arquivo' => 'Reels álcool e bicarbonato.MOV', 'video_id' => 'aL8TSm-RQ6U'],
+                        ['titulo' => 'Mancha de molho vermelho na roupa', 'arquivo' => 'Reels Mancha Uniforme.MOV', 'video_id' => 'hTxNunR-I1U'],
                     ],
                 ],
             ],
@@ -104,9 +110,9 @@ class BibliotecaVideosSeeder extends Seeder
                     'titulo' => 'Cozinha sem gordura',
                     'aulas' => [
                         ['titulo' => 'Desengordurante no dia a dia', 'arquivo' => '22 Desengordurante versão sem link.MOV', 'video_id' => null],
-                        ['titulo' => 'Desengordurante — versão alternativa 1', 'arquivo' => 'Desengordurante sem link.MOV', 'video_id' => 'OGqsbNiQa30'],
-                        ['titulo' => 'Desengordurante — versão alternativa 2', 'arquivo' => 'Desengordurante versão sem click no link.MOV', 'video_id' => 'M30pGAv-XEQ'],
-                        ['titulo' => 'Limpando a grelha do fogão', 'arquivo' => 'Reels Grelha Desengordurante.MOV', 'video_id' => '-adMSeMXoB0'],
+                        ['titulo' => 'Limpeza de cooktop', 'arquivo' => 'Desengordurante sem link.MOV', 'video_id' => 'OGqsbNiQa30'],
+                        ['titulo' => 'Limpeza rápida da cozinha', 'arquivo' => 'Desengordurante versão sem click no link.MOV', 'video_id' => 'M30pGAv-XEQ'],
+                        ['titulo' => 'Limpeza de grelha', 'arquivo' => 'Reels Grelha Desengordurante.MOV', 'video_id' => '-adMSeMXoB0'],
                     ],
                 ],
             ],
@@ -114,7 +120,7 @@ class BibliotecaVideosSeeder extends Seeder
                 [
                     'titulo' => 'Roupas limpas',
                     'aulas' => [
-                        ['titulo' => 'Lava roupas e amaciante', 'arquivo' => 'Lava roupas Amaciante feed (1).MOV', 'video_id' => 'HR9_Zo8dNx4'],
+                        ['titulo' => 'Roupas limpas e cheirosas', 'arquivo' => 'Lava roupas Amaciante feed (1).MOV', 'video_id' => 'HR9_Zo8dNx4'],
                     ],
                 ],
             ],

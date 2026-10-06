@@ -1,9 +1,9 @@
-@props(['curso', 'capaUrl' => null, 'inscrito' => false, 'percentual' => null, 'iniciarDireto' => false, 'videosEmbed' => []])
+@props(['curso', 'capaUrl' => null, 'inscrito' => false, 'percentual' => null, 'iniciarDireto' => false, 'videosEmbed' => [], 'videoLegenda' => null])
 
 <article class="overflow-hidden rounded-lg border border-linha bg-superficie">
     @if (! empty($videosEmbed))
         {{-- Vídeo embutido direto no card, sem link e sem interação de navegação. --}}
-        @include('components.curso-card-conteudo', compact('capaUrl', 'inscrito', 'curso', 'percentual', 'videosEmbed'))
+        @include('components.curso-card-conteudo', compact('capaUrl', 'inscrito', 'curso', 'percentual', 'videosEmbed', 'videoLegenda'))
     @elseif ($iniciarDireto && ! $inscrito)
         {{-- Sem matrícula ainda: inscreve e já cai direto na aula, sem passar pela página do curso. --}}
         <form method="POST" action="{{ route('app.inscrever', $curso) }}">

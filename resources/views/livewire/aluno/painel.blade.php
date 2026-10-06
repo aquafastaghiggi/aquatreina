@@ -65,6 +65,7 @@
                         :inscrito="$produto->minha_matricula !== null"
                         :percentual="$produto->minha_matricula?->percentual_progresso"
                         :videos-embed="$produto->videos_embed"
+                        :video-legenda="$produto->video_legenda"
                     />
                 @endforeach
             </div>

@@ -92,6 +92,7 @@ it('card de produto com video embute o player direto, sem link pra pagina do cur
     ]);
     $modulo = Modulo::factory()->for($curso)->create();
     Aula::factory()->for($modulo)->create([
+        'titulo' => 'Mancha de canetinha na roupa',
         'situacao' => SituacaoAula::Publicada,
         'provedor' => ProvedorVideo::Youtube,
         'video_id' => 'abc12345678',
@@ -102,6 +103,7 @@ it('card de produto com video embute o player direto, sem link pra pagina do cur
         ->assertSee('<iframe', false)
         ->assertSee('https://www.youtube-nocookie.com/embed/abc12345678', false)
         ->assertSee('aquafast-logo-white.svg', false)
+        ->assertSeeInOrder(['Mancha de canetinha na roupa', '|', 'Poder O2'])
         ->assertDontSee(route('cursos.mostrar', $curso), false);
 });
 

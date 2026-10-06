@@ -29,6 +29,6 @@ it('publica automaticamente os produtos que ganham video e organiza aulas de for
     expect($aulasComVideo)->toHaveCount(9)
         ->and($aulasComVideo->every(fn (Aula $aula): bool => $aula->situacao === SituacaoAula::Publicada))->toBeTrue();
 
-    $mancha = Aula::query()->where('slug', 'mancha-em-uniforme')->first();
+    $mancha = Aula::query()->where('video_id', 'hTxNunR-I1U')->first();
     expect($mancha->modulo->curso->titulo)->toBe('Multiuso');
 });

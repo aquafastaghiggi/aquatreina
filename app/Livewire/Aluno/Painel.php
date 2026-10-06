@@ -57,6 +57,7 @@ class Painel extends Component
                         $item = clone $curso;
                         $item->setAttribute('minha_matricula', $matricula);
                         $item->setAttribute('videos_embed', [$video->urlEmbed($aula->video_id)]);
+                        $item->setAttribute('video_legenda', $aula->titulo);
 
                         return $item;
                     });

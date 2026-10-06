@@ -15,7 +15,12 @@
 </div>
 @if (isset($videosEmbed) && ! empty($videosEmbed))
     <div class="p-5">
-        <h3 class="text-balance text-lg font-semibold text-texto">{{ $curso->titulo }}</h3>
+        <h3 class="text-balance text-lg text-texto">
+            @if (! empty($videoLegenda))
+                {{ $videoLegenda }} |
+            @endif
+            <span class="font-semibold">{{ $curso->titulo }}</span>
+        </h3>
     </div>
 @else
     <div class="p-5">
