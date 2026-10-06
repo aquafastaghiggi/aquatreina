@@ -31,3 +31,5 @@
 .nav-links.is-open{display:flex}
 .nav-links a{padding:16px 24px;text-align:center}
 }
+
+.rewards-note{display:inline-block;margin-top:14px;padding:8px 14px;border-radius:999px;background:#fff4e5;color:#92400e;font-size:13px;font-weight:700}

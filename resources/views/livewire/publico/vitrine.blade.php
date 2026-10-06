@@ -262,6 +262,7 @@
       <span class="eyebrow eyebrow-plain">PROGRAMA DE PREMIAÇÃO</span>
       <h2>Você cria. Você vende.<br>Você sobe de nível.</h2>
       <p>Quanto mais você cresce, mais a gente te recompensa. Além das comissões do TikTok Shop, reconhecemos os afiliados que se destacam divulgando a Aquafast.</p>
+      <p class="rewards-note">Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).</p>
       @guest
         <a class="btn btn-outline" href="{{ route('register') }}">Começar minha jornada <span>→</span></a>
       @else
@@ -280,7 +281,7 @@
       @endforeach
     </div>
   </div>
-  <p class="container footnote">* Comissão conforme condições vigentes do programa/TikTok Shop.</p>
+  <p class="container footnote">* Os 8% de comissão valem em todos os níveis — o reconhecimento de cada nível é um benefício adicional, não substitui a comissão. Comissão conforme condições vigentes do programa/TikTok Shop.</p>
 </section>
 
 <section class="faq-section" id="duvidas" aria-labelledby="faq-title">
