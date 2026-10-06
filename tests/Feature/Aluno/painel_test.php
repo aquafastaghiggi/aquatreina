@@ -23,6 +23,8 @@ it('mostra as secoes institucionais e a formula de conteudo no painel', function
         ->assertSee('Mostre onde comprar')
         ->assertSee('Boas práticas para seus conteúdos')
         ->assertSee('Cresça com a Aquafast')
+        ->assertSee('Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).')
+        ->assertSee('Os 8% de comissão valem em todos os níveis — o reconhecimento de cada nível é um benefício adicional, não substitui a comissão.', false)
         ->assertSee('Crie. Ensine. Venda. Cresça com a Aquafast.', false);
 });
 

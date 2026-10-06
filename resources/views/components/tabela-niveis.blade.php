@@ -1,5 +1,7 @@
 @php($niveis = config('premiacao.niveis'))
 
+<div class="aviso">Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).</div>
+
 <div class="overflow-hidden rounded-lg border border-linha bg-superficie">
     <table class="hidden w-full text-left lg:table">
         <thead class="border-b border-linha text-xs font-semibold uppercase tracking-wide text-texto-3">
@@ -32,3 +34,5 @@
         @endforeach
     </ul>
 </div>
+
+<p class="mt-3 text-xs text-texto-3">* Os 8% de comissão valem em todos os níveis — o reconhecimento de cada nível é um benefício adicional, não substitui a comissão. Comissão conforme condições vigentes do programa/TikTok Shop.</p>
