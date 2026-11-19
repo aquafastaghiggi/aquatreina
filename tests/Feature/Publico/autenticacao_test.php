@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use App\Enums\SituacaoUsuario;
 use App\Models\Usuario;
+use App\Notifications\CadastroRecebido;
+use App\Notifications\Channels\MicrosoftGraphChannel;
+use App\Notifications\NovoCadastroNaUniversidade;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Illuminate\Support\Facades\Hash;
@@ -63,7 +66,17 @@ it('cadastro cria usuário aluno pendente para aprovação do admin', function (
         ->and($usuario->empresa)->toBeNull()
         ->and($usuario->cargo)->toBeNull();
 
-    Notification::assertNothingSent();
+    Notification::assertSentTo(
+        $usuario,
+        CadastroRecebido::class,
+        fn (CadastroRecebido $notificacao, array $canais): bool => in_array(MicrosoftGraphChannel::class, $canais, true),
+    );
+
+    Notification::assertSentOnDemand(
+        NovoCadastroNaUniversidade::class,
+        fn (NovoCadastroNaUniversidade $notificacao, array $canais, $destinatario): bool => in_array(MicrosoftGraphChannel::class, $canais, true)
+            && $destinatario->routes[MicrosoftGraphChannel::class] === 'aquafast@aquafast.com.br',
+    );
 });
 
 it('cadastro grava aceite dos termos e IP', function (): void {

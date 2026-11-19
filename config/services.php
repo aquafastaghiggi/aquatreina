@@ -8,6 +8,14 @@ return [
         'api_key' => env('YOUTUBE_API_KEY'),
     ],
 
+    'microsoft_graph' => [
+        'tenant_id' => env('MICROSOFT_GRAPH_TENANT_ID'),
+        'client_id' => env('MICROSOFT_GRAPH_CLIENT_ID'),
+        'client_secret' => env('MICROSOFT_GRAPH_CLIENT_SECRET'),
+        'remetente_email' => env('MICROSOFT_GRAPH_REMETENTE_EMAIL', 'aquafast@aquafast.com.br'),
+        'admin_email' => env('UNIVERSIDADE_NOTIFICACAO_ADMIN_EMAIL', 'aquafast@aquafast.com.br'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

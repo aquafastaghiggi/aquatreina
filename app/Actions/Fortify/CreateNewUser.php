@@ -7,6 +7,10 @@ namespace App\Actions\Fortify;
 use App\Enums\SituacaoUsuario;
 use App\Models\TextoLegal;
 use App\Models\Usuario;
+use App\Notifications\CadastroRecebido;
+use App\Notifications\Channels\MicrosoftGraphChannel;
+use App\Notifications\NovoCadastroNaUniversidade;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -52,6 +56,12 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $usuario->assignRole('aluno');
+
+        $usuario->notify(new CadastroRecebido($usuario->nome));
+
+        (new AnonymousNotifiable)
+            ->route(MicrosoftGraphChannel::class, config('services.microsoft_graph.admin_email'))
+            ->notify(new NovoCadastroNaUniversidade($usuario->nome, $usuario->email, $usuario->telefone));
 
         return $usuario;
     }

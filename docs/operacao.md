@@ -40,7 +40,8 @@ no repositório e nunca ser editadas diretamente no servidor.
 | Banco | `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` | Conexão MySQL privada |
 | Sessão | `SESSION_DRIVER`, `SESSION_LIFETIME`, `SESSION_ENCRYPT`, `SESSION_SECURE_COOKIE`, `SESSION_HTTP_ONLY`, `SESSION_SAME_SITE` | Sessão segura |
 | Processamento | `QUEUE_CONNECTION`, `CACHE_STORE` | Filas e cache em banco |
-| E-mail | `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME` | SMTP corporativo |
+| E-mail | `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME` | E-mails legados do Laravel |
+| Microsoft Graph | `MICROSOFT_GRAPH_TENANT_ID`, `MICROSOFT_GRAPH_CLIENT_ID`, `MICROSOFT_GRAPH_CLIENT_SECRET`, `MICROSOFT_GRAPH_REMETENTE_EMAIL`, `UNIVERSIDADE_NOTIFICACAO_ADMIN_EMAIL` | Confirmação de cadastro, aviso administrativo e aprovação |
 | Vídeo | `YOUTUBE_API_KEY` | Metadados; sem chave, usa oEmbed |
 | Regras | `TREINA_PERCENTUAL_CONCLUSAO`, `TREINA_INTERVALO_PING` | Valores iniciais das configurações |
 | Primeiro acesso | `ADMIN_NOME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Seed do administrador inicial |
@@ -54,6 +55,9 @@ HTTPS e cookies seguros. Nunca envie `.env`, `backup.env` ou dumps ao Git.
 
 Abra **Administração → Usuários**, consulte os dados e use **Aprovar**. Para
 bloquear acesso, use **Bloquear**. Ambas as operações são auditadas.
+Ao aprovar, o aluno recebe um e-mail pelo Microsoft Graph. Todo cadastro novo
+também envia uma confirmação ao aluno e um aviso para o endereço administrativo
+configurado, sem depender da verificação de e-mail.
 
 ### Publicar curso
 

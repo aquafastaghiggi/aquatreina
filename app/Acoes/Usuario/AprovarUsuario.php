@@ -6,11 +6,14 @@ namespace App\Acoes\Usuario;
 
 use App\Enums\SituacaoUsuario;
 use App\Models\Usuario;
+use App\Notifications\CadastroAprovado;
 
 final class AprovarUsuario
 {
     public function executar(Usuario $usuario, ?Usuario $responsavel = null): Usuario
     {
+        $jaEstavaAtivo = $usuario->situacao === SituacaoUsuario::Ativo;
+
         $usuario->update(['situacao' => SituacaoUsuario::Ativo]);
 
         activity('usuarios')
@@ -19,6 +22,12 @@ final class AprovarUsuario
             ->withProperty('situacao', SituacaoUsuario::Ativo->value)
             ->log('usuario_aprovado');
 
-        return $usuario->refresh();
+        $usuario = $usuario->refresh();
+
+        if (! $jaEstavaAtivo) {
+            $usuario->notify(new CadastroAprovado($usuario->nome));
+        }
+
+        return $usuario;
     }
 }

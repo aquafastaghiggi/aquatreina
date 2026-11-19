@@ -7,7 +7,10 @@ use App\Acoes\Usuario\BloquearUsuario;
 use App\Enums\SituacaoUsuario;
 use App\Filament\Resources\Usuarios\UsuarioResource;
 use App\Models\Usuario;
+use App\Notifications\CadastroAprovado;
+use App\Notifications\Channels\MicrosoftGraphChannel;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Role;
 
@@ -38,12 +41,18 @@ it('nega o painel administrativo para admin pendente (RN-08)', function (): void
 });
 
 it('aprova e bloqueia usuário registrando as ações no activity log', function (): void {
+    Notification::fake();
     $admin = Usuario::factory()->create();
     $admin->assignRole('admin');
     $usuario = Usuario::factory()->create(['situacao' => SituacaoUsuario::Pendente]);
 
     app(AprovarUsuario::class)->executar($usuario, $admin);
     expect($usuario->fresh()->situacao)->toBe(SituacaoUsuario::Ativo);
+    Notification::assertSentTo(
+        $usuario,
+        CadastroAprovado::class,
+        fn (CadastroAprovado $notificacao, array $canais): bool => in_array(MicrosoftGraphChannel::class, $canais, true),
+    );
 
     app(BloquearUsuario::class)->executar($usuario, $admin);
     expect($usuario->fresh()->situacao)->toBe(SituacaoUsuario::Bloqueado)

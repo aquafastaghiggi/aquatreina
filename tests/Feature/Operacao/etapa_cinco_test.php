@@ -21,6 +21,7 @@ use App\Models\Usuario;
 use App\Servicos\Importacao\ImportadorUsuarios;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -103,6 +104,7 @@ it('anonimiza dados e comentários sem apagar matrícula e progresso e registra 
 });
 
 it('cadastro permanece pendente mesmo com configuração legada desligada', function (): void {
+    Notification::fake();
     Role::findOrCreate('aluno', 'web');
     Configuracao::definir('aprovacao_manual', false);
 
