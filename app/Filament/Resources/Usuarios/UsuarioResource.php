@@ -92,7 +92,18 @@ class UsuarioResource extends Resource
                     ->visible(fn (Usuario $record): bool => $record->situacao !== SituacaoUsuario::Ativo)
                     ->authorize(fn (Usuario $record): bool => Gate::allows('aprovar', $record))
                     ->requiresConfirmation()
-                    ->action(fn (Usuario $record) => app(AprovarUsuario::class)->executar($record, auth()->user())),
+                    ->modalHeading('Aprovar cadastro e notificar o aluno?')
+                    ->modalDescription('O acesso será liberado e o aluno receberá no e-mail cadastrado uma confirmação enviada por aquafast@aquafast.com.br.')
+                    ->modalSubmitActionLabel('Aprovar e notificar')
+                    ->action(function (Usuario $record): void {
+                        app(AprovarUsuario::class)->executar($record, auth()->user());
+
+                        Notification::make()
+                            ->title('Cadastro aprovado')
+                            ->body('O aluno receberá por e-mail a confirmação de que o acesso foi liberado.')
+                            ->success()
+                            ->send();
+                    }),
                 Action::make('bloquear')
                     ->label('Bloquear')
                     ->color('danger')

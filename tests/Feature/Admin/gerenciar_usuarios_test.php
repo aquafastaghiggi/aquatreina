@@ -7,13 +7,16 @@ use App\Acoes\Usuario\BloquearUsuario;
 use App\Acoes\Usuario\ExcluirUsuario;
 use App\Enums\SituacaoUsuario;
 use App\Excecoes\UsuarioPossuiHistorico;
+use App\Filament\Resources\Usuarios\Pages\ManageUsuarios;
 use App\Filament\Resources\Usuarios\UsuarioResource;
 use App\Models\Matricula;
 use App\Models\Usuario;
 use App\Notifications\CadastroAprovado;
 use App\Notifications\Channels\MicrosoftGraphChannel;
+use Filament\Actions\Action;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
+use Livewire\Livewire;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Role;
 
@@ -73,6 +76,23 @@ it('mostra no menu a contagem de usuarios pendentes de aprovacao', function (): 
     $this->actingAs($admin);
 
     expect(UsuarioResource::getNavigationBadge())->toBe('2');
+});
+
+it('informa no painel que a aprovacao notificara o aluno por email', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $aluno = Usuario::factory()->create(['situacao' => SituacaoUsuario::Pendente]);
+    $aluno->assignRole('aluno');
+
+    $this->actingAs($admin);
+
+    Livewire::test(ManageUsuarios::class)
+        ->assertTableActionExists(
+            'aprovar',
+            fn (Action $acao): bool => $acao->getModalSubmitActionLabel() === 'Aprovar e notificar'
+                && str_contains((string) $acao->getModalDescription(), 'aquafast@aquafast.com.br'),
+            $aluno,
+        );
 });
 
 it('so admin pode aprovar bloquear e anonimizar usuario (UsuarioPolicy)', function (): void {
