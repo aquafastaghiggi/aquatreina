@@ -1,6 +1,6 @@
 @php($niveis = config('premiacao.niveis'))
 
-<div class="aviso">Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).</div>
+<div class="aviso">Programa piloto por 90 dias, iniciado em 01/11/2026.</div>
 
 <div class="overflow-hidden rounded-lg border border-linha bg-superficie">
     <table class="hidden w-full text-left lg:table">

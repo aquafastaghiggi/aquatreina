@@ -59,7 +59,7 @@ it('mostra o hero, os beneficios, os passos, os produtos e o programa de premiac
         ->assertSee('produtos/frascos/desengordurante-cozinha-limao.webp', false)
         ->assertSee('produtos/frascos/multiuso-poder-o2.webp', false)
         ->assertSee('Você cria. Você vende.')
-        ->assertSee('Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).')
+        ->assertSee('Programa piloto por 90 dias, iniciado em 01/11/2026.')
         ->assertSee('Os 8% de comissão valem em todos os níveis — o reconhecimento de cada nível é um benefício adicional, não substitui a comissão.', false)
         ->assertSee('Aprendiz')
         ->assertSee('Elite')

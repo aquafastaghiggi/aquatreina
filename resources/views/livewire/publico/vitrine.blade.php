@@ -262,7 +262,7 @@
       <span class="eyebrow eyebrow-plain">PROGRAMA DE PREMIAÇÃO</span>
       <h2>Você cria. Você vende.<br>Você sobe de nível.</h2>
       <p>Quanto mais você cresce, mais a gente te recompensa. Além das comissões do TikTok Shop, reconhecemos os afiliados que se destacam divulgando a Aquafast.</p>
-      <p class="rewards-note">Programa piloto por 90 dias, com início previsto para 30/10/2026 (a princípio).</p>
+      <p class="rewards-note">Programa piloto por 90 dias, iniciado em 01/11/2026.</p>
       @guest
         <a class="btn btn-outline" href="{{ route('register') }}">Começar minha jornada <span>→</span></a>
       @else
