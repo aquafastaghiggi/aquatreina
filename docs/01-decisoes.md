@@ -142,6 +142,22 @@ Esta decisão responde a A-05 sem criar vínculo obrigatório com organização.
 
 ---
 
+## D-10 · Exclusão administrativa somente para aluno sem histórico
+
+**Contexto.** Em 19/11/2026 foi solicitada uma forma simples de limpar da base
+cadastros de teste, duplicados ou indevidos.
+
+**Escolha.** O administrador pode excluir definitivamente apenas contas com o
+papel `aluno` que não possuam matrícula, progresso, comentário ou curso sob sua
+responsabilidade. A própria conta e contas administrativas ou de instrutor não
+podem ser excluídas por essa ação.
+
+**Consequência.** Se houver histórico, a exclusão é recusada e o administrador
+deve usar a anonimização. Isso mantém as métricas e evita que os `cascadeOnDelete`
+apaguem silenciosamente o histórico acadêmico.
+
+---
+
 ## Decisões ainda em aberto
 
 Nenhuma bloqueia a etapa 0. Precisam de resposta antes das etapas indicadas.

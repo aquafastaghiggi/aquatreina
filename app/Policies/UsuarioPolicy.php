@@ -8,8 +8,12 @@ use App\Models\Usuario;
 
 class UsuarioPolicy
 {
-    public function before(Usuario $usuario): ?bool
+    public function before(Usuario $usuario, string $habilidade): ?bool
     {
+        if ($habilidade === 'excluir') {
+            return null;
+        }
+
         return $usuario->hasRole('admin') ? true : null;
     }
 
@@ -36,5 +40,12 @@ class UsuarioPolicy
     public function anonimizar(Usuario $usuario, Usuario $alvo): bool
     {
         return $usuario->hasRole('admin');
+    }
+
+    public function excluir(Usuario $usuario, Usuario $alvo): bool
+    {
+        return $usuario->hasRole('admin')
+            && ! $usuario->is($alvo)
+            && $alvo->hasRole('aluno');
     }
 }

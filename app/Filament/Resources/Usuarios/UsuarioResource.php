@@ -6,7 +6,9 @@ namespace App\Filament\Resources\Usuarios;
 
 use App\Acoes\Usuario\AprovarUsuario;
 use App\Acoes\Usuario\BloquearUsuario;
+use App\Acoes\Usuario\ExcluirUsuario;
 use App\Enums\SituacaoUsuario;
+use App\Excecoes\UsuarioPossuiHistorico;
 use App\Filament\Resources\Usuarios\Pages\ManageUsuarios;
 use App\Filament\Resources\Usuarios\Pages\ViewUsuario;
 use App\Filament\Resources\Usuarios\RelationManagers\MatriculasRelationManager;
@@ -15,6 +17,7 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -97,6 +100,29 @@ class UsuarioResource extends Resource
                     ->authorize(fn (Usuario $record): bool => Gate::allows('bloquear', $record))
                     ->requiresConfirmation()
                     ->action(fn (Usuario $record) => app(BloquearUsuario::class)->executar($record, auth()->user())),
+                Action::make('excluir')
+                    ->label('Excluir')
+                    ->icon(Heroicon::OutlinedTrash)
+                    ->color('danger')
+                    ->visible(fn (Usuario $record): bool => $record->hasRole('aluno'))
+                    ->authorize(fn (Usuario $record): bool => Gate::allows('excluir', $record))
+                    ->requiresConfirmation()
+                    ->modalHeading('Excluir aluno definitivamente?')
+                    ->modalDescription('Esta ação serve para limpar cadastros sem histórico e não poderá ser desfeita. Alunos com matrículas, progresso, comentários ou cursos vinculados não serão excluídos.')
+                    ->modalSubmitActionLabel('Excluir definitivamente')
+                    ->action(function (Usuario $record): void {
+                        try {
+                            app(ExcluirUsuario::class)->executar($record, auth()->user());
+                            Notification::make()->title('Aluno excluído')->success()->send();
+                        } catch (UsuarioPossuiHistorico $excecao) {
+                            Notification::make()
+                                ->title('Não foi possível excluir o aluno')
+                                ->body($excecao->getMessage())
+                                ->danger()
+                                ->persistent()
+                                ->send();
+                        }
+                    }),
             ]);
     }
 

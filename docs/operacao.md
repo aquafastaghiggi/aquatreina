@@ -59,6 +59,11 @@ Ao aprovar, o aluno recebe um e-mail pelo Microsoft Graph. Todo cadastro novo
 também envia uma confirmação ao aluno e um aviso para o endereço administrativo
 configurado, sem depender da verificação de e-mail.
 
+Para limpar cadastros de teste, duplicados ou indevidos, use **Excluir**. A ação
+é definitiva e aceita somente alunos sem histórico. Quando houver matrícula,
+progresso, comentário ou curso vinculado, use **Anonimizar usuário** para
+preservar os relatórios.
+
 ### Publicar curso
 
 Abra **Cursos**, preencha responsável, categoria, conteúdo e capa. No

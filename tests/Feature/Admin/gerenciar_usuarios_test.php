@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 use App\Acoes\Usuario\AprovarUsuario;
 use App\Acoes\Usuario\BloquearUsuario;
+use App\Acoes\Usuario\ExcluirUsuario;
 use App\Enums\SituacaoUsuario;
+use App\Excecoes\UsuarioPossuiHistorico;
 use App\Filament\Resources\Usuarios\UsuarioResource;
+use App\Models\Matricula;
 use App\Models\Usuario;
 use App\Notifications\CadastroAprovado;
 use App\Notifications\Channels\MicrosoftGraphChannel;
@@ -17,6 +20,7 @@ use Spatie\Permission\Models\Role;
 beforeEach(function (): void {
     Role::findOrCreate('admin');
     Role::findOrCreate('instrutor');
+    Role::findOrCreate('aluno');
 });
 
 it('libera o painel administrativo para admin', function (): void {
@@ -81,7 +85,41 @@ it('so admin pode aprovar bloquear e anonimizar usuario (UsuarioPolicy)', functi
     expect(Gate::forUser($admin)->allows('aprovar', $usuario))->toBeTrue()
         ->and(Gate::forUser($admin)->allows('bloquear', $usuario))->toBeTrue()
         ->and(Gate::forUser($admin)->allows('anonimizar', $usuario))->toBeTrue()
+        ->and(Gate::forUser($admin)->allows('excluir', $usuario))->toBeFalse()
         ->and(Gate::forUser($instrutor)->allows('aprovar', $usuario))->toBeFalse()
         ->and(Gate::forUser($instrutor)->allows('bloquear', $usuario))->toBeFalse()
         ->and(Gate::forUser($instrutor)->allows('anonimizar', $usuario))->toBeFalse();
+});
+
+it('exclui definitivamente aluno sem historico e registra auditoria', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $aluno = Usuario::factory()->create();
+    $aluno->assignRole('aluno');
+
+    expect(Gate::forUser($admin)->allows('excluir', $aluno))->toBeTrue()
+        ->and(Gate::forUser($admin)->allows('excluir', $admin))->toBeFalse();
+
+    $this->actingAs($admin)
+        ->get(UsuarioResource::getUrl())
+        ->assertOk()
+        ->assertSee('Excluir');
+
+    app(ExcluirUsuario::class)->executar($aluno, $admin);
+
+    expect(Usuario::withTrashed()->find($aluno->id))->toBeNull()
+        ->and(Activity::query()->where('description', 'usuario_excluido')->exists())->toBeTrue();
+});
+
+it('impede excluir aluno com historico de matricula', function (): void {
+    $admin = Usuario::factory()->create();
+    $admin->assignRole('admin');
+    $aluno = Usuario::factory()->create();
+    $aluno->assignRole('aluno');
+    Matricula::factory()->for($aluno)->create();
+
+    expect(fn () => app(ExcluirUsuario::class)->executar($aluno, $admin))
+        ->toThrow(UsuarioPossuiHistorico::class);
+
+    expect(Usuario::query()->find($aluno->id))->not->toBeNull();
 });
